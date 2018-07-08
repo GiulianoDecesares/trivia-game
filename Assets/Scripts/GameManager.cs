@@ -11,21 +11,31 @@ public class GameManager : MonoBehaviour {
     [Space]
     [Header("This is the actual Score")]
     public int Score=0;
+    [Space]
+    [Header("Index of the actual category")]
+    public int CurrentCategoryIndex = 0;
 
     private string gameDataProjectFilePath = "/Emails.txt";
     private string AllEmails = "";
+    #region Sigleton
+    public static GameManager instance;
+    private void Awake()
+    {
+        instance = this;
+    }
+    #endregion
 
     public void Start()
     {
         LoadMails();
     } 
-
-    // Use this for initialization
-    public int CategoryRandomSelection (int TotalCategories) {
+//This is called to randomly select a category index between 0 and the total ammount of categories that should be entered in TotalCategories
+    public void CategoryRandomSelection (int TotalCategories) {
         int NewCategory = Random.Range(0, TotalCategories);
-        return NewCategory;
+        CurrentCategoryIndex = NewCategory;
 	}
 
+//This is used by the "Play Now" button in the main screen to save the e-mail address to a file.
     public void EmailInput()
     {
         if (AllEmails == "")
@@ -38,7 +48,8 @@ public class GameManager : MonoBehaviour {
         }
         SaveMails();
     }
-        
+
+    //Internal Use - To load the Mails saved in Emails.txt    
    private void LoadMails()
     {
         string filePath = Application.dataPath + gameDataProjectFilePath;
@@ -53,16 +64,16 @@ public class GameManager : MonoBehaviour {
             AllEmails = "";
         }
     }
-
+    //Internal Use - To save a new e-mail address in the file Emails.txt   
     private void SaveMails()
     {
         string filePath = Application.dataPath + gameDataProjectFilePath;
-        File.WriteAllText(filePath, AllEmails);
-        
+        File.WriteAllText(filePath, AllEmails); 
     }
 
-    // Update is called once per frame
+    //Called by the Results Script to reset the values and start over.
     public void ResetGame () {
         Score = 0;
+        Email.text = "";
 	}
 }
