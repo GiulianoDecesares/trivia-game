@@ -285,6 +285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Email: {fileID: 0}
   Score: 0
+  CurrentCategoryIndex: 0
 --- !u!4 &1954185413
 Transform:
   m_ObjectHideFlags: 0
