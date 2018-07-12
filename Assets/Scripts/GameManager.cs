@@ -5,6 +5,8 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.UI;
 
+
+
 public class GameManager : MonoBehaviour {
     [Header("Insert Your Email InputField Here")]
     public InputField Email;
@@ -16,7 +18,12 @@ public class GameManager : MonoBehaviour {
     public int CurrentCategoryIndex = 0;
 
     private string gameDataProjectFilePath = "/Emails.txt";
+    private string QuestionsDataPath = "/Resources/JsonData/TriviaGame.txt";
     private string AllEmails = "";
+    public string LoadedFromJson = "";
+    [HideInInspector]
+    public QuestionList QuestionsList;
+
     #region Sigleton
     public static GameManager instance;
     private void Awake()
@@ -28,6 +35,7 @@ public class GameManager : MonoBehaviour {
     public void Start()
     {
         LoadMails();
+        LoadQuestions();
     } 
 //This is called to randomly select a category index between 0 and the total ammount of categories that should be entered in TotalCategories
     public void CategoryRandomSelection (int TotalCategories) {
@@ -76,4 +84,46 @@ public class GameManager : MonoBehaviour {
         Score = 0;
         Email.text = "";
 	}
+    public void ScoreRightQuestion()
+    {
+        Score++;
+    }
+
+    public void LoadQuestions()
+    {
+        LoadedFromJson = File.ReadAllText(Application.dataPath + QuestionsDataPath);
+        QuestionsList = JsonUtility.FromJson<QuestionList>(LoadedFromJson);
+     //   MostrarLog();
+    }
+
+/*    private void MostrarLog()
+    {
+        for (int i=0;i< QuestionsList.list.Count; i++)
+        {
+            Debug.Log(QuestionsList.list[i].Question);
+        }
+    }
+*/
+
+}
+
+
+
+
+[System.Serializable]
+public class Questions
+{
+    public string Question;
+    public string Answer1;
+    public string Answer2;
+    public string Answer3;
+    public string Answer4;
+    public int CorrectAnswer;
+    public string Category;
+}
+
+[System.Serializable]
+public class QuestionList
+{
+        public List<Questions> list;
 }
