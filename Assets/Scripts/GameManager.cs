@@ -32,15 +32,18 @@ public class GameManager : MonoBehaviour {
     }
     #endregion
 
+
+    //Loads TriviaGame.txt and Emails.txt into memory on start
     public void Start()
     {
         LoadMails();
         LoadQuestions();
     } 
-//This is called to randomly select a category index between 0 and the total ammount of categories that should be entered in TotalCategories
-    public void CategoryRandomSelection (int TotalCategories) {
-        int NewCategory = Random.Range(0, TotalCategories);
-        CurrentCategoryIndex = NewCategory;
+
+//This function returns a random index of the Questions List
+    public int QuestionRandomSelection () {
+        int QuestionIndex = Random.Range(0, QuestionsList.list.Count);
+        return QuestionIndex;
 	}
 
 //This is used by the "Play Now" button in the main screen to save the e-mail address to a file.
@@ -72,6 +75,7 @@ public class GameManager : MonoBehaviour {
             AllEmails = "";
         }
     }
+
     //Internal Use - To save a new e-mail address in the file Emails.txt   
     private void SaveMails()
     {
@@ -93,18 +97,7 @@ public class GameManager : MonoBehaviour {
     {
         LoadedFromJson = File.ReadAllText(Application.dataPath + QuestionsDataPath);
         QuestionsList = JsonUtility.FromJson<QuestionList>(LoadedFromJson);
-     //   MostrarLog();
     }
-
-/*    private void MostrarLog()
-    {
-        for (int i=0;i< QuestionsList.list.Count; i++)
-        {
-            Debug.Log(QuestionsList.list[i].Question);
-        }
-    }
-*/
-
 }
 
 
