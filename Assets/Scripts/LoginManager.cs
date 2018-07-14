@@ -7,13 +7,12 @@ public class LoginManager : MonoBehaviour {
     public InputField MailInput;
     public Button buttontoplay;
     public Image ValidMailImage;
-    // public Image greenborder;
+    public Image greenborder;
 
-    // Use this for initialization
     void Start () {
         buttontoplay.interactable = false;
         ValidMailImage.gameObject.SetActive(false);
-       // greenborder.gameObject.SetActive(false);
+        greenborder.gameObject.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -30,8 +29,7 @@ public class LoginManager : MonoBehaviour {
 
                 this.buttontoplay.interactable = true;
 
-               // this.greenborder.gameObject.SetActive(true);
-
+                this.greenborder.gameObject.SetActive(true);
                 
             }
             else
@@ -39,11 +37,7 @@ public class LoginManager : MonoBehaviour {
                 ValidMailImage.gameObject.SetActive(false);
 
                 buttontoplay.interactable = false;
-
-              
-
-               
-             }
+            }
     }   
 
     public void ButtonBehaviour()
