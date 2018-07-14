@@ -18,12 +18,15 @@ public class Results : MonoBehaviour {
     public Text ResultTextOutput;
     public Slider ResultPie;
     public Text ResultPercentage;
+    public Text CorrectAnswers;
+    public Text WrongAnswers;
 
     // This method calculates the Percentage of right answers, transform it into an integer and calls other methods to show it
     public void ShowResults () {
         Percentage = Mathf.RoundToInt((GameManager.instance.Score*1f / QuestionsAnswered) * 100f);
         DyanamicResultText();
         ShowPercentage();
+        ShowAmmountOfAnswers();
     }
 	
 	// This resets the game when you press the Play Again Button
@@ -52,10 +55,31 @@ public class Results : MonoBehaviour {
             else
             {
                 ResultPercentage.text = Percentage.ToString()+"%";
-                ResultPie.value = Percentage*0.01f;
+                ResultPie.value = Percentage*1f;
             }
         }
     }
+    //This is a private method that shows the ammount of correct and wrong answers 
+    private void ShowAmmountOfAnswers()
+    {
+        if (CorrectAnswers == null)
+        {
+            Debug.Log("The Correct Answers text is missing");
+        }
+        else
+        {
+            if (WrongAnswers == null)
+            {
+                Debug.Log("The Wrong Answers text is missing");
+            }
+            else
+            {
+                CorrectAnswers.text = GameManager.instance.Score.ToString() + " CORRECTAS";
+                WrongAnswers.text = (QuestionsAnswered - GameManager.instance.Score).ToString() + " INCORRECTAS";
+            }
+        }
+    }
+
     //This is a private method that shows different strings in the Result Text Output
     private void DyanamicResultText()
     {
