@@ -17,8 +17,7 @@ public class MainUIManager : MonoBehaviour
 
 	public void InvokeAndAddPanel(GameObject thisPanel)
 	{
-		GameObject panelInstance = Instantiate(thisPanel, new Vector3(), new Quaternion(), this.panelsScrollRect.gameObject.transform);
-		panelInstance.transform.position = new Vector3(0,0,0);
+		Instantiate(thisPanel, new Vector3(), new Quaternion(), this.panelsScrollRect.gameObject.transform);
 	}
 
 }

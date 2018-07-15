@@ -1,6 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
+
+#if UNITY_EDITOR
+    using UnityEditor;
+#endif
+
 using UnityEngine;
 using System.IO;
 using UnityEngine.UI;
@@ -40,7 +44,6 @@ public class GameManager : MonoBehaviour {
         MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("QuestionsGridItem"));
         MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("ResultGridItem"));
     }
-
 
     //Loads TriviaGame.txt and Emails.txt into memory on start
     public void Start()
