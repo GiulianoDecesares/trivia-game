@@ -46,12 +46,18 @@ public class GameManager : MonoBehaviour {
             MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("QuestionsGridItem"));
             MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("ResultGridItem"));
         }
+        else
+        {
+            Debug.LogError("Error :: UI not found", this.gameObject);
+            Debug.Break();
+        }
     }
 
     //Loads TriviaGame.txt and Emails.txt into memory on start
     public void Start()
     {
-        LoadGameUI();
+        // Instantiation of game UI 
+        LoadGameUI(); 
 
         LoadMails();
         LoadQuestions();
