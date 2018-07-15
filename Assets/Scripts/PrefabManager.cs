@@ -64,7 +64,7 @@ public class PrefabManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning(this.GetType().Name + " is already initialized");
+            Debug.LogWarning(this.GetType().Name + " is already initialized.");
         }
     }
 

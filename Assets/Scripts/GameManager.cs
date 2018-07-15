@@ -32,10 +32,17 @@ public class GameManager : MonoBehaviour {
     }
     #endregion
 
+    private void LoadGameUI()
+    {
+        Instantiate(PrefabManager.instance.GetPrefabByName("MainUI"));
+    }
+
 
     //Loads TriviaGame.txt and Emails.txt into memory on start
     public void Start()
     {
+        LoadGameUI();
+
         LoadMails();
         LoadQuestions();
     } 
