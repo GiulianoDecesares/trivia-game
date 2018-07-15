@@ -23,19 +23,14 @@ public class LoginManager : MonoBehaviour {
     public void checkmailifvalid()
     {
         if (MailInput.text.EndsWith(".com") && (MailInput.text.Contains("@")) && !(MailInput.text.Contains("exampleemail@gmailcom")))
-            {
-                
+            {                
                 this.ValidMailImage.gameObject.SetActive(true);
-
                 this.buttontoplay.interactable = true;
-
-                this.greenborder.gameObject.SetActive(true);
-                
+                this.greenborder.gameObject.SetActive(true);                
             }
             else
             {
                 ValidMailImage.gameObject.SetActive(false);
-
                 buttontoplay.interactable = false;
             }
     }   

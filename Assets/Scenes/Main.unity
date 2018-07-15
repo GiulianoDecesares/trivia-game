@@ -256,6 +256,82 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1418959109
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1418959110}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1418959110
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1418959109}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1477337334
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1477337336}
+  - component: {fileID: 1477337335}
+  m_Layer: 0
+  m_Name: PrefabManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1477337335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1477337334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2804b18d775a3d40b27bdfcc72fce93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 1465767435814436, guid: 271de5846783a404e91238a7cab69d11, type: 2}
+  - {fileID: 1449369489203614, guid: df5efb529da495d43989431ed68e041e, type: 2}
+  - {fileID: 1106834553015296, guid: 2421cc98f4e9b4f428749fca3340279c, type: 2}
+  - {fileID: 1424217891094110, guid: e142ec918a30f18419cd93bb8b285c1e, type: 2}
+  - {fileID: 1356086807914990, guid: 5f601aaee3261634aa4b0a4c8a5dfbb1, type: 2}
+  - {fileID: 1339102975177586, guid: dbf93d65afd0edf4abc4a3b828ac3002, type: 2}
+  yieldPeriod: 0.03
+--- !u!4 &1477337336
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1477337334}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1954185411
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,7 +343,7 @@ GameObject:
   - component: {fileID: 1954185412}
   - component: {fileID: 1954185414}
   m_Layer: 0
-  m_Name: Manager
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -287,6 +363,9 @@ MonoBehaviour:
   Email: {fileID: 0}
   Score: 0
   CurrentCategoryIndex: 0
+  LoadedFromJson: 
+  QuestionsList:
+    list: []
 --- !u!4 &1954185413
 Transform:
   m_ObjectHideFlags: 0
@@ -294,7 +373,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1954185411}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -133.55443, y: 40.50467, z: -6}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -319,3 +398,7 @@ MonoBehaviour:
   Text25: Mas o menos
   Text0: Mal
   ResultTextOutput: {fileID: 0}
+  ResultPie: {fileID: 0}
+  ResultPercentage: {fileID: 0}
+  CorrectAnswers: {fileID: 0}
+  WrongAnswers: {fileID: 0}
