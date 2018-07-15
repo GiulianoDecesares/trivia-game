@@ -9,8 +9,6 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.UI;
 
-
-
 public class GameManager : MonoBehaviour {
     [Header("Insert Your Email InputField Here")]
     public InputField Email;
@@ -38,18 +36,25 @@ public class GameManager : MonoBehaviour {
 
     private void LoadGameUI()
     {
-        GameObject mainUI = Instantiate(PrefabManager.instance.GetPrefabByName("MainUI"));
+        // GameObject mainUI = Instantiate(PrefabManager.instance.GetPrefabByName("MainUI"));
 
-        if(mainUI)
+        // if(mainUI)
+        // {
+        //     MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("LogInGridItem"));
+        //     MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("QuestionsGridItem"));
+        //     MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("ResultGridItem"));
+        // }
+        // else
+        // {
+        //     Debug.LogError("Error :: UI not found", this.gameObject);
+        //     Debug.Break();
+        // }
+
+        GameObject phoneUI = Instantiate(PrefabManager.instance.GetPrefabByName("PhoneUI"));
+
+        if(phoneUI)
         {
-            MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("LogInGridItem"));
-            MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("QuestionsGridItem"));
-            MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("ResultGridItem"));
-        }
-        else
-        {
-            Debug.LogError("Error :: UI not found", this.gameObject);
-            Debug.Break();
+             MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("PhoneLogInGridItem"));
         }
     }
 
@@ -122,9 +127,6 @@ public class GameManager : MonoBehaviour {
         QuestionsList = JsonUtility.FromJson<QuestionList>(LoadedFromJson);
     }
 }
-
-
-
 
 [System.Serializable]
 public class Questions

@@ -83,7 +83,7 @@ public class PrefabManager : MonoBehaviour
         }
 
         if(returnGameObject == null)
-            Debug.LogWarning("Prefab look up exception :: prefab not found");
+            Debug.LogWarning("Prefab look up exception :: " + prefabName + " prefab not found");
             // Load prefab from disk ??
 
         return returnGameObject;
