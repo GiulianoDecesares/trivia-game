@@ -433,7 +433,7 @@ MonoBehaviour:
   MailInput: {fileID: 114739796845009554}
   buttontoplay: {fileID: 114741609066679918}
   ValidMailImage: {fileID: 114161909095365522}
-  greenborder: {fileID: 114923420631700548}
+  greenborder: {fileID: 114303192939820120}
 --- !u!114 &114142106059407072
 MonoBehaviour:
   m_ObjectHideFlags: 1

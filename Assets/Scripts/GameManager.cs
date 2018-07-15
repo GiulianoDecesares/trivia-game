@@ -38,11 +38,14 @@ public class GameManager : MonoBehaviour {
 
     private void LoadGameUI()
     {
-        Instantiate(PrefabManager.instance.GetPrefabByName("MainUI"));
+        GameObject mainUI = Instantiate(PrefabManager.instance.GetPrefabByName("MainUI"));
 
-        MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("LogInGridItem"));
-        MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("QuestionsGridItem"));
-        MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("ResultGridItem"));
+        if(mainUI)
+        {
+            MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("LogInGridItem"));
+            MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("QuestionsGridItem"));
+            MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("ResultGridItem"));
+        }
     }
 
     //Loads TriviaGame.txt and Emails.txt into memory on start
