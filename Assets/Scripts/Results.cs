@@ -7,6 +7,10 @@ public class Results : MonoBehaviour {
     public int QuestionsAnswered;
     public int Percentage = 0;
     [Space]
+    [Header("Results Animation delay")]
+    [Range(0.3f,2f)]
+    public float AnimationDelay = 0.5f;
+    [Space]
     [Header("Results Messages for the Result Text Output")]
     public string Text100 = "Excelente";
     public string Text75 = "Muy Bien";
@@ -15,18 +19,16 @@ public class Results : MonoBehaviour {
     public string Text0 = "Mal";
     [Space]
     [Header("Text and graphic Output")]
-    public Text ResultTextOutput;
-    public Slider ResultPie;
-    public Text ResultPercentage;
+    public Text ResultText;
+    public Slider LogoSlider;
+    public Text PercentText;
     public Text CorrectAnswers;
     public Text WrongAnswers;
 
     // This method calculates the Percentage of right answers, transform it into an integer and calls other methods to show it
     public void ShowResults () {
         Percentage = Mathf.RoundToInt((GameManager.instance.Score*1f / QuestionsAnswered) * 100f);
-        DyanamicResultText();
         ShowPercentage();
-        ShowAmmountOfAnswers();
     }
 	
 	// This resets the game when you press the Play Again Button
@@ -40,25 +42,49 @@ public class Results : MonoBehaviour {
 
     }
 
-    //This is a private method that shows the percentage in the Result Percentage text and fills the Result pie slider to the correct percentage 
+    //This is a private method that calls the Logo Animation coroutine if the Logo slider and percent text are present
     private void ShowPercentage()
     {
-        if (ResultPie == null)
+        if (LogoSlider == null)
         {
-            Debug.Log("The slider of the Result Pie is missing");
+            Debug.Log("The slider of the Logo Slider is missing");
         }else
         {
-            if (ResultPercentage == null)
+            if (PercentText == null)
             {
-                Debug.Log("The Text to show the Results Percentage is missing");
+                Debug.Log("The Percent Text is missing");
             }
             else
             {
-                ResultPercentage.text = Percentage.ToString()+"%";
-                ResultPie.value = Percentage*1f;
+                StartCoroutine("LogoAnimation");
             }
         }
     }
+
+    //This is a coroutine that animates the Logo Slider and the Percent Text and shows the Dynamic Result Text and the Correct and Wrong anwers ammounts once the animation is finished
+    IEnumerator LogoAnimation()
+    {
+        ResultText.text = "";
+        CorrectAnswers.text = "";
+        WrongAnswers.text = "";
+        if (Percentage != 0) {
+            for (int i = 0; i <= Percentage; i++)
+            {
+                LogoSlider.value = i * 1f;
+                PercentText.text = i.ToString() + "%";
+                yield return new WaitForSeconds(AnimationDelay / Percentage);
+            }
+        }
+        else
+        {
+            LogoSlider.value = 0f;
+            PercentText.text = "0 %";
+        }
+        DyanamicResultText();
+        ShowAmmountOfAnswers();
+        yield return null;
+    }
+
     //This is a private method that shows the ammount of correct and wrong answers 
     private void ShowAmmountOfAnswers()
     {
@@ -113,9 +139,9 @@ public class Results : MonoBehaviour {
                 }
             }
         }
-        if (ResultTextOutput != null)
+        if (ResultText != null)
         {
-            ResultTextOutput.text = TextToShow;
+            ResultText.text = TextToShow;
         }else
         {
             Debug.Log("The Result Text is missing");
