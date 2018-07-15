@@ -433,7 +433,7 @@ MonoBehaviour:
   MailInput: {fileID: 114739796845009554}
   buttontoplay: {fileID: 114741609066679918}
   ValidMailImage: {fileID: 114161909095365522}
-  greenborder: {fileID: 0}
+  greenborder: {fileID: 114923420631700548}
 --- !u!114 &114142106059407072
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -777,7 +777,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: exampleemail@gmail.com
+  m_Text: 
 --- !u!222 &222074407756299280
 CanvasRenderer:
   m_ObjectHideFlags: 1

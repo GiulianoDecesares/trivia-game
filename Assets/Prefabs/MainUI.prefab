@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 223510859070101594}
   - component: {fileID: 114270376071310464}
   - component: {fileID: 114761714495462846}
+  - component: {fileID: 114403868057006982}
   m_Layer: 5
   m_Name: MainUI
   m_TagString: Untagged
@@ -307,6 +308,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 1
   m_VerticalFit: 1
+--- !u!114 &114403868057006982
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1465767435814436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cd3ac2014d6b494c91545a0086bf325, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelsScrollRect: {fileID: 1497444854346018}
 --- !u!114 &114645461751258304
 MonoBehaviour:
   m_ObjectHideFlags: 1

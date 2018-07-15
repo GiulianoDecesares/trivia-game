@@ -35,6 +35,10 @@ public class GameManager : MonoBehaviour {
     private void LoadGameUI()
     {
         Instantiate(PrefabManager.instance.GetPrefabByName("MainUI"));
+
+        MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("LogInGridItem"));
+        MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("QuestionsGridItem"));
+        MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("ResultGridItem"));
     }
 
 
