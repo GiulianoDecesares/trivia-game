@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PrefabManager : MonoBehaviourSingleton<PrefabManager>
+public class PrefabManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> prefabs; // Prefabs array populated manually from inspector
 
@@ -16,8 +16,19 @@ public class PrefabManager : MonoBehaviourSingleton<PrefabManager>
 
     public float yieldPeriod = 0.03f;
 
+#region Sigleton
 
-    public IEnumerator Initialize() // Use from the GameManager
+    public static PrefabManager instance { get; private set; }
+    private void Awake() 
+    { 
+        instance = this; 
+        StartCoroutine(this.Initialize()); 
+    }
+
+#endregion
+
+
+    public IEnumerator Initialize() 
     {
         if(!this.isInitialized)
         {
