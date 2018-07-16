@@ -36,26 +36,39 @@ public class GameManager : MonoBehaviour {
 
     private void LoadGameUI()
     {
-        // GameObject mainUI = Instantiate(PrefabManager.instance.GetPrefabByName("MainUI"));
-
-        // if(mainUI)
-        // {
-        //     MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("LogInGridItem"));
-        //     MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("QuestionsGridItem"));
-        //     MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("ResultGridItem"));
-        // }
-        // else
-        // {
-        //     Debug.LogError("Error :: UI not found", this.gameObject);
-        //     Debug.Break();
-        // }
-
-        GameObject phoneUI = Instantiate(PrefabManager.instance.GetPrefabByName("PhoneUI"));
-
-        if(phoneUI)
+        if(DeviceManager.instance.isTablet)
         {
-             MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("PhoneLogInGridItem"));
+            GameObject mainUI = Instantiate(PrefabManager.instance.GetPrefabByName("MainUI"));
+
+            if(mainUI)
+            {
+                MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("LogInGridItem"));
+                MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("QuestionsGridItem"));
+                MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("ResultGridItem"));
+            }
+            else
+            {
+                Debug.LogError("Error :: tablet UI not found", this.gameObject);
+                Debug.Break();
+            }
         }
+        else if(DeviceManager.instance.isPhone)
+        {
+            GameObject phoneUI = Instantiate(PrefabManager.instance.GetPrefabByName("PhoneUI"));
+
+            if(phoneUI)
+            {
+                MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("PhoneLogInGridItem"));
+            }
+            else
+            {
+                Debug.LogError("Error :: phone UI not found", this.gameObject);
+                Debug.Break();
+            }
+        }
+        
+
+        
     }
 
     //Loads TriviaGame.txt and Emails.txt into memory on start
