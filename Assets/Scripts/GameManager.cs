@@ -10,18 +10,18 @@ using System.IO;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
-    [Header("Insert Your Email InputField Here")]
-    public InputField Email;
     [Space]
-    [Header("This is the actual Score")]
+    [Header("This is Actual Score and Ammount of Questions Answered")]
     public int Score=0;
+    public int QuestionsAnswered=0;
+    [Space]
+    [Header("The ammount of questions to answer to finish the game")]
+    public int AmmountOfQuestionsToAnswer = 5;
     [Space]
     [Header("Index of the actual category")]
     public int CurrentCategoryIndex = 0;
 
-    private string gameDataProjectFilePath = "/Emails.txt";
     private string QuestionsDataPath = "/Resources/JsonData/TriviaGame.txt";
-    private string AllEmails = "";
     public string LoadedFromJson = "";
     [HideInInspector]
     public QuestionList QuestionsList;
@@ -66,9 +66,6 @@ public class GameManager : MonoBehaviour {
                 Debug.Break();
             }
         }
-        
-
-        
     }
 
     //Loads TriviaGame.txt and Emails.txt into memory on start
@@ -76,8 +73,6 @@ public class GameManager : MonoBehaviour {
     {
         // Instantiation of game UI 
         LoadGameUI(); 
-
-        LoadMails();
         LoadQuestions();
     } 
 
@@ -87,51 +82,35 @@ public class GameManager : MonoBehaviour {
         return QuestionIndex;
 	}
 
-//This is used by the "Play Now" button in the main screen to save the e-mail address to a file.
-    public void EmailInput()
-    {
-        if (AllEmails == "")
-        {
-            AllEmails = Email.text;
-        }
-        else
-        {
-            AllEmails = AllEmails + ";" + Email.text;
-        }
-        SaveMails();
-    }
-
-    //Internal Use - To load the Mails saved in Emails.txt    
-   private void LoadMails()
-    {
-        string filePath = Application.dataPath + gameDataProjectFilePath;
-
-        if (File.Exists(filePath))
-        {
-            AllEmails = File.ReadAllText(filePath);
-        }
-        else
-        {
-            File.Create(filePath);
-            AllEmails = "";
-        }
-    }
-
-    //Internal Use - To save a new e-mail address in the file Emails.txt   
-    private void SaveMails()
-    {
-        string filePath = Application.dataPath + gameDataProjectFilePath;
-        File.WriteAllText(filePath, AllEmails); 
-    }
-
     //Called by the Results Script to reset the values and start over.
     public void ResetGame () {
         Score = 0;
-        Email.text = "";
+        QuestionsAnswered = 0;
 	}
-    public void ScoreRightQuestion()
+    public void OnAnsweredQuestion(bool Correct)
     {
-        Score++;
+        if (Correct)
+        {
+            Score++;
+        }
+        QuestionsAnswered++;
+        CheckEndOfGame();
+    }
+
+    private void CheckEndOfGame()
+    {
+        if(QuestionsAnswered >= AmmountOfQuestionsToAnswer)
+        {
+            //Insertar código para mover paneles a Results
+            GameObject ResultGrid = GameObject.Find("ResultGridItem").gameObject;
+            if (ResultGrid != null)
+            {
+                ResultGrid.GetComponent<ResutManager>().ShowResults();
+            }else
+            {
+                Debug.Log("Could not find ResultGridItem in the hierarchy");
+            }
+        }
     }
 
     public void LoadQuestions()

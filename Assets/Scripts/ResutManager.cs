@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Results : MonoBehaviour {
-    public int QuestionsAnswered;
+public class ResutManager : MonoBehaviour {
+    
     public int Percentage = 0;
     [Space]
     [Header("Results Animation delay")]
-    [Range(0.3f,2f)]
+    [Range(0.3f, 2f)]
     public float AnimationDelay = 0.5f;
     [Space]
     [Header("Results Messages for the Result Text Output")]
@@ -26,15 +26,17 @@ public class Results : MonoBehaviour {
     public Text WrongAnswers;
 
     // This method calculates the Percentage of right answers, transform it into an integer and calls other methods to show it
-    public void ShowResults () {
-        Percentage = Mathf.RoundToInt((GameManager.instance.Score*1f / QuestionsAnswered) * 100f);
+    public void ShowResults()
+    {
+        Percentage = Mathf.RoundToInt((GameManager.instance.Score * 1f / GameManager.instance.QuestionsAnswered) * 100f);
         ShowPercentage();
     }
-	
-	// This resets the game when you press the Play Again Button
-	public void PlayAgainButton () {
+
+    // This resets the game when you press the Play Again Button
+    public void PlayAgainButton()
+    {
         GameManager.instance.ResetGame();
-	}
+    }
 
     // Calls the screen capture method and the sharing options - NOT READY YET-
     public void ShareButton()
@@ -48,7 +50,8 @@ public class Results : MonoBehaviour {
         if (LogoSlider == null)
         {
             Debug.Log("The slider of the Logo Slider is missing");
-        }else
+        }
+        else
         {
             if (PercentText == null)
             {
@@ -67,7 +70,8 @@ public class Results : MonoBehaviour {
         ResultText.text = "";
         CorrectAnswers.text = "";
         WrongAnswers.text = "";
-        if (Percentage != 0) {
+        if (Percentage != 0)
+        {
             for (int i = 0; i <= Percentage; i++)
             {
                 LogoSlider.value = i * 1f;
@@ -101,7 +105,7 @@ public class Results : MonoBehaviour {
             else
             {
                 CorrectAnswers.text = GameManager.instance.Score.ToString() + " CORRECTAS";
-                WrongAnswers.text = (QuestionsAnswered - GameManager.instance.Score).ToString() + " INCORRECTAS";
+                WrongAnswers.text = (GameManager.instance.QuestionsAnswered - GameManager.instance.Score).ToString() + " INCORRECTAS";
             }
         }
     }
@@ -110,25 +114,25 @@ public class Results : MonoBehaviour {
     private void DyanamicResultText()
     {
         string TextToShow = "";
-        if (Percentage ==100)
+        if (Percentage == 100)
         {
             TextToShow = Text100;
         }
         else
         {
-            if(Percentage > 75)
+            if (Percentage > 75)
             {
                 TextToShow = Text75;
             }
             else
             {
-                if(Percentage > 50)
+                if (Percentage > 50)
                 {
                     TextToShow = Text50;
                 }
                 else
                 {
-                    if(Percentage > 25)
+                    if (Percentage > 25)
                     {
                         TextToShow = Text25;
                     }
@@ -142,7 +146,8 @@ public class Results : MonoBehaviour {
         if (ResultText != null)
         {
             ResultText.text = TextToShow;
-        }else
+        }
+        else
         {
             Debug.Log("The Result Text is missing");
         }
