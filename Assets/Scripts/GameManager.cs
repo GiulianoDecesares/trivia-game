@@ -36,35 +36,17 @@ public class GameManager : MonoBehaviour {
 
     private void LoadGameUI()
     {
-        if(DeviceManager.instance.isTablet)
-        {
-            GameObject mainUI = Instantiate(PrefabManager.instance.GetPrefabByName("MainUI"));
+        GameObject mainUI = Instantiate(PrefabManager.instance.GetPrefabByName("MainUI"));
 
-            if(mainUI)
-            {
-                MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("LogInGridItem"));
-                MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("QuestionsGridItem"));
-                MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("ResultGridItem"));
-            }
-            else
-            {
-                Debug.LogError("Error :: tablet UI not found", this.gameObject);
-                Debug.Break();
-            }
+        if(mainUI)
+        {
+            MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("LogInGridItem"));
+            MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("QuestionsGridItem"));
+            MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("ResultGridItem"));
         }
-        else if(DeviceManager.instance.isPhone)
+        else
         {
-            GameObject phoneUI = Instantiate(PrefabManager.instance.GetPrefabByName("PhoneUI"));
-
-            if(phoneUI)
-            {
-                MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("PhoneLogInGridItem"));
-            }
-            else
-            {
-                Debug.LogError("Error :: phone UI not found", this.gameObject);
-                Debug.Break();
-            }
+            Debug.LogError("Error :: tablet UI not found", this.gameObject);
         }
     }
 

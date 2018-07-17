@@ -318,8 +318,6 @@ MonoBehaviour:
   - {fileID: 1424217891094110, guid: e142ec918a30f18419cd93bb8b285c1e, type: 2}
   - {fileID: 1356086807914990, guid: 5f601aaee3261634aa4b0a4c8a5dfbb1, type: 2}
   - {fileID: 1339102975177586, guid: dbf93d65afd0edf4abc4a3b828ac3002, type: 2}
-  - {fileID: 1465767435814436, guid: c841170b75d8520418c6c9f49096c5cc, type: 2}
-  - {fileID: 1971176558658628, guid: 9464192aa1fff8044af91b7d4f708a41, type: 2}
   yieldPeriod: 0.03
 --- !u!4 &1477337336
 Transform:
@@ -383,7 +381,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1954185413}
   - component: {fileID: 1954185412}
-  - component: {fileID: 1954185414}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -402,8 +399,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8390758b0714a22479171bf12875a6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Email: {fileID: 0}
   Score: 0
+  QuestionsAnswered: 0
+  AmmountOfQuestionsToAnswer: 5
   CurrentCategoryIndex: 0
   LoadedFromJson: 
   QuestionsList:
@@ -421,27 +419,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1954185414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1954185411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e970bbbe9b24b8a4ebf9e206cb29f174, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  QuestionsAnswered: 0
-  Percentage: 0
-  AnimationDelay: 0.5
-  Text100: Excelente
-  Text75: Muy Bien
-  Text50: Bien
-  Text25: Mas o menos
-  Text0: Mal
-  ResultText: {fileID: 0}
-  LogoSlider: {fileID: 0}
-  PercentText: {fileID: 0}
-  CorrectAnswers: {fileID: 0}
-  WrongAnswers: {fileID: 0}
