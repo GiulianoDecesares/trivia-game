@@ -38,12 +38,6 @@ public class ResutManager : MonoBehaviour {
         GameManager.instance.ResetGame();
     }
 
-    // Calls the screen capture method and the sharing options - NOT READY YET-
-    public void ShareButton()
-    {
-
-    }
-
     //This is a private method that calls the Logo Animation coroutine if the Logo slider and percent text are present
     private void ShowPercentage()
     {
