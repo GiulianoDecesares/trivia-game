@@ -5,39 +5,35 @@ using UnityEngine.UI;
 using System.IO;
 
 public class LoginManager : MonoBehaviour {
-    public InputField MailInput;
+    public InputField mailInput;
     public Button buttontoplay;
-    public Image ValidMailImage;
-    public Image greenborder;
+    public Image chekMailImage;
+    public Image border;
 
     private string gameDataProjectFilePath = "/Emails.txt";
     private string AllEmails = "";
 
     void Start () {
         buttontoplay.interactable = false;
-        ValidMailImage.gameObject.SetActive(false);
-        greenborder.gameObject.SetActive(false);
+        border.gameObject.SetActive(false);
         LoadMails();
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-
-    public void checkmailifvalid()
+    public void CheckMailIfValid()
     {
-        if (MailInput.text.EndsWith(".com") && (MailInput.text.Contains("@")) && !(MailInput.text.Contains("exampleemail@gmailcom")))
+        if (mailInput.text.EndsWith(".com") && (mailInput.text.Contains("@")) && !(mailInput.text.Contains("exampleemail@gmailcom")))
             {                
-                this.ValidMailImage.gameObject.SetActive(true);
+                this.chekMailImage.sprite = SpriteManager.instance.GetSpriteByName("OKButtonLogin");
                 this.buttontoplay.interactable = true;
-                this.greenborder.gameObject.SetActive(true);                
+                this.border.gameObject.SetActive(true);
+                this.border.color = new Color(0f, 1f, 0f, 1f); // Set border color to green
             }
             else
             {
-                ValidMailImage.gameObject.SetActive(false);
                 buttontoplay.interactable = false;
+                this.chekMailImage.sprite = SpriteManager.instance.GetSpriteByName("XButtonLogin");
+                this.border.gameObject.SetActive(true);
+                this.border.color = new Color(1f, 0f, 0f, 1f); // Set border color to red
             }
     }   
 
@@ -67,11 +63,11 @@ public class LoginManager : MonoBehaviour {
     {
         if (AllEmails == "")
         {
-            AllEmails = MailInput.text;
+            AllEmails = mailInput.text;
         }
         else
         {
-            AllEmails = AllEmails + ";" + MailInput.text;
+            AllEmails = AllEmails + ";" + mailInput.text;
         }
         SaveMails();
     }
@@ -81,6 +77,6 @@ public class LoginManager : MonoBehaviour {
     {
         string filePath = Application.dataPath + gameDataProjectFilePath;
         File.WriteAllText(filePath, AllEmails);
-        MailInput.text = "";
+        mailInput.text = "";
     }
 }

@@ -34,27 +34,9 @@ public class GameManager : MonoBehaviour {
     }
     #endregion
 
-    private void LoadGameUI()
-    {
-        GameObject mainUI = Instantiate(PrefabManager.instance.GetPrefabByName("MainUI"));
-
-        if(mainUI)
-        {
-            MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("LogInGridItem"));
-            MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("QuestionsGridItem"));
-            MainUIManager.instance.InvokeAndAddPanel(PrefabManager.instance.GetPrefabByName("ResultGridItem"));
-        }
-        else
-        {
-            Debug.LogError("Error :: tablet UI not found", this.gameObject);
-        }
-    }
-
     //Loads TriviaGame.txt and Emails.txt into memory on start
     public void Start()
     {
-        // Instantiation of game UI 
-        LoadGameUI(); 
         LoadQuestions();
     } 
 
