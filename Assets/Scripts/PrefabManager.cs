@@ -19,8 +19,11 @@ public class PrefabManager : MonoBehaviour
 #region Sigleton
 
     public static PrefabManager instance { get; private set; }
+
     private void Awake() 
-    { 
+    {
+        Debug.Log("PrefabManager awake function has been called");
+
         instance = this; 
         StartCoroutine(this.Initialize()); 
     }
@@ -78,7 +81,6 @@ public class PrefabManager : MonoBehaviour
         else
         {
             Debug.LogError("Prefab name exception :: null or empty prefab name parameter");
-            Debug.Break();
         }
 
         if(returnGameObject == null)
