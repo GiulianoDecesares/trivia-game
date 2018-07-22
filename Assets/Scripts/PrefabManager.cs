@@ -27,7 +27,6 @@ public class PrefabManager : MonoBehaviour
 
 #endregion
 
-
     public IEnumerator Initialize() 
     {
         if(!this.isInitialized)
