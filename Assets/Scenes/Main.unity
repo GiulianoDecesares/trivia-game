@@ -618,6 +618,11 @@ Prefab:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114672481460679002, guid: 5f601aaee3261634aa4b0a4c8a5dfbb1,
+        type: 2}
+      propertyPath: intercardSpacing
+      value: 80
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5f601aaee3261634aa4b0a4c8a5dfbb1, type: 2}
   m_IsPrefabParent: 0
@@ -679,7 +684,7 @@ MonoBehaviour:
   prefabs:
   - {fileID: 1465767435814436, guid: 271de5846783a404e91238a7cab69d11, type: 2}
   - {fileID: 1449369489203614, guid: df5efb529da495d43989431ed68e041e, type: 2}
-  - {fileID: 1106834553015296, guid: 2421cc98f4e9b4f428749fca3340279c, type: 2}
+  - {fileID: 1795762633946832, guid: 2421cc98f4e9b4f428749fca3340279c, type: 2}
   - {fileID: 1424217891094110, guid: e142ec918a30f18419cd93bb8b285c1e, type: 2}
   - {fileID: 1356086807914990, guid: 5f601aaee3261634aa4b0a4c8a5dfbb1, type: 2}
   - {fileID: 1339102975177586, guid: dbf93d65afd0edf4abc4a3b828ac3002, type: 2}
