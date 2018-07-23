@@ -20,6 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 224865316478779196}
   - component: {fileID: 114672481460679002}
+  - component: {fileID: 222313202520325012}
+  - component: {fileID: 114448470539208844}
+  - component: {fileID: 114164181478043250}
   m_Layer: 5
   m_Name: Carousel
   m_TagString: Untagged
@@ -119,6 +122,45 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &114164181478043250
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1005624842317654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!114 &114448470539208844
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1005624842317654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1200242548, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowMaskGraphic: 0
 --- !u!114 &114514157113101372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -154,14 +196,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contentRect: {fileID: 224157116501752520}
   centerPlaceholderRect: {fileID: 224412964841388286}
-  questionCardAmount: 13
-  intercardSpacing: 1
+  questionCardAmount: 9
+  intercardSpacing: 100
 --- !u!222 &222242825840095926
 CanvasRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1178443331945094}
+--- !u!222 &222313202520325012
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1005624842317654}
 --- !u!224 &224100426527572590
 RectTransform:
   m_ObjectHideFlags: 1
