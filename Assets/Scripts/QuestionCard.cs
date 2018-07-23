@@ -11,6 +11,7 @@ public class QuestionCard : MonoBehaviour
 	[SerializeField] private GameObject cathegoryIconGameObject;
 	[SerializeField] private GameObject textContentGameObject;
 	[SerializeField] private Image headerSprite;
+
 	public Text Title
 	{
 		set

@@ -13,7 +13,8 @@ public class CarouselManager : MonoBehaviour
     private void SetUpQuestionCards()
     {
         // Get the prefab to instance
-        GameObject questionCardPrefab = PrefabManager.instance.GetPrefabByName("QuestionCard");
+        GameObject questionCardPrefab = 
+            QuestionCardFactory.instance.CreateQuestionCardByCategory(QuestionCardFactory.Categories.DWELLING, this.contentRect);
 
         // Build spacing vector using parameter from inspector
         Vector2 spacing = new Vector2(this.intercardSpacing, 0f);
@@ -24,7 +25,7 @@ public class CarouselManager : MonoBehaviour
         // Instantiation of prefabs 
         for(int index = 0; index < this.questionCardAmount; index++)
         {
-            Vector2 newPosition = (offset + spacing) * index; // Multiply position by index (items amount in content)
+            Vector2 newPosition = (offset + spacing) * index; // Multiply position by index a.k.a items amount in content
             GameObject questionCardInstance = Instantiate(questionCardPrefab, this.contentRect); // Instantiation
             questionCardInstance.GetComponent<RectTransform>().anchoredPosition = newPosition; // Set new position
         }
