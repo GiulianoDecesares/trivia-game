@@ -210,6 +210,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114081548735273612, guid: dbf93d65afd0edf4abc4a3b828ac3002,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2076632915}
     - target: {fileID: 224927514031867510, guid: dbf93d65afd0edf4abc4a3b828ac3002,
         type: 2}
       propertyPath: m_AnchorMax.x
