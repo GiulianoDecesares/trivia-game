@@ -9,10 +9,10 @@ public class MainScrollSnap : MonoBehaviour {
 	public float AnimDelay = 0.2f;
 	private int ScreenState = 0;
 
-	//public delegate void PlayButtonPressed();
+    //public delegate void PlayButtonPressed();
     //public static event PlayButtonPressed onPlayButtonPressed;
-	
-	public void scrollBehaviour(int number) 
+
+    public void scrollBehaviour(int number) 
 	{
 		StartCoroutine(ScreenAnimation(number));
 	}
