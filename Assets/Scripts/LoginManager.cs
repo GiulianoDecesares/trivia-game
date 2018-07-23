@@ -23,15 +23,15 @@ public class LoginManager : MonoBehaviour {
     {
         if (mailInput.text.EndsWith(".com") && (mailInput.text.Contains("@")) && !(mailInput.text.Contains("exampleemail@gmailcom")))
             {                
-                this.chekMailImage.sprite = SpriteManager.instance.GetSpriteByName("OKButtonLogin");
                 this.buttontoplay.interactable = true;
+                this.chekMailImage.sprite = SpriteManager.instance.GetSpriteByName("ok_button_login");
                 this.border.gameObject.SetActive(true);
                 this.border.color = new Color(0f, 1f, 0f, 1f); // Set border color to green
             }
             else
             {
                 buttontoplay.interactable = false;
-                this.chekMailImage.sprite = SpriteManager.instance.GetSpriteByName("XButtonLogin");
+                this.chekMailImage.sprite = SpriteManager.instance.GetSpriteByName("x_button_login");
                 this.border.gameObject.SetActive(true);
                 this.border.color = new Color(1f, 0f, 0f, 1f); // Set border color to red
             }

@@ -8,11 +8,7 @@ public class PrefabManager : MonoBehaviour
 
     private Dictionary<string, GameObject> prefabsByName = new Dictionary<string, GameObject>();
 
-    public bool isInitialized
-    {
-        get;
-        private set;
-    }
+    public bool isInitialized { get; private set; }
 
     public float yieldPeriod = 0.03f;
 
@@ -22,8 +18,6 @@ public class PrefabManager : MonoBehaviour
 
     private void Awake() 
     {
-        Debug.Log("PrefabManager awake function has been called");
-
         instance = this; 
         StartCoroutine(this.Initialize()); 
     }

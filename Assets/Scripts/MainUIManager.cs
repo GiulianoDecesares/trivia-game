@@ -11,7 +11,6 @@ public class MainUIManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        Debug.Log ("Awake funtion was called! ");
     }
 
 #endregion

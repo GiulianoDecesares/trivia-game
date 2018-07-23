@@ -11,13 +11,10 @@ public class MainScrollSnap : MonoBehaviour {
 
 	//public delegate void PlayButtonPressed();
     //public static event PlayButtonPressed onPlayButtonPressed;
-
 	
 	public void scrollBehaviour(int number) 
 	{
-		
 		StartCoroutine(ScreenAnimation(number));
-		Debug.Log ("Coroutine was called! ");
 	}
 
 	IEnumerator ScreenAnimation(int NewScreenIndex)
@@ -25,6 +22,7 @@ public class MainScrollSnap : MonoBehaviour {
 		if (NewScreenIndex != ScreenState)
 		{
 			float Increment = (NewScreenIndex - ScreenState) / 40f;
+
 			for (int idx = 0; idx <= 20; idx++)
 			{
 				scrollRect.horizontalNormalizedPosition += Increment;
@@ -33,13 +31,12 @@ public class MainScrollSnap : MonoBehaviour {
 
 			ScreenState = NewScreenIndex;
 		}
+
 		yield return null;
 	}
 }
 
 //scripts for each button behaviour ideas ...
-
-
 
 // void lastAnswerButtonBehaviour() {
 // 		if (lastAnswerButtonPressed != null) 

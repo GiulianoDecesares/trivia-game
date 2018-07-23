@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpriteManager : MonoBehaviour {
-
-
+public class SpriteManager : MonoBehaviour 
+{
 #region Singleton
 
 	public static SpriteManager instance;
@@ -29,7 +28,6 @@ public class SpriteManager : MonoBehaviour {
 				if(!this.spritesByName.ContainsKey(this.sprites[index].name))
 				{
 					this.spritesByName[this.sprites[index].name] = this.sprites[index];
-					Debug.Log("Sprite added! " + this.sprites[index].name);
 				}
 				else
 				{
