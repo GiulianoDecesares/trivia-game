@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 222540865944061254}
   - component: {fileID: 114138106213501318}
   m_Layer: 5
-  m_Name: Question
+  m_Name: TextContent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -185,6 +185,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224861674830284172}
   - component: {fileID: 222564603402457844}
+  - component: {fileID: 114868394311833726}
   m_Layer: 5
   m_Name: QuestionCard
   m_TagString: Untagged
@@ -416,6 +417,22 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 1/5
+--- !u!114 &114868394311833726
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1795762633946832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64a6e6e06165bc54b8d213d0882a5d8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: {fileID: 114105155870958400}
+  scoreCounter: {fileID: 114829533527771228}
+  timeBar: {fileID: 114955348965091024}
+  cathegoryIconGameObject: {fileID: 1455841825625590}
+  textContentGameObject: {fileID: 1787719269163562}
 --- !u!114 &114901560091301744
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -460,7 +477,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -478,7 +495,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 114790194038696254}
   m_FillRect: {fileID: 224490955524271172}
   m_HandleRect: {fileID: 0}
   m_Direction: 0
