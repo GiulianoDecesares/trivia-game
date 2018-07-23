@@ -10,6 +10,7 @@ public class QuestionCard : MonoBehaviour
 	[SerializeField] private Slider timeBar;
 	[SerializeField] private GameObject cathegoryIconGameObject;
 	[SerializeField] private GameObject textContentGameObject;
+	[SerializeField] private Image headerSprite;
 	public Text Title
 	{
 		set
@@ -87,5 +88,15 @@ public class QuestionCard : MonoBehaviour
 		{
 			this.textContentGameObject.SetActive(false);
 		}
+	}
+
+	public void SetTextInTextContainer(string thisText)
+	{
+		this.textContentGameObject.GetComponent<Text>().text = thisText;
+	}
+
+	public void SetHeaderSprite(Sprite thisSprite)
+	{
+		this.headerSprite.sprite = thisSprite;
 	}
 }

@@ -433,6 +433,7 @@ MonoBehaviour:
   timeBar: {fileID: 114955348965091024}
   cathegoryIconGameObject: {fileID: 1455841825625590}
   textContentGameObject: {fileID: 1787719269163562}
+  headerSprite: {fileID: 114901560091301744}
 --- !u!114 &114901560091301744
 MonoBehaviour:
   m_ObjectHideFlags: 1
