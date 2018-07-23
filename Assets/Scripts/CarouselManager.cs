@@ -10,6 +10,8 @@ public class CarouselManager : MonoBehaviour
     [SerializeField] private int questionCardAmount;
     [SerializeField] private float intercardSpacing;
 
+    private List<RectTransform> questionCardsList = new List<RectTransform>();
+
     private GameObject InstanciateQuestionCardByIndex(int thisIndex, RectTransform parent)
     {
         GameObject resultGameObject = null;
@@ -74,11 +76,18 @@ public class CarouselManager : MonoBehaviour
         return resultGameObject;
     }
 
+    private void Start()
+    {
+        this.SetUpQuestionCards();        
+    }
+
     private void SetUpQuestionCards()
     {
         for(int index = 0; index < this.questionCardAmount; index++)
         {
             GameObject questionCardInstance = this.InstanciateQuestionCardByIndex(index, this.contentRect); // Instantiation
+
+            this.questionCardsList.Add(questionCardInstance.GetComponent<RectTransform>()); // Adding rects of cards to list 
 
             // Build spacing vector using parameter from inspector
             Vector2 spacing = new Vector2(this.intercardSpacing, 0f);
@@ -92,10 +101,12 @@ public class CarouselManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void Update()
     {
-        this.SetUpQuestionCards();        
+        for (int index = 0; index < this.questionCardsList.Count; index++)
+        {
+            this.questionCardsList[index].anchoredPosition -= new Vector2(1f, 0f);
+        }
     }
-
 
 }

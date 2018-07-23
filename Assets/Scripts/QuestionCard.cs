@@ -12,6 +12,8 @@ public class QuestionCard : MonoBehaviour
 	[SerializeField] private GameObject textContentGameObject;
 	[SerializeField] private Image headerSprite;
 
+    private QuestionCardFactory.Categories category;
+
 	public Text Title
 	{
 		set
@@ -100,4 +102,17 @@ public class QuestionCard : MonoBehaviour
 	{
 		this.headerSprite.sprite = thisSprite;
 	}
+
+    public QuestionCardFactory.Categories Category
+    {
+        get
+        {
+            return this.category;
+        }
+
+        set
+        {
+            this.category = value;
+        }
+    }
 }
