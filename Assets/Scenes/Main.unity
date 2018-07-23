@@ -442,6 +442,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 223510859070101594, guid: 271de5846783a404e91238a7cab69d11,
+        type: 2}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 898603416}
     - target: {fileID: 224504317793698674, guid: 271de5846783a404e91238a7cab69d11,
         type: 2}
       propertyPath: m_AnchorMax.x
