@@ -6,17 +6,20 @@ using System.IO;
 
 public class LoginManager : MonoBehaviour {
     public InputField mailInput;
+    
     public Button buttontoplay;
     public Image chekMailImage;
     public Image border;
 
-    private string gameDataProjectFilePath = "/Emails.txt";
-    private string AllEmails = "";
+    private string _fileName;
+    public string AllEmails = "";
 
     void Start () {
+        _fileName = Application.persistentDataPath + "/Emails.txt";
+        LoadMails();
         buttontoplay.interactable = false;
         border.gameObject.SetActive(false);
-        LoadMails();
+        
     }
 	
     public void CheckMailIfValid()
@@ -37,23 +40,16 @@ public class LoginManager : MonoBehaviour {
             }
     }   
 
-    public void ButtonBehaviour()
-    {
-
-    }
-
     //Internal Use - To load the Mails saved in Emails.txt    
     private void LoadMails()
     {
-        string filePath = Application.dataPath + gameDataProjectFilePath;
-
-        if (File.Exists(filePath))
+        if (File.Exists(_fileName))
         {
-            AllEmails = File.ReadAllText(filePath);
+            AllEmails = File.ReadAllText(_fileName);
         }
         else
         {
-            File.Create(filePath);
+            File.Create(_fileName);
             AllEmails = "";
         }
     }
@@ -75,8 +71,7 @@ public class LoginManager : MonoBehaviour {
     //Internal Use - To save a new e-mail address in the file Emails.txt   
     private void SaveMails()
     {
-        string filePath = Application.dataPath + gameDataProjectFilePath;
-        File.WriteAllText(filePath, AllEmails);
+        File.WriteAllText(_fileName, AllEmails);
         mailInput.text = "";
     }
 }
