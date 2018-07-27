@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour {
     public string LoadedFromJson = "";
     [HideInInspector]
     public QuestionList QuestionsList;
+    private int[] UsedQuestions;
 
     #region Sigleton
     public static GameManager instance;
@@ -37,20 +38,36 @@ public class GameManager : MonoBehaviour {
     //Loads TriviaGame.txt and Emails.txt into memory on start
     public void Start()
     {
+        UsedQuestions = new int[AmmountOfQuestionsToAnswer];
         LoadQuestions();
     } 
 
 //This function returns a random index of the Questions List
     public int QuestionRandomSelection () {
-        int QuestionIndex = Random.Range(0, QuestionsList.list.Count);
+        bool Done = false;
+        int QuestionIndex = 0;
+        while (!Done)
+        {
+            QuestionIndex = Random.Range(0, QuestionsList.list.Count);
+            Done = true;
+            for (int i = 0; i < QuestionsAnswered; i++)
+            {
+                if (QuestionIndex == UsedQuestions[i])
+                {
+                    Done = false;
+                }
+            }
+        }
+        UsedQuestions[QuestionsAnswered] = QuestionIndex;
         return QuestionIndex;
 	}
+
 
     //Called by the Results Script to reset the values and start over.
     public void ResetGame () {
         Score = 0;
         QuestionsAnswered = 0;
-	}
+    }
     public void OnAnsweredQuestion(bool Correct)
     {
         if (Correct)
