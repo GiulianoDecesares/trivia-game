@@ -292,6 +292,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1477337336}
+  - component: {fileID: 1477337335}
   m_Layer: 0
   m_Name: PrefabManager
   m_TagString: Untagged
@@ -299,6 +300,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1477337335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1477337334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e3396d604804648930060ddfd5b2d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 1449369489203614, guid: df5efb529da495d43989431ed68e041e, type: 2}
+  - {fileID: 1795762633946832, guid: 2421cc98f4e9b4f428749fca3340279c, type: 2}
+  yieldPeriod: 0.03
 --- !u!4 &1477337336
 Transform:
   m_ObjectHideFlags: 0
