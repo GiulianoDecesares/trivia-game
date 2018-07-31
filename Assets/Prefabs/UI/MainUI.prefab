@@ -121,14 +121,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224243025632992104}
-  - component: {fileID: 114072796108341356}
-  - component: {fileID: 114598929928195564}
-  - component: {fileID: 114940567931248760}
   - component: {fileID: 114756421741224208}
   - component: {fileID: 114871539836125274}
   - component: {fileID: 222636812885785150}
-  - component: {fileID: 114464352294818312}
-  - component: {fileID: 114767836977684434}
   m_Layer: 5
   m_Name: Carousel
   m_TagString: Untagged
@@ -419,9 +414,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224947712487633630}
-  - component: {fileID: 114839540792098652}
+  - component: {fileID: 114696675420993440}
+  - component: {fileID: 114549303110661334}
   m_Layer: 5
-  m_Name: LogInGridItem
+  m_Name: LoginPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -586,8 +582,6 @@ GameObject:
   - component: {fileID: 223510859070101594}
   - component: {fileID: 114270376071310464}
   - component: {fileID: 114761714495462846}
-  - component: {fileID: 114403868057006982}
-  - component: {fileID: 114240194344245388}
   m_Layer: 5
   m_Name: MainUI
   m_TagString: Untagged
@@ -809,7 +803,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1767274969279774
 GameObject:
   m_ObjectHideFlags: 1
@@ -834,10 +828,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224100946523520678}
-  - component: {fileID: 114180332962511950}
-  - component: {fileID: 114863480955531978}
   m_Layer: 5
-  m_Name: ResultGridItem
+  m_Name: ResultPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -954,7 +946,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224313068818894366}
   m_Layer: 5
-  m_Name: QuestionsGridItem
+  m_Name: PlayPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1002,21 +994,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114072796108341356
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1094170035372596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e9f9a00374f22440bc4fa969e508136, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  contentRect: {fileID: 224266309744171148}
-  centerPlaceholderRect: {fileID: 224875635371989396}
-  questionCardAmount: 9
-  intercardSpacing: 100
 --- !u!114 &114147221943969880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1100,7 +1077,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1110,8 +1087,8 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 21300000, guid: 55e111d02d079b841833beaf973be66b, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: 3a26bfc74d1abe342869db264d0233ea, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -1122,17 +1099,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114240194344245388}
-        m_MethodName: scrollBehaviour
-        m_Mode: 3
+      - m_Target: {fileID: 114549303110661334}
+        m_MethodName: OnPlayTap
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114169166006163478
@@ -1184,8 +1161,8 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114839540792098652}
-        m_MethodName: CheckMailIfValid
+      - m_Target: {fileID: 114549303110661334}
+        m_MethodName: OnEndEdit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1194,7 +1171,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
     m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:
@@ -1209,18 +1186,6 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
---- !u!114 &114180332962511950
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1806316692980160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c7b93a17bd69344bcc5168308d3bb4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShareMessage: "\xA1Mira cuanto s\xE9 sobre Mar del Plata!"
 --- !u!114 &114189163476184614
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1281,19 +1246,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: exampleemail@gmail.com
---- !u!114 &114240194344245388
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1465767435814436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 796b0b9aa5e5a73408d7f51b7da4efff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scrollRect: {fileID: 114772818312495840}
-  AnimDelay: 0.2
 --- !u!114 &114270376071310464
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1507,7 +1459,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: b76de3537d0d916409ce4331336ab926, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 20a03330a415a16499048046d86f0e29, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1553,29 +1505,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114792553268808792}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114863480955531978}
-        m_MethodName: PlayAgainButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
-      - m_Target: {fileID: 114240194344245388}
-        m_MethodName: scrollBehaviour
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114380603415932072
@@ -1591,18 +1521,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 1
   m_VerticalFit: 1
---- !u!114 &114403868057006982
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1465767435814436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cd3ac2014d6b494c91545a0086bf325, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panelsScrollRect: {fileID: 1497444854346018}
 --- !u!114 &114410395626219308
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1730,18 +1648,6 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "Sabes poco y nada\n\xA1Te invitamos a entrar en nuestro sitio web \npara
     aprender mas!"
---- !u!114 &114464352294818312
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1094170035372596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1200242548, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShowMaskGraphic: 0
 --- !u!114 &114489017002307440
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1889,7 +1795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.30980393, g: 0.7019608, b: 0.5058824, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1897,13 +1803,28 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: b76de3537d0d916409ce4331336ab926, type: 3}
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114549303110661334
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1330048753026418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77c976747919bd2448bf22ec0e657f0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mailInputField: {fileID: 114169166006163478}
+  playButton: {fileID: 114169103208124328}
+  checkSpritePlaceholder: {fileID: 224268205335780022}
+  mailInputStroke: {fileID: 1731370849489796}
 --- !u!114 &114596254486532378
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1937,18 +1858,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Enter text...
---- !u!114 &114598929928195564
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1094170035372596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1200242548, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShowMaskGraphic: 0
 --- !u!114 &114645461751258304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2003,6 +1912,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 1
+--- !u!114 &114696675420993440
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1330048753026418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fbb4f1336666fb42b8f630238e94fd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BASE_URL: https://docs.google.com/forms/d/e/1FAIpQLSd38IZy7YnX7psf26MrJuC3UOlM1uheLpbNg5q6G9RPmwqKIQ/formResponse
 --- !u!114 &114700111897527810
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2085,33 +2006,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114767836977684434
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1094170035372596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
 --- !u!114 &114772818312495840
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2215,7 +2109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3137255, g: 0.7058824, b: 0.50980395, a: 1}
+  m_Color: {r: 0, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2230,21 +2124,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114839540792098652
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1330048753026418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3182e49f59ab4b748805129a3b6f564d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mailInput: {fileID: 114169166006163478}
-  buttontoplay: {fileID: 114169103208124328}
-  chekMailImage: {fileID: 114672304950529476}
-  border: {fileID: 114833750057403592}
 --- !u!114 &114846552688417772
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2272,29 +2151,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114863480955531978
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1806316692980160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c280d1fc7210ba241b5a4505acbeeb26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Percentage: 0
-  AnimationDelay: 0.5
-  Text100: Excelente
-  Text75: Muy Bien
-  Text50: Bien
-  Text25: Regular
-  Text0: Mal
-  ResultText: {fileID: 114460239895988616}
-  LogoSlider: {fileID: 114494535241206082}
-  PercentText: {fileID: 114329280381097022}
-  CorrectAnswers: {fileID: 114923784550542418}
-  WrongAnswers: {fileID: 114147221943969880}
 --- !u!114 &114871539836125274
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2371,18 +2227,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114431551187352956}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114180332962511950}
-        m_MethodName: takeScreenShotAndShare
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114886270349380712
@@ -2501,33 +2346,6 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 2
   m_ConstraintCount: 1
---- !u!114 &114940567931248760
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1094170035372596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
 --- !u!114 &114958079748736258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3365,11 +3183,11 @@ RectTransform:
   m_Father: {fileID: 224450204915668384}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 112}
-  m_SizeDelta: {x: -760, y: -404.1}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -120}
+  m_SizeDelta: {x: -760, y: 235.9}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224516403712428894
 RectTransform:
   m_ObjectHideFlags: 1
@@ -3742,7 +3560,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 25.025002}
+  m_AnchoredPosition: {x: 0, y: 25.024994}
   m_SizeDelta: {x: 0, y: -49.95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224875635371989396
