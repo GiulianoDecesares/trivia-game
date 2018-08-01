@@ -256,6 +256,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1082775617 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1684096681499516, guid: 271de5846783a404e91238a7cab69d11,
+    type: 2}
+  m_PrefabInternal: {fileID: 1651347365}
 --- !u!1 &1418959109
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,7 +448,22 @@ Prefab:
     - target: {fileID: 114220781929394228, guid: 271de5846783a404e91238a7cab69d11,
         type: 2}
       propertyPath: m_Text
+      value: exampleemail@gmail.com
+      objectReference: {fileID: 0}
+    - target: {fileID: 114169103208124328, guid: 271de5846783a404e91238a7cab69d11,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 1082775617}
+    - target: {fileID: 224206898100375934, guid: 271de5846783a404e91238a7cab69d11,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224206898100375934, guid: 271de5846783a404e91238a7cab69d11,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224947712487633630, guid: 271de5846783a404e91238a7cab69d11,
         type: 2}
@@ -537,12 +557,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 224206898100375934, guid: 271de5846783a404e91238a7cab69d11,
         type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224206898100375934, guid: 271de5846783a404e91238a7cab69d11,
-        type: 2}
-      propertyPath: m_SizeDelta.y
+      propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

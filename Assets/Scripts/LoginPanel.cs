@@ -20,7 +20,7 @@ public class LoginPanel : MonoBehaviour
         this.playButton.interactable = false;
         this.mailInputStroke.gameObject.SetActive(false);
 
-        this.playButton.GetComponentInChildren<Text>().rectTransform.anchoredPosition = new Vector2(0f, -10f);
+        //this.playButton.GetComponentInChildren<Text>().rectTransform.anchoredPosition = new Vector2(0f, -10f);
     }
 
     private void ShowVisualIndications(VisualIndications thisState)
@@ -35,7 +35,7 @@ public class LoginPanel : MonoBehaviour
                 this.mailInputStroke.GetComponent<Image>().color = new Color(0f, 255f, 0f, 255f);
                 this.mailInputField.GetComponentInChildren<Text>().color = new Color(0f, 255f, 0f, 255f);
 
-                this.playButton.GetComponentInChildren<Text>().rectTransform.anchoredPosition = new Vector2(0f, 15f);
+                //this.playButton.GetComponentInChildren<Text>().rectTransform.anchoredPosition = new Vector2(0f, 15f);
 
                 this.playButton.interactable = true;
 
@@ -48,7 +48,7 @@ public class LoginPanel : MonoBehaviour
                 this.mailInputField.GetComponentInChildren<Text>().color = new Color(255f, 0f, 0f, 255f);
                 this.mailInputField.text = "Please enter a valid mail...";
 
-                this.playButton.GetComponentInChildren<Text>().rectTransform.anchoredPosition = new Vector2(0f, -10f);
+                //this.playButton.GetComponentInChildren<Text>().rectTransform.anchoredPosition = new Vector2(0f, -10f);
 
                 this.playButton.interactable = false;
 
