@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class Carousel : MonoBehaviour
 {
@@ -14,12 +15,12 @@ public class Carousel : MonoBehaviour
     [SerializeField] private int intercardSpacing;
 
     [SerializeField] private float reelSpeed;
+
+    [SerializeField] private AnimationCurve accelerationCurve;
     
     private Vector2 intercardSpacingVector;
-
-    private bool isScrolling = false;
-
-    #endregion
+    
+#endregion
 
 #region Private methods
 
@@ -59,8 +60,41 @@ public class Carousel : MonoBehaviour
 
     private bool CardIsInCenter(RectTransform thisCard)
     {
-        Debug.Log("Distance to center -> " + Vector2.Distance(thisCard.anchoredPosition, this.centerPlaceholderRect.anchoredPosition));
         return (thisCard.anchoredPosition.x - this.centerPlaceholderRect.anchoredPosition.x) <= 0;
+    }
+
+    private IEnumerator SwipeTo()
+    {
+        bool isScrolling = true;
+
+        while (isScrolling)
+        {
+            for (int index = 0; index < this.categoryCardsList.Length; index++)
+            {
+                Vector2 cardWidthVector = new Vector2((float)(categoryCardsList[0].rect.width), 0f);
+
+                Vector2 newPosition = this.categoryCardsList[index].anchoredPosition - (this.intercardSpacingVector + cardWidthVector);
+
+                this.categoryCardsList[index].anchoredPosition =
+                    Vector2.Lerp(this.categoryCardsList[index].localPosition, newPosition, this.accelerationCurve.Evaluate(Time.time) * Time.deltaTime);
+
+                Debug.Log("Curve value " + this.accelerationCurve.Evaluate(Time.time));
+                Debug.Log("Time " + Time.time);
+                Debug.Log("Position : " + this.categoryCardsList[4].position.normalized);
+            }
+
+            if (this.CardIsInCenter(this.categoryCardsList[4]))
+            {
+                isScrolling = false;
+                break;
+            }
+            else
+            {
+                isScrolling = true;
+            }
+
+            yield return null;
+        }
     }
 
 #endregion
@@ -72,42 +106,8 @@ public class Carousel : MonoBehaviour
         this.intercardSpacingVector = new Vector2(this.intercardSpacing, 0f);
 
         this.SetUpCards();
-    }
 
-    private void Update()
-    {
-        /*
-        if(this.CardIsInCenter(this.categoryCardsList[4]))
-        {
-            this.isScrolling = false;
-        }
-        else
-        {
-            this.isScrolling = true;
-        }
-        */
-
-        if(isScrolling)
-        {
-            for (int index = 0; index < this.categoryCardsList.Length; index++)
-            {
-                Vector2 cardWidthVector = new Vector2((float)(categoryCardsList[0].rect.width), 0f);
-
-                Vector2 newPosition = this.categoryCardsList[index].anchoredPosition - (this.intercardSpacingVector + cardWidthVector);
-
-                this.categoryCardsList[index].anchoredPosition =
-                    Vector2.Lerp(this.categoryCardsList[index].localPosition, newPosition, this.reelSpeed * Time.deltaTime);
-
-                if (this.CardIsOutOfView(this.categoryCardsList[index]))
-                {
-                    Debug.Log("Card " + index + " is out of view");
-                }
-                else
-                {
-                    Debug.Log("Card " + index + " is in view");
-                }
-            }
-        }
+        StartCoroutine(this.SwipeTo());
     }
 
 #endregion
