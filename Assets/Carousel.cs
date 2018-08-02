@@ -21,7 +21,7 @@ public class Carousel : MonoBehaviour
 
     #endregion
 
-    #region Private methods
+#region Private methods
 
     private void SetUpCards()
     {
@@ -76,14 +76,16 @@ public class Carousel : MonoBehaviour
 
     private void Update()
     {
-        //if(this.CardIsInCenter(this.categoryCardsList[4]))
-        //{
-        //    this.isScrolling = false;
-        //}
-        //else
-        //{
-        //    this.isScrolling = true;
-        //}
+        /*
+        if(this.CardIsInCenter(this.categoryCardsList[4]))
+        {
+            this.isScrolling = false;
+        }
+        else
+        {
+            this.isScrolling = true;
+        }
+        */
 
         if(isScrolling)
         {
