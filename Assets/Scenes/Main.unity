@@ -295,7 +295,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1418959109
 GameObject:
@@ -323,8 +323,14 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1429804252 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114724449205251340, guid: 271de5846783a404e91238a7cab69d11,
+    type: 2}
+  m_PrefabInternal: {fileID: 1651347365}
+  m_Script: {fileID: 11500000, guid: 1b46a90cd844bd7449662a94e312330c, type: 3}
 --- !u!1 &1477337334
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,7 +373,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1651347365
 Prefab:
@@ -414,7 +420,7 @@ Prefab:
     - target: {fileID: 224978131696048580, guid: 271de5846783a404e91238a7cab69d11,
         type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 224978131696048580, guid: 271de5846783a404e91238a7cab69d11,
         type: 2}
@@ -675,6 +681,65 @@ Prefab:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114772818312495840, guid: 271de5846783a404e91238a7cab69d11,
+        type: 2}
+      propertyPath: m_ScrollSensitivity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114772818312495840, guid: 271de5846783a404e91238a7cab69d11,
+        type: 2}
+      propertyPath: m_Horizontal
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114169103208124328, guid: 271de5846783a404e91238a7cab69d11,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1954185412}
+    - target: {fileID: 114169103208124328, guid: 271de5846783a404e91238a7cab69d11,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnLoginButtonPressed
+      objectReference: {fileID: 0}
+    - target: {fileID: 1314755003015118, guid: 271de5846783a404e91238a7cab69d11, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114596254486532378, guid: 271de5846783a404e91238a7cab69d11,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114596254486532378, guid: 271de5846783a404e91238a7cab69d11,
+        type: 2}
+      propertyPath: m_FontData.m_MaxSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114220781929394228, guid: 271de5846783a404e91238a7cab69d11,
+        type: 2}
+      propertyPath: m_Text
+      value: exampleemail@gmail.com
+      objectReference: {fileID: 0}
+    - target: {fileID: 114169166006163478, guid: 271de5846783a404e91238a7cab69d11,
+        type: 2}
+      propertyPath: m_Text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114596254486532378, guid: 271de5846783a404e91238a7cab69d11,
+        type: 2}
+      propertyPath: m_Text
+      value: exampleemail@gmail.com
+      objectReference: {fileID: 0}
+    - target: {fileID: 114596254486532378, guid: 271de5846783a404e91238a7cab69d11,
+        type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 114596254486532378, guid: 271de5846783a404e91238a7cab69d11,
+        type: 2}
+      propertyPath: m_FontData.m_MinSize
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 271de5846783a404e91238a7cab69d11, type: 2}
   m_IsPrefabParent: 0
@@ -686,6 +751,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1954185413}
+  - component: {fileID: 1954185412}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -693,6 +759,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1954185412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1954185411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb97a800ca5cdcd43a68fdce23405f33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questionsAmmount: 5
+  ScrollControl: {fileID: 1429804252}
 --- !u!4 &1954185413
 Transform:
   m_ObjectHideFlags: 0
@@ -704,7 +783,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2140531485
 GameObject:
@@ -747,5 +826,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
