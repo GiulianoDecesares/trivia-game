@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class TimeManager : MonoBehaviour {
     public int seconds = 0;
-    static UnityAction OnTimeOut;
+    public static UnityAction OnTimeOut;
 
     #region Singleton
 
