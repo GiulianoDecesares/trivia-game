@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 222392286409394528}
   - component: {fileID: 114821017723187084}
   - component: {fileID: 114546586140613314}
+  - component: {fileID: 114435463123067324}
   m_Layer: 5
   m_Name: OptionCard
   m_TagString: Untagged
@@ -79,6 +80,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: OPTION TEXT
+--- !u!114 &114435463123067324
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1449369489203614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dd863cc4e7beaa44aa115eb0244f9ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCorrect: 0
+  optionText: {fileID: 114040785149649456}
 --- !u!114 &114546586140613314
 MonoBehaviour:
   m_ObjectHideFlags: 1
