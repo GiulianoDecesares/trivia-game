@@ -4,20 +4,37 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class TimeManager : MonoBehaviour {
+
+    public static TimeManager instance = null;
     public int seconds = 0;
     public static UnityAction OnTimeOut;
+    public static UnityAction OnTick;
 
+    private GameManager gm;
+    
     #region Singleton
 
-    public static SpriteManager instance;
+    void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
+        DontDestroyOnLoad(gameObject);
+    }
 
     #endregion
-
+    
     // Starts the clock corutine. Works for more than 2 seconds.
-    public void StartCountdown (int givenTime)
+    private void Start()
     {
-        seconds = givenTime;
-        if (givenTime > 1)
+        gm = GameManager.instance;
+    }
+
+    public void StartCountdown ()
+    {
+        seconds = gm.timeToAnswer;
+        if (seconds > 1)
         {
             StartCoroutine(GameClock());
         }
@@ -36,14 +53,24 @@ public class TimeManager : MonoBehaviour {
     //Clock corutine
     private IEnumerator GameClock()
     {
-        for (int i=1; i < seconds; i++)
+        for (int i=0; i < seconds; i++)
         {
             yield return new WaitForSeconds(1f);
+            if (OnTick != null)
+            {
+                OnTick();
+            }
+            else
+            {
+                Debug.Log("There are no listeners for OnTick event");
+            }
         }
         if(OnTimeOut != null)
         {
             OnTimeOut();
-        }else {
+        }
+        else
+        {
             Debug.Log("There are no listeners for OnTimeOut event");
         }
         yield return null;

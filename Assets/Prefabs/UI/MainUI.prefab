@@ -120,6 +120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224609070587288576}
   - component: {fileID: 222412905351617110}
+  - component: {fileID: 114678972375403868}
   m_Layer: 5
   m_Name: HealthCard
   m_TagString: Untagged
@@ -417,6 +418,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224152349571295858}
   - component: {fileID: 222473762943134976}
+  - component: {fileID: 114461495686823864}
   m_Layer: 5
   m_Name: DwellingCard
   m_TagString: Untagged
@@ -995,6 +997,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224799682824246356}
   - component: {fileID: 222095452807807066}
+  - component: {fileID: 114945573205305164}
   m_Layer: 5
   m_Name: MobilityLogisticsCard
   m_TagString: Untagged
@@ -1113,6 +1116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224460453101182564}
   - component: {fileID: 222176493173002396}
+  - component: {fileID: 114522214338914304}
   m_Layer: 5
   m_Name: TerritorialAspectsCard
   m_TagString: Untagged
@@ -1227,6 +1231,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224683884055258168}
   - component: {fileID: 222227298451150608}
+  - component: {fileID: 114482441826453666}
   m_Layer: 5
   m_Name: ProductionEmploymentTourismCard
   m_TagString: Untagged
@@ -1771,6 +1776,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224213857190660286}
   - component: {fileID: 222366336416536170}
+  - component: {fileID: 114047740736688676}
   m_Layer: 5
   m_Name: EnvironmentCard
   m_TagString: Untagged
@@ -2333,6 +2339,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224600202183308578}
   - component: {fileID: 222887162123703394}
+  - component: {fileID: 114752222473827082}
   m_Layer: 5
   m_Name: MunicipalitysEconomicFinancialCard
   m_TagString: Untagged
@@ -2349,6 +2356,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224961812082580766}
   - component: {fileID: 222527520231972202}
+  - component: {fileID: 114347162510888654}
   m_Layer: 5
   m_Name: SocialCard
   m_TagString: Untagged
@@ -2365,6 +2373,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224892649033168392}
   - component: {fileID: 222483096745934426}
+  - component: {fileID: 114628750403274052}
   m_Layer: 5
   m_Name: InformationAccessCard
   m_TagString: Untagged
@@ -2865,6 +2874,21 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114047740736688676
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1633852612571654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f519e83bb3789c147bd36f425b532060, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questionText: {fileID: 114935436635419680}
+  categoryText: {fileID: 114496773642033466}
+  counterText: {fileID: 114960089277511628}
+  timeSlider: {fileID: 114772528557958452}
 --- !u!114 &114050283493729930
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3282,8 +3306,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1684096681499516}
-        m_MethodName: 
+      - m_Target: {fileID: 0}
+        m_MethodName: OnLoginButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3365,7 +3389,7 @@ MonoBehaviour:
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_CustomCaretColor: 0
   m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
-  m_Text: exampleemail@gmail.com
+  m_Text: 
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
@@ -3971,6 +3995,21 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114347162510888654
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1846788578121976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f519e83bb3789c147bd36f425b532060, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questionText: {fileID: 114886074806768512}
+  categoryText: {fileID: 114791870947224920}
+  counterText: {fileID: 114194582791045304}
+  timeSlider: {fileID: 114588888621305950}
 --- !u!114 &114348968685711984
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4425,6 +4464,36 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "Sabes poco y nada\n\xA1Te invitamos a entrar en nuestro sitio web \npara
     aprender mas!"
+--- !u!114 &114461495686823864
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1145088772730502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f519e83bb3789c147bd36f425b532060, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questionText: {fileID: 114039652809214138}
+  categoryText: {fileID: 114348968685711984}
+  counterText: {fileID: 114306525553597782}
+  timeSlider: {fileID: 114616609805663844}
+--- !u!114 &114482441826453666
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1456970548381872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f519e83bb3789c147bd36f425b532060, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questionText: {fileID: 114916506782195940}
+  categoryText: {fileID: 114395574407506658}
+  counterText: {fileID: 114757228452764546}
+  timeSlider: {fileID: 114959671355143546}
 --- !u!114 &114489017002307440
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4566,6 +4635,21 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114522214338914304
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1435351362399776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f519e83bb3789c147bd36f425b532060, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questionText: {fileID: 114222515287151048}
+  categoryText: {fileID: 114605239622424316}
+  counterText: {fileID: 114593029359818692}
+  timeSlider: {fileID: 114716627578376258}
 --- !u!114 &114525760438301428
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4950,7 +5034,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1237562183961396}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -4965,18 +5049,18 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 45
     m_FontStyle: 2
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_MinSize: 4
+    m_MaxSize: 50
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Enter text...
+  m_Text: exampleemail@gmail.com
 --- !u!114 &114605239622424316
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5139,6 +5223,21 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114628750403274052
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1853383407629814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f519e83bb3789c147bd36f425b532060, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questionText: {fileID: 114558439642021628}
+  categoryText: {fileID: 114388025340591534}
+  counterText: {fileID: 114526681977883428}
+  timeSlider: {fileID: 114118939017985094}
 --- !u!114 &114633306211686434
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5301,6 +5400,21 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 1
+--- !u!114 &114678972375403868
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1048178777120268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f519e83bb3789c147bd36f425b532060, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questionText: {fileID: 114310766210807320}
+  categoryText: {fileID: 114837873390277918}
+  counterText: {fileID: 114401395914334360}
+  timeSlider: {fileID: 114050283493729930}
 --- !u!114 &114696675420993440
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5489,6 +5603,21 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114752222473827082
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1841230974161292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f519e83bb3789c147bd36f425b532060, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questionText: {fileID: 114558200768694482}
+  categoryText: {fileID: 114104642299538954}
+  counterText: {fileID: 114997280810738008}
+  timeSlider: {fileID: 114560897142386896}
 --- !u!114 &114756421741224208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5637,7 +5766,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Content: {fileID: 224206898100375934}
-  m_Horizontal: 1
+  m_Horizontal: 0
   m_Vertical: 0
   m_MovementType: 1
   m_Elasticity: 0.1
@@ -6541,6 +6670,21 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114945573205305164
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1395873144660598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f519e83bb3789c147bd36f425b532060, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questionText: {fileID: 114458208867551156}
+  categoryText: {fileID: 114738171888746204}
+  counterText: {fileID: 114785346700726764}
+  timeSlider: {fileID: 114147268297536670}
 --- !u!114 &114958079748736258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6701,6 +6845,12 @@ MonoBehaviour:
   contentRect: {fileID: 224266309744171148}
   intercardSpacing: 80
   reelSpeed: 0.5
+  accelerationCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &114997280810738008
 MonoBehaviour:
   m_ObjectHideFlags: 1

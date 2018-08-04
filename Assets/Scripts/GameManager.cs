@@ -4,16 +4,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
-    private int answeredQuestions = 0;
-    private int score = 0;
+
+    public static GameManager instance = null;
+    [HideInInspector]
+    public int answeredQuestions = 0;
+    [HideInInspector]
+    public int score = 0;
     [Header("Total ammount of questions to answer in a game")]
     public int questionsAmmount = 5;
+    [Header("Time given to answer each question")]
+    public int timeToAnswer = 15;
     public ScrollSnap ScrollControl;
 
 
     #region Singleton
 
-    public static SpriteManager instance;
+    void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
+        DontDestroyOnLoad(gameObject);
+    }
 
     #endregion
 
