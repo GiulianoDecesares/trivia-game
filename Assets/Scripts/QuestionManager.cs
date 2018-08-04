@@ -67,6 +67,8 @@ public class QuestionManager : MonoBehaviour
 
     public bool enableDeepDebug;
 
+    [SerializeField] public int allQuestionsAmount { get; private set; }
+
     public List<QuestionAndAnswers> cultureAndEducationQuestions = new List<QuestionAndAnswers>();
     public List<QuestionAndAnswers> environmentQuestions = new List<QuestionAndAnswers>();
     public List<QuestionAndAnswers> healthQuestions = new List<QuestionAndAnswers>();
@@ -77,6 +79,20 @@ public class QuestionManager : MonoBehaviour
     public List<QuestionAndAnswers> publicInformationAccessQuestions = new List<QuestionAndAnswers>();
     public List<QuestionAndAnswers> socialQuestions = new List<QuestionAndAnswers>();
     public List<QuestionAndAnswers> territoryQuestions = new List<QuestionAndAnswers>();
+
+    [HideInInspector] public enum Categories
+    {
+        CULTURE_AND_EDUCATION,
+        ENVIRONMENT,
+        HEALTH,
+        LIVING_PLACE,
+        MOBILITY_AND_LOGISTICS,
+        MUNICIPALITY_ECONOMIC_MANAGEMENT,
+        PRODUCTION_EMPLOYMENT_AND_TOURISM,
+        PUBLIC_INFORMATION_ACCES,
+        SOCIAL,
+        TERRITORY
+    };
     
     #endregion
 
@@ -93,7 +109,16 @@ public class QuestionManager : MonoBehaviour
 
     #endregion
 
-    #region Private methods
+    #region Mono Behaviour Methods
+
+    private void Start()
+    {
+        this.allQuestionsAmount = this.AllQuestionsAmount();
+    }   
+
+    #endregion
+
+    #region Private Methods
 
     private void PopulateAllLists(bool enableDeepDebug)
     {
@@ -227,6 +252,88 @@ public class QuestionManager : MonoBehaviour
 
     #endregion
 
+    #region Public Methods
 
+    public Categories GetRandomCategory(bool getRepeatedEnabled)
+    {
+        return Categories.CULTURE_AND_EDUCATION; // This isn't working!
+    }
+
+    public QuestionAndAnswers GetRandomQuestionByCategory(Categories category, bool getRepeatedEnabled)
+    {
+        QuestionAndAnswers result = new QuestionAndAnswers();
+
+        if(getRepeatedEnabled)
+        {
+            // Simple get repeated behaviour 
+        }
+        else
+        {
+            // Not so simple bloody get unrepeated question behaviour
+        }
+
+        return result;
+    }
+
+    public int AllQuestionsAmount()
+    {
+        int result = 0;
+
+        result = this.cultureAndEducationQuestions.Count
+            + this.environmentQuestions.Count
+            + this.healthQuestions.Count
+            + this.livingPlaceQuestions.Count
+            + this.mobilityAndLogisticsQuestions.Count
+            + this.municipalityEconomicManagementQuestions.Count
+            + this.productionEmploymentAndTourismQuestions.Count
+            + this.publicInformationAccessQuestions.Count
+            + this.socialQuestions.Count
+            + this.territoryQuestions.Count;
+
+        return result;
+    }
+
+    public int ByCategoryQuestionsAmount(Categories category)
+    {
+        int result = 0;
+
+        switch (category)
+        {
+            case Categories.CULTURE_AND_EDUCATION:
+                result = this.cultureAndEducationQuestions.Count;
+                break;
+            case Categories.ENVIRONMENT:
+                result = this.environmentQuestions.Count;
+                break;
+            case Categories.HEALTH:
+                result = this.healthQuestions.Count;
+                break;
+            case Categories.LIVING_PLACE:
+                result = this.livingPlaceQuestions.Count;
+                break;
+            case Categories.MOBILITY_AND_LOGISTICS:
+                result = this.mobilityAndLogisticsQuestions.Count;
+                break;
+            case Categories.MUNICIPALITY_ECONOMIC_MANAGEMENT:
+                result = this.municipalityEconomicManagementQuestions.Count;
+                break;
+            case Categories.PRODUCTION_EMPLOYMENT_AND_TOURISM:
+                result = this.productionEmploymentAndTourismQuestions.Count;
+                break;
+            case Categories.PUBLIC_INFORMATION_ACCES:
+                result = this.publicInformationAccessQuestions.Count;
+                break;
+            case Categories.SOCIAL:
+                result = this.socialQuestions.Count;
+                break;
+            case Categories.TERRITORY:
+                result = this.territoryQuestions.Count;
+                break;
+        }
+
+        return result;
+    }
+
+    #endregion
 
 }
