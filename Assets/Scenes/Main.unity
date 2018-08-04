@@ -256,6 +256,61 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &914304474
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 914304476}
+  - component: {fileID: 914304475}
+  m_Layer: 0
+  m_Name: QuestionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &914304475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 914304474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e377644d498ca6147b90325c313cbd9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cultureAndEducation: {fileID: 4900000, guid: 25fd482bbd505354da1649fe7474f447, type: 3}
+  environment: {fileID: 4900000, guid: aefefab7a896eed4b9f39f71727828b1, type: 3}
+  health: {fileID: 4900000, guid: a4a27bb3ee345f145a8c702e3588bc9e, type: 3}
+  livingPlace: {fileID: 4900000, guid: fb485a89da035774a919f58bf068cee9, type: 3}
+  mobilityAndLogistics: {fileID: 4900000, guid: 88b7a55e6ab3c73458a109e98c8d4946,
+    type: 3}
+  municipalityEconomicManagement: {fileID: 4900000, guid: b6115bd39377c4641bff814a5d8fb988,
+    type: 3}
+  productionEmploymentAndTourism: {fileID: 4900000, guid: f70bd2396ecb5f84e9841cf9a397226a,
+    type: 3}
+  publicInformationAccess: {fileID: 4900000, guid: 2087c381d2dab3a42a3e68ec6a5be984,
+    type: 3}
+  social: {fileID: 4900000, guid: e16feb8af21753e48bde5e2e85b4c50e, type: 3}
+  territory: {fileID: 4900000, guid: 3aeff42a230e85740a9445b13512fee5, type: 3}
+  enableDeepDebug: 0
+--- !u!4 &914304476
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 914304474}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1356101485
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,7 +475,7 @@ Prefab:
     - target: {fileID: 224978131696048580, guid: 271de5846783a404e91238a7cab69d11,
         type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 224978131696048580, guid: 271de5846783a404e91238a7cab69d11,
         type: 2}
