@@ -36,4 +36,9 @@ public class QuestionCard : MonoBehaviour {
         seconds = 0;
         counterText.text = GameManager.instance.answeredQuestions.ToString()+"/"+GameManager.instance.questionsAmmount.ToString();
     }
+
+    public void OnAnimationEnded()
+    {
+        TimeManager.instance.StartCountdown();
+    }
 }

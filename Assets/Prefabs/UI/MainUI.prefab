@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 224609070587288576}
   - component: {fileID: 222412905351617110}
   - component: {fileID: 114678972375403868}
+  - component: {fileID: 95254080666767172}
   m_Layer: 5
   m_Name: HealthCard
   m_TagString: Untagged
@@ -419,6 +420,7 @@ GameObject:
   - component: {fileID: 224152349571295858}
   - component: {fileID: 222473762943134976}
   - component: {fileID: 114461495686823864}
+  - component: {fileID: 95494158106010246}
   m_Layer: 5
   m_Name: DwellingCard
   m_TagString: Untagged
@@ -998,6 +1000,7 @@ GameObject:
   - component: {fileID: 224799682824246356}
   - component: {fileID: 222095452807807066}
   - component: {fileID: 114945573205305164}
+  - component: {fileID: 95756474110232884}
   m_Layer: 5
   m_Name: MobilityLogisticsCard
   m_TagString: Untagged
@@ -1117,6 +1120,7 @@ GameObject:
   - component: {fileID: 224460453101182564}
   - component: {fileID: 222176493173002396}
   - component: {fileID: 114522214338914304}
+  - component: {fileID: 95671577205973770}
   m_Layer: 5
   m_Name: TerritorialAspectsCard
   m_TagString: Untagged
@@ -1232,6 +1236,7 @@ GameObject:
   - component: {fileID: 224683884055258168}
   - component: {fileID: 222227298451150608}
   - component: {fileID: 114482441826453666}
+  - component: {fileID: 95735031734377238}
   m_Layer: 5
   m_Name: ProductionEmploymentTourismCard
   m_TagString: Untagged
@@ -1777,6 +1782,7 @@ GameObject:
   - component: {fileID: 224213857190660286}
   - component: {fileID: 222366336416536170}
   - component: {fileID: 114047740736688676}
+  - component: {fileID: 95836503702046612}
   m_Layer: 5
   m_Name: EnvironmentCard
   m_TagString: Untagged
@@ -2340,6 +2346,7 @@ GameObject:
   - component: {fileID: 224600202183308578}
   - component: {fileID: 222887162123703394}
   - component: {fileID: 114752222473827082}
+  - component: {fileID: 95750820504628114}
   m_Layer: 5
   m_Name: MunicipalitysEconomicFinancialCard
   m_TagString: Untagged
@@ -2357,6 +2364,7 @@ GameObject:
   - component: {fileID: 224961812082580766}
   - component: {fileID: 222527520231972202}
   - component: {fileID: 114347162510888654}
+  - component: {fileID: 95274182155759200}
   m_Layer: 5
   m_Name: SocialCard
   m_TagString: Untagged
@@ -2374,6 +2382,7 @@ GameObject:
   - component: {fileID: 224892649033168392}
   - component: {fileID: 222483096745934426}
   - component: {fileID: 114628750403274052}
+  - component: {fileID: 95502322143163468}
   m_Layer: 5
   m_Name: InformationAccessCard
   m_TagString: Untagged
@@ -2760,6 +2769,159 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!95 &95254080666767172
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1048178777120268}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 92d16d6e748480f48babb08df70d3d42, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &95274182155759200
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1846788578121976}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 92d16d6e748480f48babb08df70d3d42, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &95494158106010246
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1145088772730502}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 92d16d6e748480f48babb08df70d3d42, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &95502322143163468
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1853383407629814}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 92d16d6e748480f48babb08df70d3d42, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &95671577205973770
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1435351362399776}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 92d16d6e748480f48babb08df70d3d42, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &95735031734377238
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1456970548381872}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 92d16d6e748480f48babb08df70d3d42, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &95750820504628114
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1841230974161292}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 92d16d6e748480f48babb08df70d3d42, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &95756474110232884
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1395873144660598}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 92d16d6e748480f48babb08df70d3d42, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &95836503702046612
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1633852612571654}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 92d16d6e748480f48babb08df70d3d42, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114018472900874946
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8095,7 +8257,7 @@ RectTransform:
   m_GameObject: {fileID: 1145088772730502}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.00032, y: 1.00032, z: 1.00032}
+  m_LocalScale: {x: 1.00032, y: 1, z: 1}
   m_Children:
   - {fileID: 224914531082168380}
   - {fileID: 224100416217558864}
