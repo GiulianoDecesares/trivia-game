@@ -10,12 +10,14 @@ public class QuestionCard : MonoBehaviour {
     public Text counterText;
     public Slider timeSlider;
     private int seconds = 0;
+    private Animator anim;
 
 
     // Use this for initialization
     void Start()
     {
         TimeManager.OnTick += Tick;
+        anim = gameObject.GetComponent<Animator>();
     }
 
     void OnDisable()
@@ -35,10 +37,16 @@ public class QuestionCard : MonoBehaviour {
         timeSlider.normalizedValue = 0f;
         seconds = 0;
         counterText.text = GameManager.instance.answeredQuestions.ToString()+"/"+GameManager.instance.questionsAmmount.ToString();
+        StartShowUpAnimation();
     }
 
     public void OnAnimationEnded()
     {
         TimeManager.instance.StartCountdown();
+    }
+
+    private void StartShowUpAnimation()
+    {
+        anim.SetTrigger("Launch");
     }
 }
