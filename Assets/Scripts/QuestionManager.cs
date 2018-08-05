@@ -87,6 +87,8 @@ public class QuestionManager : MonoBehaviour
 
     #region Private Accesors
 
+    private System.Random random = new System.Random();
+
     private Dictionary<Categories, List<QuestionAndAnswers>> questionsByCategory = new Dictionary<Categories, List<QuestionAndAnswers>>();
 
     private Dictionary<Categories, List<QuestionAndAnswers>> questionsAlreadyAnswered = new Dictionary<Categories, List<QuestionAndAnswers>>();
@@ -250,41 +252,80 @@ public class QuestionManager : MonoBehaviour
 
     #region Public Methods
 
+    /// <summary>
+    /// Reset all the lists of repeated questions so they can be used again
+    /// </summary>
     public void ResetQuestionsRepeatedCount()
     {
 
     }
 
+    /// <summary>
+    /// Reset all the lists of repeated categories so they can be used again
+    /// </summary>
     public void ResetCategoryRepeatedCount()
     {
-
+        
     }
 
-    public Categories GetRandomCategory(bool getRepeatedEnabled)
+    /// <summary> 
+    /// The call to this method with the parameter to avoid repetition of the return value, 
+    /// will return a value and instantaneously prevent it from repeating. 
+    /// Be sure to use each return value. 
+    /// </summary>    /// 
+    /// <param name="getRepeatedEnabled"> 
+    /// If is set to true, will avoid the repetition of the return value
+    /// </param>
+    /// <returns>
+    /// Returns a category
+    /// </returns>
+    public Categories GetRandomCategory(bool getRepeatedEnabled = false)
     {
         if(getRepeatedEnabled)
         {
-
+            // Simple get-repeated behaviour
         }
         else
         {
-
+            // Not so simple bloody get-unrepeated behaviour
         }
 
         return Categories.CULTURE_AND_EDUCATION; // This isn't working!
     }
 
-    public QuestionAndAnswers GetRandomQuestionByCategory(Categories category, bool getRepeatedEnabled)
+    /// <summary>
+    /// The call to this method with the parameter to avoid repetition of the return value,
+    /// will return a QuestionAndAnswers structure and instantaneously prevent it from repeating. 
+    /// Be sure to use each return value. 
+    /// </summary>
+    /// <param name="category">
+    /// The category the category from which the random question will be selected
+    /// </param>
+    /// <param name="getRepeatedEnabled">
+    /// If is set to true, will avoid the repetition of the return value
+    /// </param>
+    /// <returns>
+    /// Returns a QuestionAndAnswers structure 
+    /// </returns>
+    public QuestionAndAnswers GetRandomQuestionByCategory(Categories category, bool getRepeatedEnabled = false)
     {
         QuestionAndAnswers result = new QuestionAndAnswers();
 
         if(getRepeatedEnabled)
         {
             // Simple get-repeated behaviour 
+
+            List<QuestionAndAnswers> currentQuestionsList = new List<QuestionAndAnswers>();
+
+            this.questionsByCategory.TryGetValue(category, out currentQuestionsList);
+
+            result = currentQuestionsList[random.Next(currentQuestionsList.Count)];
         }
         else
         {
-            // Not so simple bloody get-unrepeated question behaviour
+            // Not so simple bloody get-unrepeated behaviour
+
+            
         }
 
         return result;
