@@ -67,6 +67,7 @@ public class QuestionManager : MonoBehaviour
     
     public int allQuestionsAmount { get; private set; }
 
+    // This enables a debug functionality of the load of all questions, in the console
     public bool deepDebug;
 
     [HideInInspector] public enum Categories
@@ -90,12 +91,17 @@ public class QuestionManager : MonoBehaviour
     private System.Random questionsRandomizer = new System.Random();
     private System.Random categoriesRandomizer = new System.Random();
 
+    // This data structure should not be modified and you should always save all the data of the questions.
     private Dictionary<Categories, List<QuestionAndAnswers>> questionsByCategory = new Dictionary<Categories, List<QuestionAndAnswers>>();
 
+    // These two data structures keep a copy of all the questions and keep track of which of them were answered and which were not.
+    // They are volatile as hell.
     private Dictionary<Categories, List<QuestionAndAnswers>> questionsAlreadyAnswered = new Dictionary<Categories, List<QuestionAndAnswers>>();
+    private Dictionary<Categories, List<QuestionAndAnswers>> remainingQuestions = new Dictionary<Categories, List<QuestionAndAnswers>>();
 
+    // These two data structures keep a copy of all the categories and keep track of which of them were used and which were not. 
+    // They are volatile as hell.
     private List<Categories> remainingCategories = new List<Categories>();
-
     private List<Categories> categoriesAlreadySelected = new List<Categories>();
 
     #endregion
@@ -111,16 +117,11 @@ public class QuestionManager : MonoBehaviour
         this.PopulateDictionary(this.deepDebug);
 
         this.PopulateCategoriesList();
-    }
 
-    #endregion
-
-    #region Mono Behaviour Methods
-
-    private void Start()
-    {
         this.allQuestionsAmount = this.AllQuestionsAmount();
-    }   
+
+        this.remainingQuestions = this.questionsByCategory;
+    }
 
     #endregion
 
@@ -270,7 +271,10 @@ public class QuestionManager : MonoBehaviour
     /// </summary>
     public void ResetQuestionsRepeatedCount()
     {
+        this.remainingQuestions.Clear();
+        this.remainingQuestions = this.questionsByCategory;
 
+        this.questionsAlreadyAnswered.Clear();
     }
 
     /// <summary>
@@ -347,11 +351,11 @@ public class QuestionManager : MonoBehaviour
     {
         QuestionAndAnswers result = new QuestionAndAnswers();
 
+        List<QuestionAndAnswers> currentQuestionsList = new List<QuestionAndAnswers>();
+
         if(getRepeatedEnabled)
         {
-            // Simple get-repeated behaviour 
-
-            List<QuestionAndAnswers> currentQuestionsList = new List<QuestionAndAnswers>();
+            // Simple get-repeated behaviour
 
             this.questionsByCategory.TryGetValue(category, out currentQuestionsList);
 
@@ -360,8 +364,15 @@ public class QuestionManager : MonoBehaviour
         else
         {
             // Not so simple bloody get-unrepeated behaviour
+            this.questionsByCategory.TryGetValue(category, out currentQuestionsList);
 
-            
+            this.remainingQuestions.TryGetValue(category, out currentQuestionsList);
+
+            result = currentQuestionsList[this.questionsRandomizer.Next(currentQuestionsList.Count)];
+
+            currentQuestionsList.Remove(result);
+
+            this.questionsAlreadyAnswered[category].Add(result);
         }
 
         return result;
