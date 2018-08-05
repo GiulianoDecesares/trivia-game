@@ -87,11 +87,14 @@ public class QuestionManager : MonoBehaviour
 
     #region Private Accesors
 
-    private System.Random random = new System.Random();
+    private System.Random questionsRandomizer = new System.Random();
+    private System.Random categoriesRandomizer = new System.Random();
 
     private Dictionary<Categories, List<QuestionAndAnswers>> questionsByCategory = new Dictionary<Categories, List<QuestionAndAnswers>>();
 
     private Dictionary<Categories, List<QuestionAndAnswers>> questionsAlreadyAnswered = new Dictionary<Categories, List<QuestionAndAnswers>>();
+
+    private List<Categories> remainingCategories = new List<Categories>();
 
     private List<Categories> categoriesAlreadySelected = new List<Categories>();
 
@@ -105,7 +108,9 @@ public class QuestionManager : MonoBehaviour
     {
         instance = this;
 
-        this.Populate(this.deepDebug);
+        this.PopulateDictionary(this.deepDebug);
+
+        this.PopulateCategoriesList();
     }
 
     #endregion
@@ -121,7 +126,15 @@ public class QuestionManager : MonoBehaviour
 
     #region Private Methods
 
-    private void Populate(bool deepDebug)
+    private void PopulateCategoriesList()
+    {
+        foreach(Categories thisCategory in this.questionsByCategory.Keys)
+        {
+            this.remainingCategories.Add(thisCategory);
+        }
+    }
+
+    private void PopulateDictionary(bool deepDebug)
     {
         this.questionsByCategory[Categories.CULTURE_AND_EDUCATION] = this.PopulateList(this.cultureAndEducation, false);
         this.questionsByCategory[Categories.ENVIRONMENT] = this.PopulateList(this.environment, false);
@@ -265,7 +278,10 @@ public class QuestionManager : MonoBehaviour
     /// </summary>
     public void ResetCategoryRepeatedCount()
     {
-        
+        foreach(Categories thisCategory in this.categoriesAlreadySelected)
+        {
+            this.remainingCategories.Add(thisCategory);
+        }
     }
 
     /// <summary> 
@@ -281,16 +297,36 @@ public class QuestionManager : MonoBehaviour
     /// </returns>
     public Categories GetRandomCategory(bool getRepeatedEnabled = false)
     {
+        Categories result;
+
         if(getRepeatedEnabled)
         {
             // Simple get-repeated behaviour
+            result = (Categories)Random.Range(0, 10);
         }
         else
         {
             // Not so simple bloody get-unrepeated behaviour
+
+            if(this.remainingCategories.Count > 0)
+            {
+                result = this.remainingCategories[this.categoriesRandomizer.Next(this.remainingCategories.Count)];
+
+                this.categoriesAlreadySelected.Add(result);
+
+                this.remainingCategories.Remove(result);
+            }
+            else
+            {
+                Debug.LogWarning("No unrepeated categories left, returning repeated random category");
+
+                result = (Categories)Random.Range(0, 10);
+            }
         }
 
-        return Categories.CULTURE_AND_EDUCATION; // This isn't working!
+        Debug.Log("Random category is " + result);
+
+        return result;
     }
 
     /// <summary>
@@ -319,7 +355,7 @@ public class QuestionManager : MonoBehaviour
 
             this.questionsByCategory.TryGetValue(category, out currentQuestionsList);
 
-            result = currentQuestionsList[random.Next(currentQuestionsList.Count)];
+            result = currentQuestionsList[this.questionsRandomizer.Next(currentQuestionsList.Count)];
         }
         else
         {
@@ -360,5 +396,4 @@ public class QuestionManager : MonoBehaviour
     }
 
     #endregion
-
 }
