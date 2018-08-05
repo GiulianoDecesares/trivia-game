@@ -6,6 +6,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance = null;
+    [SerializeField]
+    private GameObject resultPanel;
+    private ResultPanel resultPanelScript;
     [HideInInspector]
     public int answeredQuestions = 0;
     [HideInInspector]
@@ -30,6 +33,7 @@ public class GameManager : MonoBehaviour {
 
     #endregion
 
+    #region Public Methods
     //Use when a question is answered with a boolean value showing if the correct answer was pressed.
     public void AnsweredQuestion(bool isCorrect)
     {
@@ -39,30 +43,6 @@ public class GameManager : MonoBehaviour {
             score++;
         }
         IsGameFinished();
-    }
-
-    //Checks if the game has ended - Private
-    private void IsGameFinished()
-    {
-        if (answeredQuestions >= questionsAmmount)
-        {
-            EndGame();
-        }else
-        {
-            NextQuestion();
-        }
-    }
-
-    private void NextQuestion()
-    {
-        ///PlayPanel.NextQuestion();
-    }
-
-    //Shows the result panel and calls the result panel to show the results
-    private void EndGame()
-    {
-        ScrollControl.ChangeScreen(ScrollSnap.States.ResultPanel);
-        ///ResultPanel.ShowResults(answeredQuestions, score);
     }
 
     //When Login Button is pressed it shows the Play panel.
@@ -80,4 +60,38 @@ public class GameManager : MonoBehaviour {
         QuestionManager.instance.ResetQuestionsRepeatedCount();
         QuestionManager.instance.ResetCategoryRepeatedCount();
     }
+    #endregion
+    #region Private Methods
+    //Checks if the game has ended - Private
+    private void IsGameFinished()
+    {
+        if (answeredQuestions >= questionsAmmount)
+        {
+            EndGame();
+        }
+        else
+        {
+            NextQuestion();
+        }
+    }
+
+    private void NextQuestion()
+    {
+        ///PlayPanel.NextQuestion();
+    }
+
+    //Shows the result panel and calls the result panel to show the results
+    private void EndGame()
+    {
+        ScrollControl.ChangeScreen(ScrollSnap.States.ResultPanel);
+        resultPanelScript.ShowResults(score, answeredQuestions);
+    }
+    #endregion
+
+    #region Unity Events
+    private void Start()
+    {
+        resultPanelScript = resultPanel.GetComponent<ResultPanel>();
+    }
+    #endregion
 }
