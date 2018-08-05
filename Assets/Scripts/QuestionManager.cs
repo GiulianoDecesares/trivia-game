@@ -64,21 +64,10 @@ public class QuestionManager : MonoBehaviour
     #endregion
 
     #region Public Questions Lists And Accesors
+    
+    public int allQuestionsAmount { get; private set; }
 
-    public bool enableDeepDebug;
-
-    [SerializeField] public int allQuestionsAmount { get; private set; }
-
-    public List<QuestionAndAnswers> cultureAndEducationQuestions = new List<QuestionAndAnswers>();
-    public List<QuestionAndAnswers> environmentQuestions = new List<QuestionAndAnswers>();
-    public List<QuestionAndAnswers> healthQuestions = new List<QuestionAndAnswers>();
-    public List<QuestionAndAnswers> livingPlaceQuestions = new List<QuestionAndAnswers>();
-    public List<QuestionAndAnswers> mobilityAndLogisticsQuestions = new List<QuestionAndAnswers>();
-    public List<QuestionAndAnswers> municipalityEconomicManagementQuestions = new List<QuestionAndAnswers>();
-    public List<QuestionAndAnswers> productionEmploymentAndTourismQuestions = new List<QuestionAndAnswers>();
-    public List<QuestionAndAnswers> publicInformationAccessQuestions = new List<QuestionAndAnswers>();
-    public List<QuestionAndAnswers> socialQuestions = new List<QuestionAndAnswers>();
-    public List<QuestionAndAnswers> territoryQuestions = new List<QuestionAndAnswers>();
+    public bool deepDebug;
 
     [HideInInspector] public enum Categories
     {
@@ -89,11 +78,21 @@ public class QuestionManager : MonoBehaviour
         MOBILITY_AND_LOGISTICS,
         MUNICIPALITY_ECONOMIC_MANAGEMENT,
         PRODUCTION_EMPLOYMENT_AND_TOURISM,
-        PUBLIC_INFORMATION_ACCES,
+        PUBLIC_INFORMATION_ACCESS,
         SOCIAL,
         TERRITORY
     };
-    
+
+    #endregion
+
+    #region Private Accesors
+
+    private Dictionary<Categories, List<QuestionAndAnswers>> questionsByCategory = new Dictionary<Categories, List<QuestionAndAnswers>>();
+
+    private Dictionary<Categories, List<QuestionAndAnswers>> questionsAlreadyAnswered = new Dictionary<Categories, List<QuestionAndAnswers>>();
+
+    private List<Categories> categoriesAlreadySelected = new List<Categories>();
+
     #endregion
 
     #region Singleton
@@ -104,7 +103,7 @@ public class QuestionManager : MonoBehaviour
     {
         instance = this;
 
-        this.PopulateAllLists(this.enableDeepDebug);
+        this.Populate(this.deepDebug);
     }
 
     #endregion
@@ -120,31 +119,28 @@ public class QuestionManager : MonoBehaviour
 
     #region Private Methods
 
-    private void PopulateAllLists(bool enableDeepDebug)
+    private void Populate(bool deepDebug)
     {
-        this.cultureAndEducationQuestions = this.PopulateList(this.cultureAndEducation, false);
-        this.environmentQuestions = this.PopulateList(this.environment, false);
-        this.healthQuestions = this.PopulateList(this.health, false);
-        this.livingPlaceQuestions = this.PopulateList(this.livingPlace, false);
-        this.mobilityAndLogisticsQuestions = this.PopulateList(this.mobilityAndLogistics, false);
-        this.municipalityEconomicManagementQuestions = this.PopulateList(this.municipalityEconomicManagement, false);
-        this.productionEmploymentAndTourismQuestions = this.PopulateList(this.productionEmploymentAndTourism, false);
-        this.publicInformationAccessQuestions = this.PopulateList(this.publicInformationAccess, false);
-        this.socialQuestions = this.PopulateList(this.social, false);
-        this.territoryQuestions = this.PopulateList(this.territory, false);
+        this.questionsByCategory[Categories.CULTURE_AND_EDUCATION] = this.PopulateList(this.cultureAndEducation, false);
+        this.questionsByCategory[Categories.ENVIRONMENT] = this.PopulateList(this.environment, false);
+        this.questionsByCategory[Categories.HEALTH] = this.PopulateList(this.health, false);
+        this.questionsByCategory[Categories.LIVING_PLACE] = this.PopulateList(this.livingPlace, false);
+        this.questionsByCategory[Categories.MOBILITY_AND_LOGISTICS] = this.PopulateList(this.mobilityAndLogistics, false);
+        this.questionsByCategory[Categories.MUNICIPALITY_ECONOMIC_MANAGEMENT] = this.PopulateList(this.municipalityEconomicManagement, false);
+        this.questionsByCategory[Categories.PRODUCTION_EMPLOYMENT_AND_TOURISM] = this.PopulateList(this.productionEmploymentAndTourism, false);
+        this.questionsByCategory[Categories.PUBLIC_INFORMATION_ACCESS] = this.PopulateList(this.publicInformationAccess, false);
+        this.questionsByCategory[Categories.SOCIAL] = this.PopulateList(this.social, false);
+        this.questionsByCategory[Categories.TERRITORY] = this.PopulateList(this.territory, false);
 
-        if(enableDeepDebug)
+        if(deepDebug)
         {
-            this.DebugQuestionsList(this.cultureAndEducationQuestions);
-            this.DebugQuestionsList(this.environmentQuestions);
-            this.DebugQuestionsList(this.healthQuestions);
-            this.DebugQuestionsList(this.livingPlaceQuestions);
-            this.DebugQuestionsList(this.mobilityAndLogisticsQuestions);
-            this.DebugQuestionsList(this.municipalityEconomicManagementQuestions);
-            this.DebugQuestionsList(this.productionEmploymentAndTourismQuestions);
-            this.DebugQuestionsList(this.publicInformationAccessQuestions);
-            this.DebugQuestionsList(this.socialQuestions);
-            this.DebugQuestionsList(this.territoryQuestions);
+            foreach(List<QuestionAndAnswers> lists in this.questionsByCategory.Values)
+            {
+                foreach(QuestionAndAnswers question in lists)
+                {
+                    question.ShowInConsole();
+                }
+            }
         }
     }
 
@@ -254,8 +250,27 @@ public class QuestionManager : MonoBehaviour
 
     #region Public Methods
 
+    public void ResetQuestionsRepeatedCount()
+    {
+
+    }
+
+    public void ResetCategoryRepeatedCount()
+    {
+
+    }
+
     public Categories GetRandomCategory(bool getRepeatedEnabled)
     {
+        if(getRepeatedEnabled)
+        {
+
+        }
+        else
+        {
+
+        }
+
         return Categories.CULTURE_AND_EDUCATION; // This isn't working!
     }
 
@@ -265,11 +280,11 @@ public class QuestionManager : MonoBehaviour
 
         if(getRepeatedEnabled)
         {
-            // Simple get repeated behaviour 
+            // Simple get-repeated behaviour 
         }
         else
         {
-            // Not so simple bloody get unrepeated question behaviour
+            // Not so simple bloody get-unrepeated question behaviour
         }
 
         return result;
@@ -279,16 +294,10 @@ public class QuestionManager : MonoBehaviour
     {
         int result = 0;
 
-        result = this.cultureAndEducationQuestions.Count
-            + this.environmentQuestions.Count
-            + this.healthQuestions.Count
-            + this.livingPlaceQuestions.Count
-            + this.mobilityAndLogisticsQuestions.Count
-            + this.municipalityEconomicManagementQuestions.Count
-            + this.productionEmploymentAndTourismQuestions.Count
-            + this.publicInformationAccessQuestions.Count
-            + this.socialQuestions.Count
-            + this.territoryQuestions.Count;
+        foreach(List<QuestionAndAnswers> lists in this.questionsByCategory.Values)
+        {
+            result += lists.Count;
+        }
 
         return result;
     }
@@ -297,38 +306,13 @@ public class QuestionManager : MonoBehaviour
     {
         int result = 0;
 
-        switch (category)
+        List<QuestionAndAnswers> outValue;
+
+        this.questionsByCategory.TryGetValue(category, out outValue);
+
+        if(outValue != null)
         {
-            case Categories.CULTURE_AND_EDUCATION:
-                result = this.cultureAndEducationQuestions.Count;
-                break;
-            case Categories.ENVIRONMENT:
-                result = this.environmentQuestions.Count;
-                break;
-            case Categories.HEALTH:
-                result = this.healthQuestions.Count;
-                break;
-            case Categories.LIVING_PLACE:
-                result = this.livingPlaceQuestions.Count;
-                break;
-            case Categories.MOBILITY_AND_LOGISTICS:
-                result = this.mobilityAndLogisticsQuestions.Count;
-                break;
-            case Categories.MUNICIPALITY_ECONOMIC_MANAGEMENT:
-                result = this.municipalityEconomicManagementQuestions.Count;
-                break;
-            case Categories.PRODUCTION_EMPLOYMENT_AND_TOURISM:
-                result = this.productionEmploymentAndTourismQuestions.Count;
-                break;
-            case Categories.PUBLIC_INFORMATION_ACCES:
-                result = this.publicInformationAccessQuestions.Count;
-                break;
-            case Categories.SOCIAL:
-                result = this.socialQuestions.Count;
-                break;
-            case Categories.TERRITORY:
-                result = this.territoryQuestions.Count;
-                break;
+            result = outValue.Count;
         }
 
         return result;
