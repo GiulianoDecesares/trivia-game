@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour {
 
     private void NextQuestion()
     {
-        ///QuestionsLoader.NextQuestion();
+        ///PlayPanel.NextQuestion();
     }
 
     //Shows the result panel and calls the result panel to show the results
@@ -77,6 +77,7 @@ public class GameManager : MonoBehaviour {
         answeredQuestions = 0;
         score = 0;
         ScrollControl.ChangeScreen(ScrollSnap.States.PlayPanel);
-        ///QuestionsLoader.NewGame;
+        QuestionManager.instance.ResetQuestionsRepeatedCount();
+        QuestionManager.instance.ResetCategoryRepeatedCount();
     }
 }
