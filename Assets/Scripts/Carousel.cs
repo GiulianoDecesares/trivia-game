@@ -106,7 +106,7 @@ public class Carousel : MonoBehaviour
 
                 // Change position
                 cardRect.anchoredPosition = Vector2.Lerp(cardRect.localPosition, newPosition, 
-                    this.accelerationCurve.Evaluate(actualDistance / initialDistance) * Time.deltaTime);
+                    this.accelerationCurve.Evaluate((actualDistance / initialDistance)) * Time.deltaTime);
             }
 
             if (this.CardIsInCenter(targetCard))
