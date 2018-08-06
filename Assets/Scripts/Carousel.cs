@@ -5,7 +5,6 @@ using UnityEditor;
 
 public class Carousel : MonoBehaviour
 {
-
     #region Private fields and accessors
 
     [SerializeField] private RectTransform centerPlaceholderRect;
@@ -21,9 +20,8 @@ public class Carousel : MonoBehaviour
     [SerializeField] [Range(10, 30)] private int maxRandomLapsValue;
 
     private List<GameObject> categoryCardsList = new List<GameObject>();
+    private List<RectTransform> categoryCardsRectList = new List<RectTransform>();
     
-    private Vector2 intercardSpacingVector;
-
     #endregion
 
     #region Private methods
@@ -34,6 +32,7 @@ public class Carousel : MonoBehaviour
         {
             GameObject cardInstance = Instantiate(PrefabManager.instance.GetQuestionCardByCategory((QuestionManager.Categories)index), this.contentRect);
             this.categoryCardsList.Add(cardInstance);
+            this.categoryCardsRectList.Add(cardInstance.GetComponent<RectTransform>());
         }
     }
 
@@ -87,25 +86,23 @@ public class Carousel : MonoBehaviour
 
         RectTransform targetCard = this.FindQuestionCardByCategory(thisCategory, lapsAmount);
 
+        Vector2 intercardSpacingVector = new Vector2(this.intercardSpacing, 0f);
+
         while (isScrolling)
         {
             for (int index = 0; index < this.categoryCardsList.Count; index++)
             {
                 // Vector containing the width of the selected card
-                Vector2 cardWidthVector = new Vector2((float)(categoryCardsList[0].GetComponent<RectTransform>().rect.width), 0f);
+                RectTransform cardRect = this.categoryCardsRectList[index];
+
+                Vector2 cardWidthVector = new Vector2((float)(cardRect.rect.width), 0f);
 
                 // New position to swipe
-                Vector2 newPosition = this.categoryCardsList[index].GetComponent<RectTransform>().anchoredPosition - (this.intercardSpacingVector + cardWidthVector);
-
-                //Vector2.Distance()
+                Vector2 newPosition = cardRect.anchoredPosition - (intercardSpacingVector + cardWidthVector);
 
                 // Change position
-                this.categoryCardsList[index].GetComponent<RectTransform>().anchoredPosition =
-                    Vector2.Lerp(this.categoryCardsList[index].GetComponent<RectTransform>().localPosition, newPosition, this.accelerationCurve.Evaluate(Time.time) * Time.deltaTime);
-
-                //Debug.Log("Curve value " + this.accelerationCurve.Evaluate(Time.time));
-                //Debug.Log("Time " + Time.time);
-                //Debug.Log("Position : " + this.categoryCardsList[4].GetComponent<RectTransform>().position.normalized);
+                cardRect.anchoredPosition = Vector2.Lerp(cardRect.localPosition, newPosition, 
+                    /*this.accelerationCurve.Evaluate(Time.time) **/ Time.deltaTime);
             }
 
             if (this.CardIsInCenter(targetCard))
@@ -139,15 +136,11 @@ public class Carousel : MonoBehaviour
                 break;
         }
 
-        if(result != null)
+        if(!result)
         {
-            Debug.Log("Card has been found!");
+            Debug.LogError("Card can't be found! Null return value", this.gameObject);
         }
-        else
-        {
-            Debug.Log("No card");
-        }
-
+        
         return result;
     }
 
@@ -158,9 +151,7 @@ public class Carousel : MonoBehaviour
     private void Start()
     {
         int lapsAmount = Random.Range(this.minRandomLapsValue, this.maxRandomLapsValue);
-
-        Debug.Log("Laps amount : " + lapsAmount);
-
+        
         this.SetUpCards(lapsAmount);
 
         this.StartSwipeToCategory(QuestionManager.Categories.HEALTH, lapsAmount);
