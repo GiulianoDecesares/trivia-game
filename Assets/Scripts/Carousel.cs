@@ -6,9 +6,8 @@ using UnityEditor;
 public class Carousel : MonoBehaviour
 {
 
-#region Private fields and accessors
+    #region Private fields and accessors
 
-    [SerializeField] private RectTransform[] categoryCardsList;
     [SerializeField] private RectTransform centerPlaceholderRect;
     [SerializeField] private RectTransform contentRect;
 
@@ -17,26 +16,45 @@ public class Carousel : MonoBehaviour
     [SerializeField] private float reelSpeed;
 
     [SerializeField] private AnimationCurve accelerationCurve;
+
+    [SerializeField] [Range(2, 10)] private int minRandomLapsValue;
+    [SerializeField] [Range(10, 30)] private int maxRandomLapsValue;
+
+    private List<GameObject> categoryCardsList = new List<GameObject>();
     
     private Vector2 intercardSpacingVector;
-    
-#endregion
 
-#region Private methods
+    #endregion
 
-    private void SetUpCards()
+    #region Private methods
+
+    private void InstantiateQuestionCardsGroup()
     {
-        for(int index = 0; index < this.categoryCardsList.Length; index++)
+        for (int index = 0; index < 10; index++)
+        {
+            GameObject cardInstance = Instantiate(PrefabManager.instance.GetQuestionCardByCategory((QuestionManager.Categories)index), this.contentRect);
+            this.categoryCardsList.Add(cardInstance);
+        }
+    }
+
+    private void SetUpCards(int lapsNumber)
+    {
+        for (int amountMultyplier = 0; amountMultyplier < lapsNumber; amountMultyplier++)
+        {
+            this.InstantiateQuestionCardsGroup();
+        }
+
+        for (int index = 0; index < this.categoryCardsList.Count; index++)
         {
             // Build spacing vector using parameter from inspector
             Vector2 spacing = new Vector2(this.intercardSpacing, 0f);
 
             // Calculate offset taking the half width of a question card
-            Vector2 offset = new Vector2((float)(categoryCardsList[index].rect.width), 0f);
+            Vector2 offset = new Vector2((float)(categoryCardsList[index].GetComponent<RectTransform>().rect.width), 0f);
 
             // Multiply position by index a.k.a items amount in content
             Vector2 newPosition = (offset + spacing) * index;
-
+            
             // Set new position
             this.categoryCardsList[index].GetComponent<RectTransform>().anchoredPosition = newPosition;
         }
@@ -63,27 +81,34 @@ public class Carousel : MonoBehaviour
         return (thisCard.anchoredPosition.x - this.centerPlaceholderRect.anchoredPosition.x) <= 0;
     }
 
-    private IEnumerator SwipeTo()
+    private IEnumerator SwipeToCategory(QuestionManager.Categories thisCategory, int lapsAmount)
     {
         bool isScrolling = true;
 
+        RectTransform targetCard = this.FindQuestionCardByCategory(thisCategory, lapsAmount);
+
         while (isScrolling)
         {
-            for (int index = 0; index < this.categoryCardsList.Length; index++)
+            for (int index = 0; index < this.categoryCardsList.Count; index++)
             {
-                Vector2 cardWidthVector = new Vector2((float)(categoryCardsList[0].rect.width), 0f);
+                // Vector containing the width of the selected card
+                Vector2 cardWidthVector = new Vector2((float)(categoryCardsList[0].GetComponent<RectTransform>().rect.width), 0f);
 
-                Vector2 newPosition = this.categoryCardsList[index].anchoredPosition - (this.intercardSpacingVector + cardWidthVector);
+                // New position to swipe
+                Vector2 newPosition = this.categoryCardsList[index].GetComponent<RectTransform>().anchoredPosition - (this.intercardSpacingVector + cardWidthVector);
 
-                this.categoryCardsList[index].anchoredPosition =
-                    Vector2.Lerp(this.categoryCardsList[index].localPosition, newPosition, this.accelerationCurve.Evaluate(Time.time) * Time.deltaTime);
+                //Vector2.Distance()
 
-                Debug.Log("Curve value " + this.accelerationCurve.Evaluate(Time.time));
-                Debug.Log("Time " + Time.time);
-                Debug.Log("Position : " + this.categoryCardsList[4].position.normalized);
+                // Change position
+                this.categoryCardsList[index].GetComponent<RectTransform>().anchoredPosition =
+                    Vector2.Lerp(this.categoryCardsList[index].GetComponent<RectTransform>().localPosition, newPosition, this.accelerationCurve.Evaluate(Time.time) * Time.deltaTime);
+
+                //Debug.Log("Curve value " + this.accelerationCurve.Evaluate(Time.time));
+                //Debug.Log("Time " + Time.time);
+                //Debug.Log("Position : " + this.categoryCardsList[4].GetComponent<RectTransform>().position.normalized);
             }
 
-            if (this.CardIsInCenter(this.categoryCardsList[4]))
+            if (this.CardIsInCenter(targetCard))
             {
                 isScrolling = false;
                 break;
@@ -97,19 +122,59 @@ public class Carousel : MonoBehaviour
         }
     }
 
-#endregion
-
-#region Mono Behaviour
-
-    private void Awake()
+    private RectTransform FindQuestionCardByCategory(QuestionManager.Categories thisCategory, int lapsAmount)
     {
-        this.intercardSpacingVector = new Vector2(this.intercardSpacing, 0f);
+        RectTransform result = null;
+        int targetCardCounter = 0;
+        
+        for(int index = 0; index < this.categoryCardsList.Count; index++)
+        {
+            if(this.categoryCardsList[index].GetComponent<QuestionCard>().category == thisCategory)
+            {
+                targetCardCounter++;
+                result = this.categoryCardsList[index].GetComponent<RectTransform>();
+            }
 
-        this.SetUpCards();
+            if (targetCardCounter == lapsAmount)
+                break;
+        }
 
-        StartCoroutine(this.SwipeTo());
+        if(result != null)
+        {
+            Debug.Log("Card has been found!");
+        }
+        else
+        {
+            Debug.Log("No card");
+        }
+
+        return result;
     }
 
-#endregion
+    #endregion
+
+    #region Mono Behaviour
+
+    private void Start()
+    {
+        int lapsAmount = Random.Range(this.minRandomLapsValue, this.maxRandomLapsValue);
+
+        Debug.Log("Laps amount : " + lapsAmount);
+
+        this.SetUpCards(lapsAmount);
+
+        this.StartSwipeToCategory(QuestionManager.Categories.HEALTH, lapsAmount);
+    }
+
+    #endregion
+
+    #region Public Methods
+
+    public void StartSwipeToCategory(QuestionManager.Categories thisCategory, int lapsAmount)
+    {
+        StartCoroutine(this.SwipeToCategory(thisCategory, lapsAmount));
+    }
+
+    #endregion
 
 }

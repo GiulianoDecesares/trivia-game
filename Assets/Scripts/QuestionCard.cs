@@ -4,20 +4,31 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-public class QuestionCard : MonoBehaviour {
-    public Text questionText;
-    public Text categoryText;
-    public Text counterText;
-    public Slider timeSlider;
+public class QuestionCard : MonoBehaviour
+{
+    [SerializeField] private Text questionText;
+    [SerializeField] private Text categoryText;
+    [SerializeField] private Text counterText;
+    [SerializeField] private Slider timeSlider;
+
     private int seconds = 0;
     private Animator anim;
 
+    [SerializeField] private Image headerSprite;
+    [SerializeField] private Image categoryIcon;
 
-    // Use this for initialization
+    public QuestionManager.Categories category;
+
+    #region Mono Bahaviour Methods
+    
     void Start()
     {
         TimeManager.OnTick += Tick;
+
         anim = gameObject.GetComponent<Animator>();
+        timeSlider.normalizedValue = 0f;
+        seconds = 0;
+        counterText.text = GameManager.instance.answeredQuestions.ToString() + "/" + GameManager.instance.questionsAmmount.ToString();
     }
 
     void OnDisable()
@@ -25,19 +36,27 @@ public class QuestionCard : MonoBehaviour {
         TimeManager.OnTick -= Tick;
     }
 
-	void Tick () {
+    #endregion
+
+    #region Private Methods
+
+    private void Tick () {
         seconds++;
         timeSlider.normalizedValue = (seconds * 1f) / GameManager.instance.timeToAnswer;
 	}
 
-    public void LoadQuestionCard(string newQuestion, string newCategory)
+    #endregion
+
+    #region Public Methods
+
+    public void SetQuestionText(string newQuestion)
     {
         questionText.text = newQuestion;
-        categoryText.text = newCategory;
-        timeSlider.normalizedValue = 0f;
-        seconds = 0;
-        counterText.text = GameManager.instance.answeredQuestions.ToString()+"/"+GameManager.instance.questionsAmmount.ToString();
-        StartShowUpAnimation();
+    }
+
+    public void SetTitleText(string thisTitle)
+    {
+        this.categoryText.text = thisTitle;
     }
 
     public void OnAnimationEnded()
@@ -45,8 +64,26 @@ public class QuestionCard : MonoBehaviour {
         TimeManager.instance.StartCountdown();
     }
 
-    private void StartShowUpAnimation()
+    public void StartShowUpAnimation()
     {
         anim.SetTrigger("Launch");
     }
+
+    public void SetHeaderSprite(Sprite thisSprite)
+    {
+        if(thisSprite)
+        {
+            this.headerSprite.sprite = thisSprite;
+        }
+    }
+
+    public void SetCategoryIcon(Sprite thisSprite)
+    {
+        if (thisSprite)
+        {
+            this.categoryIcon.sprite = thisSprite;
+        }
+    }
+
+    #endregion
 }

@@ -2,6 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public static class CategoryIconNames
+{
+    public const string CULTURE_AND_EDUCATION = "category_culture_and_education";
+    public const string ENVIRONMENT = "category_environment";
+    public const string HEALTH = "category_health";
+    public const string LIVING_PLACE = "category_living_place";
+    public const string MOBILITY_AND_LOGISTICS = "category_mobility_logistics";
+    public const string MUNICIPALITY_ECONOMIC_MANAGEMENT = "category_municipalitys_economic_financial_management";
+    public const string PRODUCTION_EMPLOYMENT_AND_TOURISM = "category_production_employment_tourism";
+    public const string PUBLIC_INFORMATION_ACCESS = "category_information_access";
+    public const string SOCIAL = "category_social";
+    public const string TERRITORY = "category_territorial_aspects";
+}
+
 public class SpriteManager : MonoBehaviour 
 {
 #region Singleton
