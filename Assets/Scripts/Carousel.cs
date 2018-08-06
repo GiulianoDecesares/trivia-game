@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
+
 
 public class Carousel : MonoBehaviour
 {
@@ -88,13 +88,17 @@ public class Carousel : MonoBehaviour
 
         Vector2 intercardSpacingVector = new Vector2(this.intercardSpacing, 0f);
 
+        float initialDistance = Vector2.Distance(targetCard.anchoredPosition, this.centerPlaceholderRect.anchoredPosition);
+
         while (isScrolling)
         {
             for (int index = 0; index < this.categoryCardsList.Count; index++)
             {
-                // Vector containing the width of the selected card
                 RectTransform cardRect = this.categoryCardsRectList[index];
 
+                float actualDistance = Vector2.Distance(targetCard.anchoredPosition, this.centerPlaceholderRect.anchoredPosition);
+
+                // Vector containing the width of the selected card
                 Vector2 cardWidthVector = new Vector2((float)(cardRect.rect.width), 0f);
 
                 // New position to swipe
@@ -102,7 +106,7 @@ public class Carousel : MonoBehaviour
 
                 // Change position
                 cardRect.anchoredPosition = Vector2.Lerp(cardRect.localPosition, newPosition, 
-                    /*this.accelerationCurve.Evaluate(Time.time) **/ Time.deltaTime);
+                    this.accelerationCurve.Evaluate(actualDistance / initialDistance) * Time.deltaTime);
             }
 
             if (this.CardIsInCenter(targetCard))
