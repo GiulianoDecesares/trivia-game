@@ -9,10 +9,14 @@ public class OptionCard : MonoBehaviour {
     public Text optionText;
 
 	// Use this for initialization
-	public void LoadOptionCard (string newOptionText, bool newIsCorrect)
+	public void SetOptionCard (string newOptionText, bool newIsCorrect)
     {
         isCorrect = newIsCorrect;
         optionText.text = newOptionText;
-	}
-	
+    }
+
+    public void SetOptionCardCallback(UnityEngine.Events.UnityAction call)
+    {
+            this.GetComponent<Button>().onClick.AddListener(call);
+    }
 }
