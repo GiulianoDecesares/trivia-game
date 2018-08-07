@@ -16,8 +16,8 @@ public class Carousel : MonoBehaviour
 
     [SerializeField] private AnimationCurve accelerationCurve;
 
-    [SerializeField] [Range(2, 10)] private int minRandomLapsValue;
-    [SerializeField] [Range(10, 30)] private int maxRandomLapsValue;
+    [SerializeField] [Range(2, 6)] private int minRandomLapsValue;
+    [SerializeField] [Range(6, 30)] private int maxRandomLapsValue;
 
     private List<GameObject> categoryCardsList = new List<GameObject>();
     private List<RectTransform> categoryCardsRectList = new List<RectTransform>();
@@ -80,17 +80,12 @@ public class Carousel : MonoBehaviour
         return (thisCard.anchoredPosition.x - this.centerPlaceholderRect.anchoredPosition.x) <= 0;
     }
 
-    private IEnumerator SwipeToCategory(QuestionManager.Categories thisCategory, int lapsAmount)
+    private IEnumerator SwipeToCategory(RectTransform targetCard, int lapsAmount)
     {
-        bool isScrolling = true;
-
-        RectTransform targetCard = this.FindQuestionCardByCategory(thisCategory, lapsAmount);
-
         Vector2 intercardSpacingVector = new Vector2(this.intercardSpacing, 0f);
-
         float initialDistance = Vector2.Distance(targetCard.anchoredPosition, this.centerPlaceholderRect.anchoredPosition);
 
-        while (isScrolling)
+        while (!this.CardIsInCenter(targetCard))
         {
             for (int index = 0; index < this.categoryCardsList.Count; index++)
             {
@@ -109,23 +104,15 @@ public class Carousel : MonoBehaviour
                     this.accelerationCurve.Evaluate((actualDistance / initialDistance)) * Time.deltaTime);
             }
 
-            if (this.CardIsInCenter(targetCard))
-            {
-                isScrolling = false;
-                break;
-            }
-            else
-            {
-                isScrolling = true;
-            }
-
             yield return null;
         }
+
+        yield return null;
     }
 
-    private RectTransform FindQuestionCardByCategory(QuestionManager.Categories thisCategory, int lapsAmount)
+    private GameObject FindQuestionCardByCategory(QuestionManager.Categories thisCategory, int lapsAmount)
     {
-        RectTransform result = null;
+        GameObject result = null;
         int targetCardCounter = 0;
         
         for(int index = 0; index < this.categoryCardsList.Count; index++)
@@ -133,7 +120,7 @@ public class Carousel : MonoBehaviour
             if(this.categoryCardsList[index].GetComponent<QuestionCard>().category == thisCategory)
             {
                 targetCardCounter++;
-                result = this.categoryCardsList[index].GetComponent<RectTransform>();
+                result = this.categoryCardsList[index];
             }
 
             if (targetCardCounter == lapsAmount)
@@ -153,21 +140,44 @@ public class Carousel : MonoBehaviour
     #region Mono Behaviour
 
     private void Start()
-    {
-        int lapsAmount = Random.Range(this.minRandomLapsValue, this.maxRandomLapsValue);
-        
-        this.SetUpCards(lapsAmount);
-
-        this.StartSwipeToCategory(QuestionManager.Categories.HEALTH, lapsAmount);
+    {   
+        this.StartSwipeToCategory(QuestionManager.Categories.HEALTH);
     }
 
     #endregion
 
     #region Public Methods
 
-    public void StartSwipeToCategory(QuestionManager.Categories thisCategory, int lapsAmount)
+    /// <summary>
+    /// This method swipes the carousel to one card of the parameter category, by a random amount of laps
+    /// </summary>
+    /// <param name="thisCategory">Category of the card you want to swipe</param>
+    /// <returns>Returns the GameObject of the target card</returns>
+    public GameObject StartSwipeToCategory(QuestionManager.Categories thisCategory)
     {
-        StartCoroutine(this.SwipeToCategory(thisCategory, lapsAmount));
+        GameObject result = null;
+
+        if(this.categoryCardsRectList.Count > 0)
+        {
+            this.categoryCardsRectList.Clear();
+        }
+
+        int lapsAmount = Random.Range(this.minRandomLapsValue, this.maxRandomLapsValue);
+
+        this.SetUpCards(lapsAmount);
+
+        result = this.FindQuestionCardByCategory(thisCategory, lapsAmount);
+
+        if (result)
+        {
+            StartCoroutine(this.SwipeToCategory(result.GetComponent<RectTransform>(), lapsAmount)); 
+        }
+        else
+        {
+            Debug.LogError("Carousel card not found, swipe was disabled");
+        }
+
+        return result;
     }
 
     #endregion
