@@ -9,7 +9,7 @@ public class OptionCard : MonoBehaviour {
     public Text optionText;
 
 	// Use this for initialization
-	public void SetOptionCard (string newOptionText, bool newIsCorrect)
+	public void SetOptionCardQuestion(string newOptionText, bool newIsCorrect)
     {
         isCorrect = newIsCorrect;
         optionText.text = newOptionText;

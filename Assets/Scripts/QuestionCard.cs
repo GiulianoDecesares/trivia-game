@@ -14,6 +14,8 @@ public class QuestionCard : MonoBehaviour
     private int seconds = 0;
     private Animator anim;
 
+    private bool isSubscribedToTime = false;
+
     [SerializeField] private Image headerSprite;
     [SerializeField] private Image categoryIcon;
 
@@ -23,8 +25,6 @@ public class QuestionCard : MonoBehaviour
     
     void Start()
     {
-        TimeManager.OnTick += Tick;
-
         anim = gameObject.GetComponent<Animator>();
         timeSlider.normalizedValue = 0f;
         seconds = 0;
@@ -33,7 +33,10 @@ public class QuestionCard : MonoBehaviour
 
     void OnDisable()
     {
-        TimeManager.OnTick -= Tick;
+        if (this.isSubscribedToTime)
+        {
+            TimeManager.OnTick -= Tick; 
+        }
     }
 
     #endregion
@@ -61,6 +64,9 @@ public class QuestionCard : MonoBehaviour
 
     public void OnAnimationEnded()
     {
+        this.isSubscribedToTime = true;
+
+        TimeManager.OnTick += Tick;
         TimeManager.instance.StartCountdown();
     }
 
