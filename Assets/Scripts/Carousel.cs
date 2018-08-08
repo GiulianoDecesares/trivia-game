@@ -77,21 +77,23 @@ public class Carousel : MonoBehaviour
 
     private bool CardIsInCenter(RectTransform thisCard)
     {
-        return (thisCard.anchoredPosition.x - this.centerPlaceholderRect.anchoredPosition.x) <= 0;
+        return (thisCard.anchoredPosition.x - this.centerPlaceholderRect.anchoredPosition.x) <= 8;
     }
 
-    private IEnumerator SwipeToCategory(RectTransform targetCard, int lapsAmount)
+    private IEnumerator SwipeToCategory(GameObject targetCard, int lapsAmount)
     {
-        Vector2 intercardSpacingVector = new Vector2(this.intercardSpacing, 0f);
-        float initialDistance = Vector2.Distance(targetCard.anchoredPosition, this.centerPlaceholderRect.anchoredPosition);
+        RectTransform targetCardRect = targetCard.GetComponent<RectTransform>();
 
-        while (!this.CardIsInCenter(targetCard))
+        Vector2 intercardSpacingVector = new Vector2(this.intercardSpacing, 0f);
+        float initialDistance = Vector2.Distance(targetCardRect.anchoredPosition, this.centerPlaceholderRect.anchoredPosition);
+
+        while (!this.CardIsInCenter(targetCardRect))
         {
             for (int index = 0; index < this.categoryCardsList.Count; index++)
             {
                 RectTransform cardRect = this.categoryCardsRectList[index];
 
-                float actualDistance = Vector2.Distance(targetCard.anchoredPosition, this.centerPlaceholderRect.anchoredPosition);
+                float actualDistance = Vector2.Distance(targetCardRect.anchoredPosition, this.centerPlaceholderRect.anchoredPosition);
 
                 // Vector containing the width of the selected card
                 Vector2 cardWidthVector = new Vector2((float)(cardRect.rect.width), 0f);
@@ -106,6 +108,8 @@ public class Carousel : MonoBehaviour
 
             yield return null;
         }
+
+        targetCard.GetComponent<QuestionCard>()?.StartShowUpAnimation();
 
         yield return null;
     }
@@ -137,15 +141,6 @@ public class Carousel : MonoBehaviour
 
     #endregion
 
-    #region Mono Behaviour
-
-    private void Start()
-    {   
-        this.StartSwipeToCategory(QuestionManager.Categories.HEALTH);
-    }
-
-    #endregion
-
     #region Public Methods
 
     /// <summary>
@@ -170,7 +165,7 @@ public class Carousel : MonoBehaviour
 
         if (result)
         {
-            StartCoroutine(this.SwipeToCategory(result.GetComponent<RectTransform>(), lapsAmount)); 
+            StartCoroutine(this.SwipeToCategory(result, lapsAmount)); 
         }
         else
         {
