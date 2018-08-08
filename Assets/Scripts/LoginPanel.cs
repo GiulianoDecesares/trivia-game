@@ -19,8 +19,7 @@ public class LoginPanel : MonoBehaviour
         this.mailHelper = this.GetComponent<MailHelper>();
         this.playButton.interactable = false;
         this.mailInputStroke.gameObject.SetActive(false);
-
-        //this.playButton.GetComponentInChildren<Text>().rectTransform.anchoredPosition = new Vector2(0f, -10f);
+        this.mailInputField.text = "";
     }
 
     private void ShowVisualIndications(VisualIndications thisState)
@@ -34,9 +33,7 @@ public class LoginPanel : MonoBehaviour
                 this.checkSpritePlaceholder.GetComponent<Image>().sprite = SpriteManager.instance.GetSpriteByName("OkCheckMail");
                 this.mailInputStroke.GetComponent<Image>().color = new Color(0f, 255f, 0f, 255f);
                 this.mailInputField.GetComponentInChildren<Text>().color = new Color(0f, 255f, 0f, 255f);
-
-                //this.playButton.GetComponentInChildren<Text>().rectTransform.anchoredPosition = new Vector2(0f, 15f);
-
+                
                 this.playButton.interactable = true;
 
                 break;
@@ -47,9 +44,7 @@ public class LoginPanel : MonoBehaviour
                 this.mailInputStroke.GetComponent<Image>().color = new Color(255f, 0f, 0f, 255f);
                 this.mailInputField.GetComponentInChildren<Text>().color = new Color(255f, 0f, 0f, 255f);
                 this.mailInputField.text = "Please enter a valid mail...";
-
-                //this.playButton.GetComponentInChildren<Text>().rectTransform.anchoredPosition = new Vector2(0f, -10f);
-
+                
                 this.playButton.interactable = false;
 
                 break;

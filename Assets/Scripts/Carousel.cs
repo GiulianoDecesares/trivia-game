@@ -19,9 +19,13 @@ public class Carousel : MonoBehaviour
     [SerializeField] [Range(2, 6)] private int minRandomLapsValue;
     [SerializeField] [Range(6, 30)] private int maxRandomLapsValue;
 
+    [SerializeField] private GameObject presetCard;
+
     private List<GameObject> categoryCardsList = new List<GameObject>();
     private List<RectTransform> categoryCardsRectList = new List<RectTransform>();
-    
+
+    public System.Action onSwipeFinished;
+
     #endregion
 
     #region Private methods
@@ -38,8 +42,26 @@ public class Carousel : MonoBehaviour
 
     private void SetUpCards(int lapsNumber)
     {
+        if(this.presetCard.activeInHierarchy)
+        {
+            this.presetCard.SetActive(false);
+        }
+
+        if (this.categoryCardsRectList.Count > 0)
+        {
+            for (int index = 0; index < this.categoryCardsList.Count; index++)
+            {
+                Destroy(this.categoryCardsList[index]);
+            }
+
+            this.categoryCardsRectList.Clear();
+            this.categoryCardsList.Clear();
+        }
+
         for (int amountMultyplier = 0; amountMultyplier < lapsNumber; amountMultyplier++)
         {
+            Debug.Log("One card instantiated");
+
             this.InstantiateQuestionCardsGroup();
         }
 
@@ -87,6 +109,8 @@ public class Carousel : MonoBehaviour
         Vector2 intercardSpacingVector = new Vector2(this.intercardSpacing, 0f);
         float initialDistance = Vector2.Distance(targetCardRect.anchoredPosition, this.centerPlaceholderRect.anchoredPosition);
 
+        Debug.Log("Coroutine so far so good");
+
         while (!this.CardIsInCenter(targetCardRect))
         {
             for (int index = 0; index < this.categoryCardsList.Count; index++)
@@ -110,6 +134,7 @@ public class Carousel : MonoBehaviour
         }
 
         targetCard.GetComponent<QuestionCard>()?.StartShowUpAnimation();
+        this.onSwipeFinished?.Invoke();
 
         yield return null;
     }
@@ -150,21 +175,24 @@ public class Carousel : MonoBehaviour
     /// <returns>Returns the GameObject of the target card</returns>
     public GameObject StartSwipeToCategory(QuestionManager.Categories thisCategory)
     {
-        GameObject result = null;
+        Debug.Log("Starting swiping to category");
 
-        if(this.categoryCardsRectList.Count > 0)
-        {
-            this.categoryCardsRectList.Clear();
-        }
+        GameObject result = null;
 
         int lapsAmount = Random.Range(this.minRandomLapsValue, this.maxRandomLapsValue);
 
+        Debug.Log("Laps amount " + lapsAmount);
+
         this.SetUpCards(lapsAmount);
+
+        Debug.Log("Cards are setted up");
 
         result = this.FindQuestionCardByCategory(thisCategory, lapsAmount);
 
         if (result)
         {
+            Debug.Log("Result is reached");
+
             StartCoroutine(this.SwipeToCategory(result, lapsAmount)); 
         }
         else
