@@ -364,15 +364,22 @@ public class QuestionManager : MonoBehaviour
         else
         {
             // Not so simple bloody get-unrepeated behaviour
-            this.questionsByCategory.TryGetValue(category, out currentQuestionsList);
-
             this.remainingQuestions.TryGetValue(category, out currentQuestionsList);
 
             result = currentQuestionsList[this.questionsRandomizer.Next(currentQuestionsList.Count)];
 
-            currentQuestionsList.Remove(result);
+            List<QuestionAndAnswers> questionsAlreadyAnsweredCategory;
 
-            this.questionsAlreadyAnswered[category].Add(result);
+            this.questionsAlreadyAnswered.TryGetValue(category, out questionsAlreadyAnsweredCategory);
+
+            if(questionsAlreadyAnsweredCategory == null)
+            {
+                questionsAlreadyAnsweredCategory = new List<QuestionAndAnswers>();
+            }
+
+            questionsAlreadyAnsweredCategory.Add(result);
+
+            currentQuestionsList.Remove(result);
         }
 
         return result;
