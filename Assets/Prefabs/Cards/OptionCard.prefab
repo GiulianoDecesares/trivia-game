@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114821017723187084}
   - component: {fileID: 114546586140613314}
   - component: {fileID: 114435463123067324}
+  - component: {fileID: 95125195835516220}
   m_Layer: 5
   m_Name: OptionCard
   m_TagString: Untagged
@@ -46,7 +47,24 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
+--- !u!95 &95125195835516220
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1449369489203614}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114040785149649456
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -93,6 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCorrect: 0
   optionText: {fileID: 114040785149649456}
+  showUpAnimator: {fileID: 95125195835516220}
 --- !u!114 &114546586140613314
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -127,7 +146,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 114821017723187084}
   m_OnClick:
     m_PersistentCalls:
@@ -205,8 +224,8 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}

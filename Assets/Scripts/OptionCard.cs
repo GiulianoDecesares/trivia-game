@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OptionCard : MonoBehaviour {
+public class OptionCard : MonoBehaviour
+{
     [HideInInspector]
     public bool isCorrect;
     public Text optionText;
+
+    [SerializeField] private Animator showUpAnimator;
 
 	// Use this for initialization
 	public void SetOptionCardQuestion(string newOptionText, bool newIsCorrect)
