@@ -5,29 +5,39 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
-    public static GameManager instance = null;
     [SerializeField]
     private GameObject resultPanel;
     private ResultPanel resultPanelScript;
+
     [HideInInspector]
     public int answeredQuestions = 0;
+
     [HideInInspector]
     public int score = 0;
+
     [Header("Total ammount of questions to answer in a game")]
     public int questionsAmmount = 5;
+
     [Header("Time given to answer each question")]
     public int timeToAnswer = 15;
+
     public ScrollSnap ScrollControl;
 
-
     #region Singleton
+
+    public static GameManager instance = null;
 
     void Awake()
     {
         if (instance == null)
+        {
             instance = this;
+        }            
         else if (instance != this)
+        {
             Destroy(gameObject);
+        }
+
         DontDestroyOnLoad(gameObject);
     }
 
@@ -61,6 +71,7 @@ public class GameManager : MonoBehaviour {
         QuestionManager.instance.ResetCategoryRepeatedCount();
     }
     #endregion
+
     #region Private Methods
     //Checks if the game has ended - Private
     private void IsGameFinished()
@@ -86,12 +97,15 @@ public class GameManager : MonoBehaviour {
         ScrollControl.ChangeScreen(ScrollSnap.States.ResultPanel);
         resultPanelScript.ShowResults(score, answeredQuestions);
     }
+
     #endregion
 
     #region Unity Events
+
     private void Start()
     {
         resultPanelScript = resultPanel.GetComponent<ResultPanel>();
     }
+
     #endregion
 }
