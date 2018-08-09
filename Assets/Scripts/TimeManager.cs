@@ -56,23 +56,12 @@ public class TimeManager : MonoBehaviour {
         for (int i=0; i < seconds; i++)
         {
             yield return new WaitForSeconds(1f);
-            if (OnTick != null)
-            {
-                OnTick();
-            }
-            else
-            {
-                Debug.Log("There are no listeners for OnTick event");
-            }
+
+            OnTick?.Invoke();
         }
-        if(OnTimeOut != null)
-        {
-            OnTimeOut();
-        }
-        else
-        {
-            Debug.Log("There are no listeners for OnTimeOut event");
-        }
+
+        OnTimeOut?.Invoke();
+
         yield return null;
     }
 }

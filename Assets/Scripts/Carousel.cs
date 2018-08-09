@@ -114,13 +114,13 @@ public class Carousel : MonoBehaviour
                 float actualDistance = Vector2.Distance(targetCardRect.anchoredPosition, this.centerPlaceholderRect.anchoredPosition);
 
                 // Vector containing the width of the selected card
-                Vector2 cardWidthVector = new Vector2((float)(cardRect.rect.width), 0f);
+                Vector2 cardWidthVector = new Vector2((cardRect.rect.width), 0f);
 
                 // New position to swipe
                 Vector2 newPosition = cardRect.anchoredPosition - (intercardSpacingVector + cardWidthVector);
 
                 // Change position
-                cardRect.anchoredPosition = Vector2.Lerp(cardRect.localPosition, newPosition, 
+                cardRect.anchoredPosition = Vector2.Lerp(cardRect.anchoredPosition, newPosition, 
                     this.accelerationCurve.Evaluate((actualDistance / initialDistance)) * Time.deltaTime);
             }
 
@@ -174,8 +174,6 @@ public class Carousel : MonoBehaviour
         int lapsAmount = Random.Range(this.minRandomLapsValue, this.maxRandomLapsValue);
         
         this.SetUpCards(lapsAmount);
-
-        Debug.Break();
 
         result = this.FindQuestionCardByCategory(thisCategory, lapsAmount);
 

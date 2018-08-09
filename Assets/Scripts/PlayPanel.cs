@@ -46,8 +46,6 @@ public class PlayPanel : MonoBehaviour
         QuestionCard targetQuestionCardScript = carouselBehaviour.StartSwipeToCategory(targetCategory).GetComponent<QuestionCard>();
         QuestionAndAnswers targetQuestionData = QuestionManager.instance.GetRandomQuestionByCategory(targetCategory);
 
-        Debug.Log("Target category -> " + targetCategory);
-
         //targetQuestionData.ShowInConsole();
 
         targetQuestionCardScript.SetQuestionText(targetQuestionData.question);
