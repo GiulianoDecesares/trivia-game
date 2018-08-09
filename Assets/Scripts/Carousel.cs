@@ -175,6 +175,8 @@ public class Carousel : MonoBehaviour
         
         this.SetUpCards(lapsAmount);
 
+        Debug.Break();
+
         result = this.FindQuestionCardByCategory(thisCategory, lapsAmount);
 
         if (result)

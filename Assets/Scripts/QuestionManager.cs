@@ -328,8 +328,6 @@ public class QuestionManager : MonoBehaviour
             }
         }
 
-        Debug.Log("Random category is " + result);
-
         return result;
     }
 
