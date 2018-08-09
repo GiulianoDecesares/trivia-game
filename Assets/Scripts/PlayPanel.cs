@@ -20,6 +20,16 @@ public class PlayPanel : MonoBehaviour
 
     #region Public Methods
 
+    private void OnEnable()
+    {
+        this.carouselBehaviour.onSwipeFinished += this.StartAnimation;
+    }
+
+    private void OnDisable()
+    {
+        this.carouselBehaviour.onSwipeFinished -= this.StartAnimation;
+    }
+
     public void StartPlayFlow()
     {
         if(this.optionButtonList.Count > 0)
@@ -54,6 +64,21 @@ public class PlayPanel : MonoBehaviour
         correctOptionButton.SetOptionCardCallback(GameManager.instance.OnCorrectAnswer);
 
         this.optionButtonList.Add(correctOptionButton.GetComponent<RectTransform>());
+    }
+
+    public void StartAnimation()
+    {
+        StartCoroutine(this.OnOptionButtonAnimate());
+    }
+
+
+    private IEnumerator OnOptionButtonAnimate()
+    {
+        foreach(RectTransform optionCard in this.optionButtonList)
+        {
+            optionCard.GetComponent<Animator>().SetTrigger("Launch");
+            yield return new WaitForSeconds(0.3f);
+        }
     }
 
     #endregion

@@ -11,11 +11,6 @@ public class OptionCard : MonoBehaviour
 
     [SerializeField] private Animator showUpAnimator;
 
-    private void Start()
-    {
-        this.showUpAnimator.SetTrigger("Launch");
-    }
-
     // Use this for initialization
     public void SetOptionCardQuestion(string newOptionText, bool newIsCorrect)
     {
