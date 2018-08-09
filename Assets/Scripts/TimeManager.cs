@@ -38,10 +38,6 @@ public class TimeManager : MonoBehaviour {
         {
             StartCoroutine(GameClock());
         }
-        else
-        {
-            Debug.Log("givenTime must be greater than 1 second");
-        }
 	}
 
 	//Stops the clock corutine
@@ -60,18 +56,10 @@ public class TimeManager : MonoBehaviour {
             {
                 OnTick();
             }
-            else
-            {
-                Debug.Log("There are no listeners for OnTick event");
-            }
         }
         if(OnTimeOut != null)
         {
             OnTimeOut();
-        }
-        else
-        {
-            Debug.Log("There are no listeners for OnTimeOut event");
         }
         yield return null;
     }

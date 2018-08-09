@@ -67,8 +67,9 @@ public class ScrollSnap : MonoBehaviour {
         if (newScreen != screenState)
         {
             float Increment = (StateToInt(newScreen) - StateToInt(screenState)) / 40f;
-            for (int i = 0; i <= 20; i++)
+            for (int i = 0; i < 20; i++)
             {
+
                 screenScroll.horizontalNormalizedPosition += Increment;
                 yield return new WaitForSeconds(animDelay / 20f);
             }
