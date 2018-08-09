@@ -49,7 +49,7 @@ public class TimeManager : MonoBehaviour {
     //Clock corutine
     private IEnumerator GameClock()
     {
-        for (int i=0; i < seconds; i++)
+        for (int i=seconds; i > 0; i--)
         {
             yield return new WaitForSeconds(1f);
             if (OnTick != null)
