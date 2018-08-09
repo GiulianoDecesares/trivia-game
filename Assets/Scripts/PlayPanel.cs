@@ -46,8 +46,6 @@ public class PlayPanel : MonoBehaviour
         QuestionCard targetQuestionCardScript = carouselBehaviour.StartSwipeToCategory(targetCategory).GetComponent<QuestionCard>();
         QuestionAndAnswers targetQuestionData = QuestionManager.instance.GetRandomQuestionByCategory(targetCategory);
 
-        //targetQuestionData.ShowInConsole();
-
         targetQuestionCardScript.SetQuestionText(targetQuestionData.question);
 
         for (int index = 0; index < targetQuestionData.wrongAnswers.Count; index++)
@@ -70,7 +68,6 @@ public class PlayPanel : MonoBehaviour
     {
         StartCoroutine(this.OnOptionButtonAnimate());
     }
-
 
     private IEnumerator OnOptionButtonAnimate()
     {
