@@ -471,6 +471,7 @@ MonoBehaviour:
   categoryText: {fileID: 114556335317164566}
   counterText: {fileID: 114057909597025014}
   timeSlider: {fileID: 114209111627181220}
+  timeSliderFill: {fileID: 114908114094642706}
   headerSprite: {fileID: 114498206882699454}
   categoryIcon: {fileID: 114674649314789484}
   category: 9
