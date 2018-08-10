@@ -10,6 +10,7 @@ public class QuestionCard : MonoBehaviour
     [SerializeField] private Text categoryText;
     [SerializeField] private Text counterText;
     [SerializeField] private Slider timeSlider;
+    [SerializeField] private Image timeSliderFill;
 
     private int seconds = 0;
     private Animator anim;
@@ -27,7 +28,7 @@ public class QuestionCard : MonoBehaviour
     {
         anim = gameObject.GetComponent<Animator>();
         timeSlider.normalizedValue = 0f;
-        seconds = 0;
+        seconds = GameManager.instance.timeToAnswer;
         counterText.text = GameManager.instance.answeredQuestions.ToString() + "/" + GameManager.instance.questionsAmmount.ToString();
     }
 
@@ -44,10 +45,24 @@ public class QuestionCard : MonoBehaviour
     #region Private Methods
 
     private void Tick () {
-        seconds++;
-        timeSlider.normalizedValue = (seconds * 1f) / GameManager.instance.timeToAnswer;
+        seconds--;
+        float sliderPosition = (seconds * 1f) / GameManager.instance.timeToAnswer;
+        timeSlider.normalizedValue = sliderPosition;
+        Colorize(sliderPosition);
+        
 	}
-
+    private void Colorize(float value)
+    {
+        if (value < 0.5f)
+        {
+            timeSliderFill.color = Color.yellow * value * 2f + Color.red * (1 - value * 2f);
+        }
+        else
+        {
+            timeSliderFill.color = Color.green * (value - 0.5f) * 2 + Color.yellow * (1 - (value - 0.5f) * 2);
+        }
+        
+    }
     #endregion
 
     #region Public Methods
