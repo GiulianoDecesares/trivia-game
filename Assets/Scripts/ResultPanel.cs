@@ -13,7 +13,7 @@ public class ResultPanel : MonoBehaviour {
     private int percentage;
     private int answeredQuestions;
     private int correctAnswers;
-    [Range(0.01f,0.1f)]
+    [Range(0.005f,0.02f)]
     public float animationDelay=0.05f;
     [Space]
     [Header("Dynamic text")]
