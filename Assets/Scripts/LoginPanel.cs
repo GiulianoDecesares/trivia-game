@@ -14,48 +14,29 @@ public class LoginPanel : MonoBehaviour
 
     private enum VisualIndications { MAIL_REJECTED, MAIL_ACCEPTED };
 
-    private void Awake()
+
+    #region Public Methods
+    //Resets the login panel to it's starting state
+    public void ResetLoginPanel()
     {
         this.mailHelper = this.GetComponent<MailHelper>();
         this.playButton.interactable = false;
         this.mailInputStroke.gameObject.SetActive(false);
         this.mailInputField.text = "";
-    }
 
-    private void ShowVisualIndications(VisualIndications thisState)
-    {
-        this.mailInputStroke.gameObject.SetActive(true);
+        this.checkSpritePlaceholder.GetComponent<Image>().sprite = null;
+        this.mailInputStroke.GetComponent<Image>().color = new Color(255f, 255f, 255f, 255f);
+        this.mailInputField.GetComponentInChildren<Text>().color = new Color(50f/255f, 50f / 255f, 50f / 255f, 255f / 255f);
 
-        switch(thisState)
-        {
-            case VisualIndications.MAIL_ACCEPTED:
+        this.playButton.interactable = false;
 
-                this.checkSpritePlaceholder.GetComponent<Image>().sprite = SpriteManager.instance.GetSpriteByName("OkCheckMail");
-                this.mailInputStroke.GetComponent<Image>().color = new Color(0f, 255f, 0f, 255f);
-                this.mailInputField.GetComponentInChildren<Text>().color = new Color(0f, 255f, 0f, 255f);
-                
-                this.playButton.interactable = true;
-
-                break;
-
-            case VisualIndications.MAIL_REJECTED:
-
-                this.checkSpritePlaceholder.GetComponent<Image>().sprite = SpriteManager.instance.GetSpriteByName("XCheckMail");
-                this.mailInputStroke.GetComponent<Image>().color = new Color(255f, 0f, 0f, 255f);
-                this.mailInputField.GetComponentInChildren<Text>().color = new Color(255f, 0f, 0f, 255f);
-                this.mailInputField.text = "Please enter a valid mail...";
-                
-                this.playButton.interactable = false;
-
-                break;
-        }
     }
 
     public void OnEndEdit()
     {
-        if(!string.IsNullOrEmpty(this.mailInputField.text))
+        if (!string.IsNullOrEmpty(this.mailInputField.text))
         {
-            if(this.mailHelper.IsValidMail(this.mailInputField.text))
+            if (this.mailHelper.IsValidMail(this.mailInputField.text))
             {
                 // Valid mail case
 
@@ -80,6 +61,47 @@ public class LoginPanel : MonoBehaviour
             this.ShowVisualIndications(VisualIndications.MAIL_REJECTED);
         }
     }
+    #endregion
+    #region Private Methods
+    private void ShowVisualIndications(VisualIndications thisState)
+    {
+        this.mailInputStroke.gameObject.SetActive(true);
 
-    
+        switch (thisState)
+        {
+            case VisualIndications.MAIL_ACCEPTED:
+
+                this.checkSpritePlaceholder.GetComponent<Image>().sprite = SpriteManager.instance.GetSpriteByName("OkCheckMail");
+                this.mailInputStroke.GetComponent<Image>().color = new Color(0f, 255f, 0f, 255f);
+                this.mailInputField.GetComponentInChildren<Text>().color = new Color(0f, 255f, 0f, 255f);
+
+                this.playButton.interactable = true;
+
+                break;
+
+            case VisualIndications.MAIL_REJECTED:
+
+                this.checkSpritePlaceholder.GetComponent<Image>().sprite = SpriteManager.instance.GetSpriteByName("XCheckMail");
+                this.mailInputStroke.GetComponent<Image>().color = new Color(255f, 0f, 0f, 255f);
+                this.mailInputField.GetComponentInChildren<Text>().color = new Color(255f, 0f, 0f, 255f);
+                this.mailInputField.text = "Please enter a valid mail...";
+
+                this.playButton.interactable = false;
+
+                break;
+        }
+    }
+    #endregion
+    #region Unity Methods
+    private void Awake()
+    {
+        ResetLoginPanel();
+    }
+    #endregion
+
+
+
+
+
+
 }

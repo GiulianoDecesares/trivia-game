@@ -81,13 +81,11 @@ public class GameManager : MonoBehaviour
     // Restarts the game
     public void ResetGame()
     {
+        logInPanelScript.ResetLoginPanel();
         answeredQuestions = 0;
         score = 0;
 
-        ScrollControl.ChangeScreen(ScrollSnap.States.PlayPanel);
-
-        QuestionManager.instance.ResetQuestionsRepeatedCount();
-        QuestionManager.instance.ResetCategoryRepeatedCount();
+        ScrollControl.ChangeScreen(ScrollSnap.States.LoginPanel);
     }
 
     #endregion
