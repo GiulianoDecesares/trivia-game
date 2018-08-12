@@ -26,15 +26,22 @@ public class ResultPanel : MonoBehaviour {
 
 
     #region Public Methods
+    public void ResetResultPanel()
+    {
+        resultText.text = "";
+        correctText.text = "";
+        incorrectText.text = "";
+        percentText.text = "";
+        logoSlider.value = 0f;
+    }
+
     // Public method to show results on screen by entering the actual score and the ammount of questions answered
     public void ShowResults(int score, int answered) {
         answeredQuestions = answered;
         correctAnswers = score;
         percentage = Mathf.CeilToInt(((correctAnswers * 1f) / answeredQuestions)*100);
         StartCoroutine(RunSlider());
-        resultText.text = "";
-        correctText.text = "";
-        incorrectText.text = "";
+        ResetResultPanel();
     }
 
     //Public method called by the Share button to share a screenshot
@@ -50,9 +57,8 @@ public class ResultPanel : MonoBehaviour {
     }
     #endregion
 
-
-
     #region Private Methods
+
     // private corutine to take a screenshot and save it
     private IEnumerator takeScreenshotAndSave()
     {
@@ -92,10 +98,12 @@ public class ResultPanel : MonoBehaviour {
         yield return null;
     }
 
+    //private function to add new lines in the text when a semicolon is introduced in the inspector
     private string TextBreak(string textToBreak)
     {
         return textToBreak.Replace(";", "\n");
     }
+
     //private method to show the secondary results
     private void ShowSecondaryResults()
     {
