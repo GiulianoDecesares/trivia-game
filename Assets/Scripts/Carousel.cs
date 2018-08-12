@@ -11,18 +11,18 @@ public class Carousel : MonoBehaviour
     [SerializeField] private RectTransform contentRect;
 
     [SerializeField] private int intercardSpacing;
-
-    [SerializeField] private float reelSpeed;
-
+    
     [SerializeField] private AnimationCurve accelerationCurve;
 
-    [SerializeField] [Range(2, 6)] private int minRandomLapsValue;
-    [SerializeField] [Range(6, 30)] private int maxRandomLapsValue;
+    [SerializeField] [Range(2, 4)] private int minRandomLapsValue;
+    [SerializeField] [Range(4, 30)] private int maxRandomLapsValue;
 
     private List<GameObject> categoryCardsList = new List<GameObject>();
     private List<RectTransform> categoryCardsRectList = new List<RectTransform>();
 
     public System.Action onSwipeFinished;
+
+    public float speed;
 
     #endregion
 
@@ -100,28 +100,27 @@ public class Carousel : MonoBehaviour
 
     private IEnumerator SwipeToCategory(GameObject targetCard, int lapsAmount)
     {
+        // Buscar distancia por frame de targetCard al objetivo
+
+        // (posicionActual.x + velocidad por frame * evaluacion de la curva
+
+        // xValue += speed*curva*time.deltatime        
+
         RectTransform targetCardRect = targetCard.GetComponent<RectTransform>();
 
         Vector2 intercardSpacingVector = new Vector2(this.intercardSpacing, 0f);
-        float initialDistance = Vector2.Distance(targetCardRect.anchoredPosition, this.centerPlaceholderRect.anchoredPosition);
+        float initialDistanceOfTargetCard = Vector2.Distance(targetCardRect.anchoredPosition, this.centerPlaceholderRect.anchoredPosition);
 
         while (!this.CardIsInCenter(targetCardRect))
         {
+            float actualDistanceOfTargetCard = Vector2.Distance(targetCardRect.anchoredPosition, this.centerPlaceholderRect.anchoredPosition);
+
             for (int index = 0; index < this.categoryCardsList.Count; index++)
             {
                 RectTransform cardRect = this.categoryCardsRectList[index];
 
-                float actualDistance = Vector2.Distance(targetCardRect.anchoredPosition, this.centerPlaceholderRect.anchoredPosition);
-
-                // Vector containing the width of the selected card
-                Vector2 cardWidthVector = new Vector2((cardRect.rect.width), 0f);
-
-                // New position to swipe
-                Vector2 newPosition = cardRect.anchoredPosition - (intercardSpacingVector + cardWidthVector);
-
-                // Change position
-                cardRect.anchoredPosition = Vector2.Lerp(cardRect.anchoredPosition, newPosition, 
-                    this.accelerationCurve.Evaluate((actualDistance / initialDistance)) * Time.deltaTime);
+                cardRect.anchoredPosition -= new Vector2(this.speed, 0f) * 
+                    this.accelerationCurve.Evaluate((actualDistanceOfTargetCard / initialDistanceOfTargetCard)) * Time.deltaTime;
             }
 
             yield return null;
