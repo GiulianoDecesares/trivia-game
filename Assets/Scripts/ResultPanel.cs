@@ -17,12 +17,12 @@ public class ResultPanel : MonoBehaviour {
     public float animationDelay=0.05f;
     [Space]
     [Header("Dynamic text")]
-    public string Excellent="¡Respondiste todo perfecto!";
-    public string VeryGood="Respondiste muy bien";
-    public string Good="Respondiste bien";
-    public string Fair="Respondiste mas o menos";
-    public string Bad="Respondiste bastante mal";
-    public string Pathetic="Respondiste muy mal";
+    public string Excellent= "¡Felicitaciones! ¡Sabés muchísimo de nuestra ciudad!";
+    public string VeryGood= "¡Conocés mucho sobre Mar del Plata!";
+    public string Good= "Sabés bastante de nuestra ciudad ; ¡Podés aprender más todavía en nuestro sitio web!";
+    public string Fair= "Conocés poco nuestra ciudad ; ¡Te invitamos a nuestro sitio web para aprender más!";
+    public string Bad= "Sabés poco y nada. ; ¡Te invitamos a nuestro sitio web para aprender más!";
+    public string Pathetic= "Necesitas saber más de nuestra ciudad ; ¡Te invitamos a nuestro sitio web para aprender más!";
 
 
     #region Public Methods

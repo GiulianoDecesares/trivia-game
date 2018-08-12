@@ -52,7 +52,17 @@ public class GameManager : MonoBehaviour
 
     private void OnScrollSnapEndScrolling()
     {
-        this.playPanelScript.StartPlayFlow();
+        if (ScrollControl.screenState == ScrollSnap.States.PlayPanel)
+        {
+            this.playPanelScript.StartPlayFlow();
+        }else
+        {
+            if (ScrollControl.screenState == ScrollSnap.States.ResultPanel)
+            {
+                resultPanelScript.ShowResults(score, answeredQuestions);
+            }
+        }
+        
     }
 
     #region Public Methods
@@ -113,7 +123,6 @@ public class GameManager : MonoBehaviour
     private void EndGame()
     {
         ScrollControl.ChangeScreen(ScrollSnap.States.ResultPanel);
-        resultPanelScript.ShowResults(score, answeredQuestions);
     }
 
     #endregion
