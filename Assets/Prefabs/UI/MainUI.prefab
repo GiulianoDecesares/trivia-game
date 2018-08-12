@@ -2123,12 +2123,16 @@ MonoBehaviour:
   percentText: {fileID: 114329280381097022}
   logoSlider: {fileID: 114494535241206082}
   animationDelay: 0.005
-  Excellent: Respondiste todas bien
-  VeryGood: Respondiste muy bien
-  Good: Respondiste bien
-  Fair: Respondiste mas o menos
-  Bad: Respondiste bastante mal
-  Pathetic: Respondiste muy mal
+  Excellent: "\xA1Felicitaciones! \xA1Sab\xE9s much\xEDsimo de nuestra ciudad! "
+  VeryGood: "\xA1Conoc\xE9s mucho sobre Mar del Plata! "
+  Good: "Sab\xE9s bastante de nuestra ciudad ; \xA1Pod\xE9s aprender m\xE1s todav\xEDa
+    en nuestro sitio web!"
+  Fair: "Conoc\xE9s poco nuestra ciudad ; \xA1Te invitamos a nuestro sitio web para
+    aprender m\xE1s!"
+  Bad: "Sab\xE9s poco y nada. ; \xA1Te invitamos a nuestro sitio web para aprender
+    m\xE1s!"
+  Pathetic: "Necesitas saber m\xE1s de nuestra ciudad ; \xA1Te invitamos a nuestro
+    sitio web para aprender m\xE1s!"
 --- !u!114 &114833196051534362
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2495,7 +2499,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   minRandomLapsValue: 2
-  maxRandomLapsValue: 10
+  maxRandomLapsValue: 6
 --- !u!222 &222031262403337186
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -3186,8 +3190,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 224517143028677332}
   - {fileID: 224949021514653592}
+  - {fileID: 224517143028677332}
   - {fileID: 224268205335780022}
   - {fileID: 224557638395388608}
   m_Father: {fileID: 224130673473398050}
@@ -3340,7 +3344,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224415546894350238}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3754,7 +3758,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224415546894350238}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}

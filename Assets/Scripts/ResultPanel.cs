@@ -92,6 +92,10 @@ public class ResultPanel : MonoBehaviour {
         yield return null;
     }
 
+    private string TextBreak(string textToBreak)
+    {
+        return textToBreak.Replace(";", "\n");
+    }
     //private method to show the secondary results
     private void ShowSecondaryResults()
     {
@@ -99,34 +103,35 @@ public class ResultPanel : MonoBehaviour {
         incorrectText.text = (answeredQuestions - correctAnswers).ToString() + " INCORRECTAS";
         if (percentage == 100)
         {
-            resultText.text = Excellent;
+            resultText.text = TextBreak (Excellent);
         }
         else
         {
             if(percentage >= 80)
             {
-                resultText.text = VeryGood;
+                resultText.text = TextBreak (VeryGood);
             }
             else
             {
                 if (percentage >= 60)
                 {
-                    resultText.text = Good;
+                    resultText.text = TextBreak (Good);
                 }
                 else
                 {
                     if(percentage >= 40)
                     {
-                        resultText.text = Fair;
-                    }else
+                        resultText.text = TextBreak(Fair);
+                    }
+                    else
                     {
                         if (percentage >= 20)
                         {
-                            resultText.text = Bad;
+                            resultText.text = TextBreak(Bad);
                         }
                         else
                         {
-                            resultText.text = Pathetic;
+                            resultText.text = TextBreak (Pathetic);
                         }
                     }
                 }
