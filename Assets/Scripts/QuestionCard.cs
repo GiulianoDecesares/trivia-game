@@ -29,7 +29,8 @@ public class QuestionCard : MonoBehaviour
         anim = gameObject.GetComponent<Animator>();
         timeSlider.normalizedValue = 0f;
         seconds = GameManager.instance.timeToAnswer;
-        counterText.text = GameManager.instance.answeredQuestions.ToString() + "/" + GameManager.instance.questionsAmmount.ToString();
+        counterText.text = (GameManager.instance.answeredQuestions+1).ToString() + "/" + GameManager.instance.questionsAmmount.ToString();
+        counterText.gameObject.SetActive(false);
     }
 
     void OnDisable()
@@ -83,6 +84,7 @@ public class QuestionCard : MonoBehaviour
 
         TimeManager.OnTick += Tick;
         TimeManager.instance.StartCountdown();
+        counterText.gameObject.SetActive(true);
     }
 
     public void StartShowUpAnimation()
