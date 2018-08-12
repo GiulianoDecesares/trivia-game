@@ -82,9 +82,10 @@ public class ScrollSnap : MonoBehaviour
 
             screenState = newScreen;
         }
-
-        this.onScrollEnd?.Invoke();
-
+        if(newScreen == States.PlayPanel)
+        {
+            this.onScrollEnd?.Invoke();
+        }
         yield return null;
     }
 }

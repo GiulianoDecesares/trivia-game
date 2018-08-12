@@ -84,7 +84,6 @@ public class GameManager : MonoBehaviour
         logInPanelScript.ResetLoginPanel();
         answeredQuestions = 0;
         score = 0;
-
         ScrollControl.ChangeScreen(ScrollSnap.States.LoginPanel);
     }
 
