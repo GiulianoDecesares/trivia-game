@@ -59,7 +59,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1053671292858806
 GameObject:
   m_ObjectHideFlags: 1
@@ -1852,6 +1852,7 @@ MonoBehaviour:
   mailInputField: {fileID: 114169166006163478}
   playButton: {fileID: 114169103208124328}
   checkSpritePlaceholder: {fileID: 224268205335780022}
+  checkSpriteGameObject: {fileID: 1025881200794242}
   mailInputStroke: {fileID: 1731370849489796}
 --- !u!114 &114596254486532378
 MonoBehaviour:
@@ -3190,8 +3191,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 224949021514653592}
   - {fileID: 224517143028677332}
+  - {fileID: 224949021514653592}
   - {fileID: 224268205335780022}
   - {fileID: 224557638395388608}
   m_Father: {fileID: 224130673473398050}
@@ -3344,7 +3345,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224415546894350238}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3758,7 +3759,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224415546894350238}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}

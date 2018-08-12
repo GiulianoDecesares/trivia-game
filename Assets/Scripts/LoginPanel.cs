@@ -8,6 +8,7 @@ public class LoginPanel : MonoBehaviour
 	[SerializeField] private InputField mailInputField;
 	[SerializeField] private Button playButton;
     [SerializeField] private RectTransform checkSpritePlaceholder;
+    [SerializeField] private GameObject checkSpriteGameObject;
     [SerializeField] private GameObject mailInputStroke;
 
 	private MailHelper mailHelper;
@@ -19,6 +20,8 @@ public class LoginPanel : MonoBehaviour
     //Resets the login panel to it's starting state
     public void ResetLoginPanel()
     {
+        this.checkSpriteGameObject.SetActive(false);
+
         this.mailHelper = this.GetComponent<MailHelper>();
         this.playButton.interactable = false;
         this.mailInputStroke.gameObject.SetActive(false);
@@ -29,7 +32,6 @@ public class LoginPanel : MonoBehaviour
         this.mailInputField.GetComponentInChildren<Text>().color = new Color(50f/255f, 50f / 255f, 50f / 255f, 255f / 255f);
 
         this.playButton.interactable = false;
-
     }
 
     public void OnEndEdit()
@@ -62,6 +64,7 @@ public class LoginPanel : MonoBehaviour
         }
     }
     #endregion
+
     #region Private Methods
     private void ShowVisualIndications(VisualIndications thisState)
     {
@@ -70,6 +73,8 @@ public class LoginPanel : MonoBehaviour
         switch (thisState)
         {
             case VisualIndications.MAIL_ACCEPTED:
+
+                this.checkSpriteGameObject.SetActive(true);
 
                 this.checkSpritePlaceholder.GetComponent<Image>().sprite = SpriteManager.instance.GetSpriteByName("OkCheckMail");
                 this.mailInputStroke.GetComponent<Image>().color = new Color(0f, 255f, 0f, 255f);
@@ -80,6 +85,8 @@ public class LoginPanel : MonoBehaviour
                 break;
 
             case VisualIndications.MAIL_REJECTED:
+
+                this.checkSpriteGameObject.SetActive(true);
 
                 this.checkSpritePlaceholder.GetComponent<Image>().sprite = SpriteManager.instance.GetSpriteByName("XCheckMail");
                 this.mailInputStroke.GetComponent<Image>().color = new Color(255f, 0f, 0f, 255f);
@@ -92,16 +99,11 @@ public class LoginPanel : MonoBehaviour
         }
     }
     #endregion
+
     #region Unity Methods
     private void Awake()
     {
         ResetLoginPanel();
     }
     #endregion
-
-
-
-
-
-
 }
