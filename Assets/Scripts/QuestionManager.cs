@@ -119,8 +119,6 @@ public class QuestionManager : MonoBehaviour
         this.PopulateCategoriesList();
 
         this.allQuestionsAmount = this.AllQuestionsAmount();
-
-        this.remainingQuestions = this.questionsByCategory;
     }
 
     #endregion
@@ -148,7 +146,18 @@ public class QuestionManager : MonoBehaviour
         this.questionsByCategory[Categories.SOCIAL] = this.PopulateList(this.social, false);
         this.questionsByCategory[Categories.TERRITORY] = this.PopulateList(this.territory, false);
 
-        if(deepDebug)
+        this.remainingQuestions[Categories.CULTURE_AND_EDUCATION] = this.PopulateList(this.cultureAndEducation, false);
+        this.remainingQuestions[Categories.ENVIRONMENT] = this.PopulateList(this.environment, false);
+        this.remainingQuestions[Categories.HEALTH] = this.PopulateList(this.health, false);
+        this.remainingQuestions[Categories.LIVING_PLACE] = this.PopulateList(this.livingPlace, false);
+        this.remainingQuestions[Categories.MOBILITY_AND_LOGISTICS] = this.PopulateList(this.mobilityAndLogistics, false);
+        this.remainingQuestions[Categories.MUNICIPALITY_ECONOMIC_MANAGEMENT] = this.PopulateList(this.municipalityEconomicManagement, false);
+        this.remainingQuestions[Categories.PRODUCTION_EMPLOYMENT_AND_TOURISM] = this.PopulateList(this.productionEmploymentAndTourism, false);
+        this.remainingQuestions[Categories.PUBLIC_INFORMATION_ACCESS] = this.PopulateList(this.publicInformationAccess, false);
+        this.remainingQuestions[Categories.SOCIAL] = this.PopulateList(this.social, false);
+        this.remainingQuestions[Categories.TERRITORY] = this.PopulateList(this.territory, false);
+
+        if (deepDebug)
         {
             foreach(List<QuestionAndAnswers> lists in this.questionsByCategory.Values)
             {
@@ -272,7 +281,9 @@ public class QuestionManager : MonoBehaviour
     public void ResetQuestionsRepeatedCount()
     {
         this.remainingQuestions.Clear();
-        this.remainingQuestions = this.questionsByCategory;
+        this.questionsByCategory.Clear();
+
+        this.PopulateDictionary(this.deepDebug);
 
         this.questionsAlreadyAnswered.Clear();
     }
@@ -282,7 +293,9 @@ public class QuestionManager : MonoBehaviour
     /// </summary>
     public void ResetCategoryRepeatedCount()
     {
-        foreach(Categories thisCategory in this.categoriesAlreadySelected)
+        this.remainingCategories.Clear();
+
+        foreach (Categories thisCategory in this.categoriesAlreadySelected)
         {
             this.remainingCategories.Add(thisCategory);
         }
@@ -349,7 +362,7 @@ public class QuestionManager : MonoBehaviour
     {
         QuestionAndAnswers result = new QuestionAndAnswers();
 
-        List<QuestionAndAnswers> currentQuestionsList = new List<QuestionAndAnswers>();
+        List<QuestionAndAnswers> currentQuestionsList = null;
 
         if(getRepeatedEnabled)
         {
@@ -364,20 +377,30 @@ public class QuestionManager : MonoBehaviour
             // Not so simple bloody get-unrepeated behaviour
             this.remainingQuestions.TryGetValue(category, out currentQuestionsList);
 
-            result = currentQuestionsList[this.questionsRandomizer.Next(currentQuestionsList.Count)];
-
-            List<QuestionAndAnswers> questionsAlreadyAnsweredCategory;
-
-            this.questionsAlreadyAnswered.TryGetValue(category, out questionsAlreadyAnsweredCategory);
-
-            if(questionsAlreadyAnsweredCategory == null)
+            if(currentQuestionsList != null)
             {
-                questionsAlreadyAnsweredCategory = new List<QuestionAndAnswers>();
+                if(currentQuestionsList.Count > 0)
+                {
+                    result = currentQuestionsList[this.questionsRandomizer.Next(currentQuestionsList.Count)];
+
+                    currentQuestionsList.Remove(result);
+
+                }
+                else
+                {
+                    Debug.LogWarning("No unrepeated questions remaining. Returning repeated question");
+
+                    // Simple get-repeated behaviour
+
+                    this.questionsByCategory.TryGetValue(category, out currentQuestionsList);
+
+                    result = currentQuestionsList[this.questionsRandomizer.Next(currentQuestionsList.Count)];
+                }
             }
-
-            questionsAlreadyAnsweredCategory.Add(result);
-
-            currentQuestionsList.Remove(result);
+            else
+            {
+                Debug.LogError("Null list returned");
+            }
         }
 
         return result;
