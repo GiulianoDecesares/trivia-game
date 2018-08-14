@@ -29,7 +29,7 @@ public class MailHelper : MonoBehaviour
 	{
 		bool resultState = false;
 
-		if((thisMail.EndsWith(".com")|| thisMail.EndsWith(".com.ar"))&& (thisMail.Contains("@"))&& !(thisMail.Contains("exampleemail@gmail.com"))&&(thisMail.Length>8))
+		if((thisMail.EndsWith(".com")|| thisMail.Contains(".com."))&& (thisMail.Contains("@"))&& !(thisMail.Contains("exampleemail@gmail.com"))&&(thisMail.Length>8))
 		{
 			resultState = true;
 		}

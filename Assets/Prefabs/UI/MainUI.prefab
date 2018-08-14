@@ -1850,6 +1850,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mailInputField: {fileID: 114169166006163478}
+  mailText: {fileID: 114220781929394228}
   playButton: {fileID: 114169103208124328}
   checkSpritePlaceholder: {fileID: 224268205335780022}
   checkSpriteGameObject: {fileID: 1025881200794242}
