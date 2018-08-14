@@ -3,7 +3,11 @@ guid: 0dd863cc4e7beaa44aa115eb0244f9ed
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - optionText: {instanceID: 0}
+  - optionButton: {fileID: 114546586140613314, guid: df5efb529da495d43989431ed68e041e,
+      type: 2}
+  - showUpAnimator: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
