@@ -96,7 +96,6 @@ public class QuestionManager : MonoBehaviour
 
     // These two data structures keep a copy of all the questions and keep track of which of them were answered and which were not.
     // They are volatile as hell.
-    private Dictionary<Categories, List<QuestionAndAnswers>> questionsAlreadyAnswered = new Dictionary<Categories, List<QuestionAndAnswers>>();
     private Dictionary<Categories, List<QuestionAndAnswers>> remainingQuestions = new Dictionary<Categories, List<QuestionAndAnswers>>();
 
     // These two data structures keep a copy of all the categories and keep track of which of them were used and which were not. 
@@ -284,8 +283,6 @@ public class QuestionManager : MonoBehaviour
         this.questionsByCategory.Clear();
 
         this.PopulateDictionary(this.deepDebug);
-
-        this.questionsAlreadyAnswered.Clear();
     }
 
     /// <summary>
