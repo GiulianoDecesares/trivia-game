@@ -59,7 +59,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1053671292858806
 GameObject:
   m_ObjectHideFlags: 1
@@ -423,7 +423,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1355303362270424
 GameObject:
   m_ObjectHideFlags: 0
@@ -1098,7 +1098,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 114529710241011488}
   m_OnClick:
     m_PersistentCalls:
@@ -1594,14 +1594,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9686275, g: 0.7411765, b: 0.3529412, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: b76de3537d0d916409ce4331336ab926, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 55e47c84a2ebcd341834cc3a2c75759c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1850,8 +1850,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mailInputField: {fileID: 114169166006163478}
+  mailText: {fileID: 114220781929394228}
   playButton: {fileID: 114169103208124328}
   checkSpritePlaceholder: {fileID: 224268205335780022}
+  checkSpriteGameObject: {fileID: 1025881200794242}
   mailInputStroke: {fileID: 1731370849489796}
 --- !u!114 &114596254486532378
 MonoBehaviour:
@@ -1873,13 +1875,13 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 45
-    m_FontStyle: 2
-    m_BestFit: 0
-    m_MinSize: 4
-    m_MaxSize: 50
-    m_Alignment: 0
+    m_Font: {fileID: 12800000, guid: 61aba87bff9a80d40b91b989fdf1f3d4, type: 3}
+    m_FontSize: 50
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 10
+    m_MaxSize: 60
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -2091,7 +2093,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3803922, g: 0.756, b: 0.5019608, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2122,13 +2124,17 @@ MonoBehaviour:
   incorrectText: {fileID: 114147221943969880}
   percentText: {fileID: 114329280381097022}
   logoSlider: {fileID: 114494535241206082}
-  animationDelay: 0.02
-  Excellent: Respondiste todas bien
-  VeryGood: Respondiste muy bien
-  Good: Respondiste bien
-  Fair: Respondiste mas o menos
-  Bad: Respondiste bastante mal
-  Pathetic: Respondiste muy mal
+  animationDelay: 0.005
+  Excellent: "\xA1Felicitaciones! \xA1Sab\xE9s much\xEDsimo de nuestra ciudad! "
+  VeryGood: "\xA1Conoc\xE9s mucho sobre Mar del Plata! "
+  Good: "Sab\xE9s bastante de nuestra ciudad ; \xA1Pod\xE9s aprender m\xE1s todav\xEDa
+    en nuestro sitio web!"
+  Fair: "Conoc\xE9s poco nuestra ciudad ; \xA1Te invitamos a nuestro sitio web para
+    aprender m\xE1s!"
+  Bad: "Sab\xE9s poco y nada. ; \xA1Te invitamos a nuestro sitio web para aprender
+    m\xE1s!"
+  Pathetic: "Necesitas saber m\xE1s de nuestra ciudad ; \xA1Te invitamos a nuestro
+    sitio web para aprender m\xE1s!"
 --- !u!114 &114833196051534362
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2271,7 +2277,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -2281,7 +2287,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 21300000, guid: 4a01f053fbfcce6449100130682c583e, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -2463,39 +2469,39 @@ MonoBehaviour:
   centerPlaceholderRect: {fileID: 224875635371989396}
   contentRect: {fileID: 224266309744171148}
   intercardSpacing: 80
-  reelSpeed: 0.5
   accelerationCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: -0.004180908
-      inSlope: 1.0041809
-      outSlope: 80.066154
+      value: 0
+      inSlope: 5.333178
+      outSlope: 13.333333
+      tangentMode: 65
+    - serializedVersion: 2
+      time: 0.075
+      value: 1
+      inSlope: 13.333333
+      outSlope: 0
       tangentMode: 69
     - serializedVersion: 2
-      time: 0.099999994
-      value: 8.002434
-      inSlope: 80.066154
-      outSlope: -0.0028638279
-      tangentMode: 69
-    - serializedVersion: 2
-      time: 0.95
-      value: 7.9999995
-      inSlope: -0.0028638279
-      outSlope: -144.00755
+      time: 0.8
+      value: 1
+      inSlope: -0
+      outSlope: -4.2500005
       tangentMode: 69
     - serializedVersion: 2
       time: 1
-      value: 0.79962003
-      inSlope: -144.00755
+      value: 0.15
+      inSlope: -4.2500005
       outSlope: 0
-      tangentMode: 5
+      tangentMode: 69
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
   minRandomLapsValue: 2
-  maxRandomLapsValue: 10
+  maxRandomLapsValue: 4
+  speed: 10000
 --- !u!222 &222031262403337186
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -3344,8 +3350,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.5}
-  m_SizeDelta: {x: -20, y: -13}
+  m_AnchoredPosition: {x: -0.000030517578, y: 20.5}
+  m_SizeDelta: {x: 2, y: -39}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224557638395388608
 RectTransform:

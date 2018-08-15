@@ -38,6 +38,10 @@ public class TimeManager : MonoBehaviour {
         {
             StartCoroutine(GameClock());
         }
+        else
+        {
+            Debug.Log("givenTime must be greater than 1 second");
+        }
 	}
 
 	//Stops the clock corutine
@@ -49,18 +53,15 @@ public class TimeManager : MonoBehaviour {
     //Clock corutine
     private IEnumerator GameClock()
     {
-        for (int i=seconds; i > 0; i--)
+        for (int i=0; i < seconds; i++)
         {
             yield return new WaitForSeconds(1f);
-            if (OnTick != null)
-            {
-                OnTick();
-            }
+
+            OnTick?.Invoke();
         }
-        if(OnTimeOut != null)
-        {
-            OnTimeOut();
-        }
+
+        OnTimeOut?.Invoke();
+
         yield return null;
     }
 }

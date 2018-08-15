@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScrollSnap : MonoBehaviour {
+public class ScrollSnap : MonoBehaviour
+{
     public ScrollRect screenScroll;
-    [Range(0.1f, 0.5f)]
-    public float animDelay = 0.2f;
+
+    [Range(0.1f, 0.5f)] public float animDelay = 0.2f;
+
     public enum States { LoginPanel, PlayPanel, ResultPanel };
+
     public States screenState = States.LoginPanel;
+
+    public System.Action onScrollEnd;
 
     //This sets the screen state to Login Panel on start
     void Start()
@@ -67,14 +72,16 @@ public class ScrollSnap : MonoBehaviour {
         if (newScreen != screenState)
         {
             float Increment = (StateToInt(newScreen) - StateToInt(screenState)) / 40f;
+
             for (int i = 0; i < 20; i++)
             {
-
                 screenScroll.horizontalNormalizedPosition += Increment;
+
                 yield return new WaitForSeconds(animDelay / 20f);
             }
+
             screenState = newScreen;
         }
-        yield return null;
+            this.onScrollEnd?.Invoke();
     }
 }

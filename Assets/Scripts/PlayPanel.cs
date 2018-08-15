@@ -5,150 +5,166 @@ using UnityEngine.UI;
 
 public class PlayPanel : MonoBehaviour
 {
+    #region Private Accessors
+
+    private List<RectTransform> optionButtonList = new List<RectTransform>();
+    private List<OptionCard> gameObjectButtonList = new List<OptionCard>();
+    QuestionCard targetQuestionCardScript;
+    #endregion
+
+    #region Public Accessors
+
     public Carousel carouselBehaviour;
+
     public RectTransform optionContainer;
 
-    private void Start()
+    
+    // asociar timemanager
+    #endregion
+
+    #region Public Methods
+
+    private void OnEnable()
     {
-        QuestionManager.Categories category = QuestionManager.instance.GetRandomCategory();
-        GameObject targetCard = carouselBehaviour.StartSwipeToCategory(category);
-        QuestionAndAnswers question = QuestionManager.instance.GetRandomQuestionByCategory(category);
-        question.ShowInConsole();
-        targetCard.GetComponent<QuestionCard>().SetQuestionText(question.question);
-
-        for (int index = 0; index < question.wrongAnswers.Count; index++)
-        {
-            OptionCard wrongOptionButton = Instantiate(PrefabManager.instance.GetPrefabByName("OptionCard"), this.optionContainer).GetComponent<OptionCard>();
-            wrongOptionButton.SetOptionCardQuestion(question.wrongAnswers[index], false);
-        }
-
-        OptionCard correctOptionButton = Instantiate(PrefabManager.instance.GetPrefabByName("OptionCard"), this.optionContainer).GetComponent<OptionCard>();
-        correctOptionButton.SetOptionCardQuestion(question.rightAnswer, true);
+        this.carouselBehaviour.onSwipeFinished += this.StartAnimation;
+       TimeManager.OnTimeOut += this.AfterTimeOut;
     }
 
+    private void OnDisable()
+    {
+        this.carouselBehaviour.onSwipeFinished -= this.StartAnimation;
+        TimeManager.OnTimeOut -= this.AfterTimeOut;
+    }
 
+    public void StartPlayFlow()
+    {
+        if(this.optionButtonList.Count > 0)
+        {
+            for (int index = 0; index < this.optionButtonList.Count; index++)
+            {
+                gameObjectButtonList[index].onButtonPressed -= AfterOptionIsPressed;
+                Destroy(this.optionButtonList[index].gameObject);
+            }
 
+            this.optionButtonList.Clear();
+            this.gameObjectButtonList.Clear();
+        }
 
-    //// UI components needed
-    //[SerializeField] private RectTransform optionLayoutRect;
+        QuestionManager.Categories targetCategory = QuestionManager.instance.GetRandomCategory();
+        targetQuestionCardScript = carouselBehaviour.StartSwipeToCategory(targetCategory).GetComponent<QuestionCard>();
+        QuestionAndAnswers targetQuestionData = QuestionManager.instance.GetRandomQuestionByCategory(targetCategory);
 
-    //   // Button List
-    //   List<GameObject> AnswerButtons = new List<GameObject>();
+        targetQuestionCardScript.SetQuestionText(targetQuestionData.question);
 
-    //   // Use this for initialization
-    //void Start () {
+        int RandomButton = Random.Range(0,4);
+        int wrongAnswerIndex = 0;
+        for (int index = 0; index < 4; index++)
+        {
+            
+            if (index == RandomButton)
+            {
+                OptionCard correctOptionButton = Instantiate(PrefabManager.instance.GetPrefabByName("OptionCard"), this.optionContainer).GetComponent<OptionCard>();
+                correctOptionButton.SetOptionCardQuestion(targetQuestionData.rightAnswer, true);
+        
+                this.optionButtonList.Add(correctOptionButton.GetComponent<RectTransform>());
+                this.gameObjectButtonList.Add(correctOptionButton);
 
-    //}
+                correctOptionButton.onButtonPressed += this.AfterOptionIsPressed;
+        
+            }
+            else 
+            {
+                OptionCard wrongOptionButton = Instantiate(PrefabManager.instance.GetPrefabByName("OptionCard"), this.optionContainer).GetComponent<OptionCard>();
+                wrongOptionButton.SetOptionCardQuestion(targetQuestionData.wrongAnswers[wrongAnswerIndex], false);
+            
+                this.optionButtonList.Add(wrongOptionButton.GetComponent<RectTransform>());
+                this.gameObjectButtonList.Add(wrongOptionButton);
 
-    //// Update is called once per frame
-    //void Update () {
+                wrongOptionButton.onButtonPressed += this.AfterOptionIsPressed;
+                wrongAnswerIndex++;
+            }
+            
+        }
+    }
 
-    //}
+    public void StartAnimation()
+    {
+        StartCoroutine(this.OnOptionButtonAnimate());
+    }
 
-    //   // Construir los botones
-    //   public void BuildButtons ()  // Sigo medio bolado con armar componentes de unity con prefabs, creo que no tiene bien determinada su posicion en el canvas por que no se que es RectTransform basicamente
-    //{
+    public void AfterOptionIsPressed(bool boolofbutton)
+    {
+        for (int ind = 0; ind < this.gameObjectButtonList.Count; ind++)
+        {
+            if ((gameObjectButtonList[ind].isCorrect) && (gameObjectButtonList[ind].optionButton.interactable == true))
+            {
+                gameObjectButtonList[ind].optionButton.interactable = false;
+                gameObjectButtonList[ind].GetComponent<Image>().sprite = SpriteManager.instance.GetSpriteByName("CorrectOptionButton");    
+            } 
+            else 
+            {
+                if ((gameObjectButtonList[ind].isCorrect == false) && (gameObjectButtonList[ind].optionButton.interactable == true))
+                {
+                gameObjectButtonList[ind].optionButton.interactable = false;
+                gameObjectButtonList[ind].GetComponent<Image>().sprite = SpriteManager.instance.GetSpriteByName("DisabledButton");
+                }
+            }
+        }
+        StartCoroutine(this.OnOptionButtonPressed(boolofbutton));
+    }
 
+    public void AfterTimeOut()
+    {
+        StartCoroutine(this.OnTimeOut());
+    }
+    private IEnumerator OnOptionButtonAnimate()
+    {
+        foreach(RectTransform optionCard in this.optionButtonList)
+        {
+            optionCard.GetComponent<Animator>().SetTrigger("Launch");
+            yield return new WaitForSeconds(0.3f);
+        }
+    }
 
+    private IEnumerator OnOptionButtonPressed(bool PressedButton)
+    {   
 
+        if (PressedButton)
+        {
+            targetQuestionCardScript.SetQuestionText("Respuesta correcta");    
+            yield return new WaitForSeconds(1.5f);
+            GameManager.instance.OnCorrectAnswer();
+        }
+        else
+        { 
+            targetQuestionCardScript.SetQuestionText("Respuesta incorrecta");    
+            yield return new WaitForSeconds(1.5f);
+            GameManager.instance.OnWrongAnswer();
+        }
 
-    //	GameObject button1 = Instantiate(PrefabManager.instance.GetPrefabByName("OptionCard"), optionLayoutRect );
-    //       button1.GetComponent<OptionCard>().isCorrect = true;
-    //       GameObject button2 = Instantiate(PrefabManager.instance.GetPrefabByName("OptionCard"), optionLayoutRect );
-    //       button2.GetComponent<OptionCard>().isCorrect = false;
-    //       GameObject button3 = Instantiate(PrefabManager.instance.GetPrefabByName("OptionCard"), optionLayoutRect );
-    //       button3.GetComponent<OptionCard>().isCorrect = false;
-    //       GameObject button4 = Instantiate(PrefabManager.instance.GetPrefabByName("OptionCard"), optionLayoutRect );
-    //       button4.GetComponent<OptionCard>().isCorrect = false;
+    }
+    private IEnumerator OnTimeOut()
+    {
+        for (int index = 0;index < this.gameObjectButtonList.Count;index++)
+        {
+            if ((gameObjectButtonList[index].isCorrect) && (gameObjectButtonList[index].optionButton.interactable = true))
+            {
+                gameObjectButtonList[index].optionButton.interactable = false;
+                gameObjectButtonList[index].GetComponent<Image>().sprite = SpriteManager.instance.GetSpriteByName("CorrectOptionButton");    
+            } 
+            else if (!(gameObjectButtonList[index].isCorrect) && (gameObjectButtonList[index].optionButton.interactable = true))
+            {
+                gameObjectButtonList[index].optionButton.interactable = false;
+                gameObjectButtonList[index].GetComponent<Image>().sprite = SpriteManager.instance.GetSpriteByName("DisabledButton");
+            }
 
-    //       AnswerButtons.Add(button1);
-    //       AnswerButtons.Add(button2);
-    //       AnswerButtons.Add(button3);
-    //       AnswerButtons.Add(button4);
-    //   }
+        }
+        targetQuestionCardScript.SetQuestionText("Te quedaste sin tiempo");
+        yield return new WaitForSeconds(1.5f);
+        GameManager.instance.OnWrongAnswer();
 
-    //   public void LoadButtons(string ranswer, string wanswer1, string wanswer2, string wanswer3)
-    //   {
-    //       string[] answers = new string[4] { ranswer, wanswer1, wanswer2, wanswer3 };
-    //       for (int i = 0; i < AnswerButtons.Count; i++)
-    //       {
-    //           AnswerButtons[i].text = answers[i];
-    //       }
+    }
+    
 
-    //   }
-
-
-
-    //   public void SortButtons ()
-    //   {
-    //       foreach (GameObject button in AnswerButtons)
-    //       {
-    //           Vector2 auxPosition = button.transform.position;
-    //           int ranButton = Random.Range(0, AnswerButtons.Count);
-    //           button.transform.position = AnswerButtons[ranButton].transform.position;
-    //           AnswerButtons[ranButton].transform.position = auxPosition;
-    //       }
-
-    //   }
-    //   public void EnableButtons()
-    //   {
-    //       foreach(GameObject button in AnswerButtons)
-    //       {
-    //           button.isEnabled = true;
-    //       }
-    //   }
-
-
-    //   public void ResetButtons ()
-    //   {
-
-    //       foreach (GameObject button in AnswerButtons)
-    //       {
-    //           button.isEnabled = false;
-    //           button.text = "";
-    //       }
-    //   }
-
-    //   public void DisabledButtons ()
-    //   {
-    //       foreach (GameObject button in AnswerButtons)
-    //       {
-    //           button.isEnabled = false;
-    //       }
-    //   }
-
-
-
-
-
-
-    //    // Comportamiento de los botones. 
-
-    //    public void CheckChoice()
-    //    {
-    //    	if (true)
-    //    	{
-    //    		rightchoice();
-    //    	} else
-    //    	{
-    //    		wrongchoice();
-    //    	}
-    //    }
-
-    //   // Posibles resultados             
-    //    public void rightchoice()
-    //    {
-
-    //    }
-
-    //    public void wrongchoice()
-    //    {
-
-    //   }
-
-    //    public void TimeOutResult()
-    //    {
-
-    //    }
-
+    #endregion
 }

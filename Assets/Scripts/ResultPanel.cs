@@ -13,28 +13,35 @@ public class ResultPanel : MonoBehaviour {
     private int percentage;
     private int answeredQuestions;
     private int correctAnswers;
-    [Range(0.01f,0.1f)]
+    [Range(0.005f,0.02f)]
     public float animationDelay=0.05f;
     [Space]
     [Header("Dynamic text")]
-    public string Excellent="¡Respondiste todo perfecto!";
-    public string VeryGood="Respondiste muy bien";
-    public string Good="Respondiste bien";
-    public string Fair="Respondiste mas o menos";
-    public string Bad="Respondiste bastante mal";
-    public string Pathetic="Respondiste muy mal";
+    public string Excellent= "¡Felicitaciones! ¡Sabés muchísimo de nuestra ciudad!";
+    public string VeryGood= "¡Conocés mucho sobre Mar del Plata!";
+    public string Good= "Sabés bastante de nuestra ciudad ; ¡Podés aprender más todavía en nuestro sitio web!";
+    public string Fair= "Conocés poco nuestra ciudad ; ¡Te invitamos a nuestro sitio web para aprender más!";
+    public string Bad= "Sabés poco y nada. ; ¡Te invitamos a nuestro sitio web para aprender más!";
+    public string Pathetic= "Necesitas saber más de nuestra ciudad ; ¡Te invitamos a nuestro sitio web para aprender más!";
 
 
     #region Public Methods
+    public void ResetResultPanel()
+    {
+        resultText.text = "";
+        correctText.text = "";
+        incorrectText.text = "";
+        percentText.text = "";
+        logoSlider.value = 0f;
+    }
+
     // Public method to show results on screen by entering the actual score and the ammount of questions answered
     public void ShowResults(int score, int answered) {
         answeredQuestions = answered;
         correctAnswers = score;
         percentage = Mathf.CeilToInt(((correctAnswers * 1f) / answeredQuestions)*100);
         StartCoroutine(RunSlider());
-        resultText.text = "";
-        correctText.text = "";
-        incorrectText.text = "";
+        ResetResultPanel();
     }
 
     //Public method called by the Share button to share a screenshot
@@ -50,9 +57,8 @@ public class ResultPanel : MonoBehaviour {
     }
     #endregion
 
-
-
     #region Private Methods
+
     // private corutine to take a screenshot and save it
     private IEnumerator takeScreenshotAndSave()
     {
@@ -92,6 +98,12 @@ public class ResultPanel : MonoBehaviour {
         yield return null;
     }
 
+    //private function to add new lines in the text when a semicolon is introduced in the inspector
+    private string TextBreak(string textToBreak)
+    {
+        return textToBreak.Replace(";", "\n");
+    }
+
     //private method to show the secondary results
     private void ShowSecondaryResults()
     {
@@ -99,34 +111,35 @@ public class ResultPanel : MonoBehaviour {
         incorrectText.text = (answeredQuestions - correctAnswers).ToString() + " INCORRECTAS";
         if (percentage == 100)
         {
-            resultText.text = Excellent;
+            resultText.text = TextBreak (Excellent);
         }
         else
         {
             if(percentage >= 80)
             {
-                resultText.text = VeryGood;
+                resultText.text = TextBreak (VeryGood);
             }
             else
             {
                 if (percentage >= 60)
                 {
-                    resultText.text = Good;
+                    resultText.text = TextBreak (Good);
                 }
                 else
                 {
                     if(percentage >= 40)
                     {
-                        resultText.text = Fair;
-                    }else
+                        resultText.text = TextBreak(Fair);
+                    }
+                    else
                     {
                         if (percentage >= 20)
                         {
-                            resultText.text = Bad;
+                            resultText.text = TextBreak(Bad);
                         }
                         else
                         {
-                            resultText.text = Pathetic;
+                            resultText.text = TextBreak (Pathetic);
                         }
                     }
                 }
