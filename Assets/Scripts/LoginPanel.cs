@@ -49,7 +49,10 @@ public class LoginPanel : MonoBehaviour
                 this.ShowVisualIndications(VisualIndications.MAIL_ACCEPTED);
 
                 // Save the mails on google disabled for testing proposes
-                this.mailHelper.Send(this.mailInputField.text);
+
+#if !UNITY_EDITOR
+                this.mailHelper.Send(this.mailInputField.text); 
+#endif
             }
             else
             {
