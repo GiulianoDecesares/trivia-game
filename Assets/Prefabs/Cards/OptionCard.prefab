@@ -111,6 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCorrect: 0
   optionText: {fileID: 114040785149649456}
+  optionButton: {fileID: 114546586140613314}
   showUpAnimator: {fileID: 95125195835516220}
 --- !u!114 &114546586140613314
 MonoBehaviour:
