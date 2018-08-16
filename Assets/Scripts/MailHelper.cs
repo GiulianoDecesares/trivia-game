@@ -25,12 +25,13 @@ public class MailHelper : MonoBehaviour
 		StartCoroutine(Post(thisMail));
 	}
 
-	public bool IsValidMail(string thisMail)
+
+    public bool IsValidMail(string thisMail)
 	{
 		bool resultState = false;
 
-		if((thisMail.EndsWith(".com")|| thisMail.Contains(".com."))&& (thisMail.Contains("@"))&& !(thisMail.Contains("exampleemail@gmail.com"))&&(thisMail.Length>8))
-		{
+        if((thisMail.EndsWith(".com")|| thisMail.Contains(".com."))&& (thisMail.Contains("@"))&& !(thisMail.Contains("exampleemail@gmail.com"))&& (thisMail.Length>8)&& (!thisMail.Contains("@."))&& (!thisMail.StartsWith("@"))&& (!thisMail.StartsWith("."))&& (!thisMail.EndsWith("."))&& (!thisMail.EndsWith("@")))
+        {
 			resultState = true;
 		}
 
