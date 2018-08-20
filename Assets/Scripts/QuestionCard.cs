@@ -108,5 +108,9 @@ public class QuestionCard : MonoBehaviour
         }
     }
 
+    public void SetCounterText (string info)  // Being used only to reset by play panel at the end of the play session
+    {
+        counterText.text = info;
+    }
     #endregion
 }

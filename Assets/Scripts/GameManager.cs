@@ -123,6 +123,7 @@ public class GameManager : MonoBehaviour
     private void EndGame()
     {
         ScrollControl.ChangeScreen(ScrollSnap.States.ResultPanel);
+        playPanelScript.OnGameEnd();
         resultPanelScript.ResetResultPanel();
     }
 

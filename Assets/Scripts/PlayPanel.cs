@@ -165,6 +165,18 @@ public class PlayPanel : MonoBehaviour
 
     }
     
+    public void OnGameEnd()
+    {
+        targetQuestionCardScript.SetQuestionText(" ");
+        targetQuestionCardScript.SetTitleText(" ");
+        targetQuestionCardScript.SetCounterText(" ");
+
+        foreach (OptionCard AnswerButton in gameObjectButtonList)
+        {
+            AnswerButton.SetOptionCardQuestion(" ",false);
+            AnswerButton.GetComponent<Image>().sprite = SpriteManager.instance.GetSpriteByName("OptionButton");
+        }
+    }
 
     #endregion
 }
