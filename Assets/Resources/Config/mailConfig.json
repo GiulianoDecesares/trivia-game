@@ -1,0 +1,12 @@
+{
+    "from": "trivia.mardelplataentretodos@gmail.com",
+    "password": "thisisatestpassword",
+    
+    "subject": "Mar Del Plata Entre Todos",
+    "body": "Gracias por participar del juego Trivia ¿Cuanto sabes de Mar Del Plata?",
+
+    "serverHost": "smtp.gmail.com",
+    "port": 587,
+    "useDefaultCredentials": false,
+    "useSsl": true
+  }
