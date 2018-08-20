@@ -154,7 +154,7 @@ public class PrefabManager : MonoBehaviour
                     cardScript.SetHeaderSprite(SpriteManager.instance.GetSpriteByName(CategoryIconNames.LIVING_PLACE + "_banner"));
                     break;
                 case QuestionManager.Categories.MOBILITY_AND_LOGISTICS:
-                    cardScript.SetTitleText("Mobilidad y logística");
+                    cardScript.SetTitleText("Movilidad y logística");
                     cardScript.category = QuestionManager.Categories.MOBILITY_AND_LOGISTICS;
                     cardScript.SetCategoryIcon(SpriteManager.instance.GetSpriteByName(CategoryIconNames.MOBILITY_AND_LOGISTICS));
                     cardScript.SetHeaderSprite(SpriteManager.instance.GetSpriteByName(CategoryIconNames.MOBILITY_AND_LOGISTICS + "_banner"));
