@@ -515,8 +515,7 @@ MonoBehaviour:
   livingPlace: {fileID: 4900000, guid: fb485a89da035774a919f58bf068cee9, type: 3}
   mobilityAndLogistics: {fileID: 4900000, guid: 88b7a55e6ab3c73458a109e98c8d4946,
     type: 3}
-  municipalityEconomicManagement: {fileID: 4900000, guid: b6115bd39377c4641bff814a5d8fb988,
-    type: 3}
+  publicManagement: {fileID: 4900000, guid: 37e4b794ac90fea4e8132fa0c66916c9, type: 3}
   productionEmploymentAndTourism: {fileID: 4900000, guid: f70bd2396ecb5f84e9841cf9a397226a,
     type: 3}
   publicInformationAccess: {fileID: 4900000, guid: 2087c381d2dab3a42a3e68ec6a5be984,

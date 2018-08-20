@@ -50,8 +50,8 @@ public class PrefabManager : MonoBehaviour
             case QuestionManager.Categories.MOBILITY_AND_LOGISTICS:
                 SpriteManager.instance.GetSpriteByName(CategoryIconNames.MOBILITY_AND_LOGISTICS + "_banner");
                 break;
-            case QuestionManager.Categories.MUNICIPALITY_ECONOMIC_MANAGEMENT:
-                result = SpriteManager.instance.GetSpriteByName(CategoryIconNames.MUNICIPALITY_ECONOMIC_MANAGEMENT + "_banner");
+            case QuestionManager.Categories.PUBLIC_MANAGEMENT:
+                result = SpriteManager.instance.GetSpriteByName(CategoryIconNames.PUBLIC_MANAGEMENT + "_banner");
                 break;
             case QuestionManager.Categories.PRODUCTION_EMPLOYMENT_AND_TOURISM:
                 result = SpriteManager.instance.GetSpriteByName(CategoryIconNames.PRODUCTION_EMPLOYMENT_AND_TOURISM + "_banner");
@@ -91,8 +91,8 @@ public class PrefabManager : MonoBehaviour
             case QuestionManager.Categories.MOBILITY_AND_LOGISTICS:
                 SpriteManager.instance.GetSpriteByName(CategoryIconNames.MOBILITY_AND_LOGISTICS);
                 break;
-            case QuestionManager.Categories.MUNICIPALITY_ECONOMIC_MANAGEMENT:
-                result = SpriteManager.instance.GetSpriteByName(CategoryIconNames.MUNICIPALITY_ECONOMIC_MANAGEMENT);
+            case QuestionManager.Categories.PUBLIC_MANAGEMENT:
+                result = SpriteManager.instance.GetSpriteByName(CategoryIconNames.PUBLIC_MANAGEMENT);
                 break;
             case QuestionManager.Categories.PRODUCTION_EMPLOYMENT_AND_TOURISM:
                 result = SpriteManager.instance.GetSpriteByName(CategoryIconNames.PRODUCTION_EMPLOYMENT_AND_TOURISM);
@@ -159,11 +159,11 @@ public class PrefabManager : MonoBehaviour
                     cardScript.SetCategoryIcon(SpriteManager.instance.GetSpriteByName(CategoryIconNames.MOBILITY_AND_LOGISTICS));
                     cardScript.SetHeaderSprite(SpriteManager.instance.GetSpriteByName(CategoryIconNames.MOBILITY_AND_LOGISTICS + "_banner"));
                     break;
-                case QuestionManager.Categories.MUNICIPALITY_ECONOMIC_MANAGEMENT:
-                    cardScript.SetTitleText("Administración económica de la municipalidad");
-                    cardScript.category = QuestionManager.Categories.MUNICIPALITY_ECONOMIC_MANAGEMENT;
-                    cardScript.SetCategoryIcon(SpriteManager.instance.GetSpriteByName(CategoryIconNames.MUNICIPALITY_ECONOMIC_MANAGEMENT));
-                    cardScript.SetHeaderSprite(SpriteManager.instance.GetSpriteByName(CategoryIconNames.MUNICIPALITY_ECONOMIC_MANAGEMENT + "_banner"));
+                case QuestionManager.Categories.PUBLIC_MANAGEMENT:
+                    cardScript.SetTitleText("Gestión pública");
+                    cardScript.category = QuestionManager.Categories.PUBLIC_MANAGEMENT;
+                    cardScript.SetCategoryIcon(SpriteManager.instance.GetSpriteByName(CategoryIconNames.PUBLIC_MANAGEMENT));
+                    cardScript.SetHeaderSprite(SpriteManager.instance.GetSpriteByName(CategoryIconNames.PUBLIC_MANAGEMENT + "_banner"));
                     break;
                 case QuestionManager.Categories.PRODUCTION_EMPLOYMENT_AND_TOURISM:
                     cardScript.SetTitleText("Producción, empleo y turismo");

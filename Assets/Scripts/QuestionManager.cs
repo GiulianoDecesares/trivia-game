@@ -55,7 +55,7 @@ public class QuestionManager : MonoBehaviour
     [SerializeField] private TextAsset health;
     [SerializeField] private TextAsset livingPlace;
     [SerializeField] private TextAsset mobilityAndLogistics;
-    [SerializeField] private TextAsset municipalityEconomicManagement;
+    [SerializeField] private TextAsset publicManagement;
     [SerializeField] private TextAsset productionEmploymentAndTourism;
     [SerializeField] private TextAsset publicInformationAccess;
     [SerializeField] private TextAsset social;
@@ -77,7 +77,7 @@ public class QuestionManager : MonoBehaviour
         HEALTH,
         LIVING_PLACE,
         MOBILITY_AND_LOGISTICS,
-        MUNICIPALITY_ECONOMIC_MANAGEMENT,
+        PUBLIC_MANAGEMENT,
         PRODUCTION_EMPLOYMENT_AND_TOURISM,
         PUBLIC_INFORMATION_ACCESS,
         SOCIAL,
@@ -139,7 +139,7 @@ public class QuestionManager : MonoBehaviour
         this.questionsByCategory[Categories.HEALTH] = this.PopulateList(this.health, false);
         this.questionsByCategory[Categories.LIVING_PLACE] = this.PopulateList(this.livingPlace, false);
         this.questionsByCategory[Categories.MOBILITY_AND_LOGISTICS] = this.PopulateList(this.mobilityAndLogistics, false);
-        this.questionsByCategory[Categories.MUNICIPALITY_ECONOMIC_MANAGEMENT] = this.PopulateList(this.municipalityEconomicManagement, false);
+        this.questionsByCategory[Categories.PUBLIC_MANAGEMENT] = this.PopulateList(this.publicManagement, false);
         this.questionsByCategory[Categories.PRODUCTION_EMPLOYMENT_AND_TOURISM] = this.PopulateList(this.productionEmploymentAndTourism, false);
         this.questionsByCategory[Categories.PUBLIC_INFORMATION_ACCESS] = this.PopulateList(this.publicInformationAccess, false);
         this.questionsByCategory[Categories.SOCIAL] = this.PopulateList(this.social, false);
@@ -150,7 +150,7 @@ public class QuestionManager : MonoBehaviour
         this.remainingQuestions[Categories.HEALTH] = this.PopulateList(this.health, false);
         this.remainingQuestions[Categories.LIVING_PLACE] = this.PopulateList(this.livingPlace, false);
         this.remainingQuestions[Categories.MOBILITY_AND_LOGISTICS] = this.PopulateList(this.mobilityAndLogistics, false);
-        this.remainingQuestions[Categories.MUNICIPALITY_ECONOMIC_MANAGEMENT] = this.PopulateList(this.municipalityEconomicManagement, false);
+        this.remainingQuestions[Categories.PUBLIC_MANAGEMENT] = this.PopulateList(this.publicManagement, false);
         this.remainingQuestions[Categories.PRODUCTION_EMPLOYMENT_AND_TOURISM] = this.PopulateList(this.productionEmploymentAndTourism, false);
         this.remainingQuestions[Categories.PUBLIC_INFORMATION_ACCESS] = this.PopulateList(this.publicInformationAccess, false);
         this.remainingQuestions[Categories.SOCIAL] = this.PopulateList(this.social, false);
