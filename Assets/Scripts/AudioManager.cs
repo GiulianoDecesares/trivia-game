@@ -12,9 +12,6 @@ public class AudioManager : MonoBehaviour {
     public AudioClip carouselSpinningClip;
     public AudioClip panelSwipeClip;
 
-
-
-
     #region Singleton
 
     public static AudioManager instance = null;
@@ -34,14 +31,17 @@ public class AudioManager : MonoBehaviour {
     }
     #endregion // Singleton
 
-
-	
-public void PlaySwipeSound()
+    #region Public Methods
+    //Plays a swipe sound when moving between panels
+    public void PlaySwipeSound()
     {
         audioSource.loop = false;
         PlaySound(panelSwipeClip);
     }
-	public void PlayButtonSound (bool IsCorrect) {
+
+    //Plays the correct answer aouns when bool is true and wrong answer sound when it's false
+    public void PlayButtonSound(bool IsCorrect)
+    {
         audioSource.loop = false;
         fastTimerAudioSource.volume = 0f;
         fastTimerAudioSource.Stop();
@@ -53,27 +53,24 @@ public void PlaySwipeSound()
         {
             PlaySound(wrongAnswerClip);
         }
-	}
+    }
+
+    //Plays the carousel sound when this method is called with a true bool and it starts looping until this method is called again with a false bool when it stops.
     public void PlayCarouselSound(bool begining)
     {
         if (begining)
         {
             audioSource.loop = true;
             PlaySound(carouselSpinningClip);
-        }else
+        }
+        else
         {
             audioSource.loop = false;
             audioSource.Stop();
         }
     }
 
-    private void PlaySound(AudioClip ClipToPlay)
-    {
-        audioSource.Stop();
-        audioSource.clip = ClipToPlay;
-        audioSource.Play();
-    }
-
+    //It plays and starts looping the slow timer clip when the timer starts, changes the sound to the fast timer clip when it's 1/3 of the time left and stops the sound when it reaches the end of the time.
     public void PlayTimerSound(int actualTime, int totalTime)
     {
         int aux = Mathf.RoundToInt((totalTime * 1f) / 3f);
@@ -82,9 +79,10 @@ public void PlaySwipeSound()
             audioSource.loop = true;
             PlaySound(slowTimerClip);
             fastTimerAudioSource.Play();
-        }else
+        }
+        else
         {
-            if(actualTime == aux)
+            if (actualTime == aux)
             {
                 audioSource.Stop();
                 fastTimerAudioSource.volume = 1;
@@ -98,4 +96,15 @@ public void PlaySwipeSound()
             }
         }
     }
+    #endregion
+
+    #region Private Methods
+    //Stops the previous sfx and plays the Clip To Play.
+    private void PlaySound(AudioClip ClipToPlay)
+    {
+        audioSource.Stop();
+        audioSource.clip = ClipToPlay;
+        audioSource.Play();
+    }
+    #endregion
 }
