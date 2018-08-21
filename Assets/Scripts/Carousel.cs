@@ -107,7 +107,7 @@ public class Carousel : MonoBehaviour
         // xValue += speed*curva*time.deltatime        
 
         RectTransform targetCardRect = targetCard.GetComponent<RectTransform>();
-
+        AudioManager.instance.PlayCarouselSound(true);
         Vector2 intercardSpacingVector = new Vector2(this.intercardSpacing, 0f);
         float initialDistanceOfTargetCard = Vector2.Distance(targetCardRect.anchoredPosition, this.centerPlaceholderRect.anchoredPosition);
 
@@ -125,7 +125,7 @@ public class Carousel : MonoBehaviour
 
             yield return null;
         }
-
+        AudioManager.instance.PlayCarouselSound(false);
         targetCard.GetComponent<QuestionCard>()?.StartShowUpAnimation();
         this.onSwipeFinished?.Invoke();
 

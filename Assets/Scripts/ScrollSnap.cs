@@ -25,45 +25,14 @@ public class ScrollSnap : MonoBehaviour
     public void ChangeScreen(States toScreen)
     {
         StartCoroutine(ScreenAnimation(toScreen));
+        AudioManager.instance.PlaySwipeSound();
     }
 
     //This method is called to change between screens using the state number
     public void ChangeScreen(int toScreen)
     {
-        switch (toScreen)
-        {
-            case 0:
-                StartCoroutine(ScreenAnimation(States.LoginPanel));
-                break;
-            case 1:
-                StartCoroutine(ScreenAnimation(States.PlayPanel));
-                break;
-            case 2:
-                StartCoroutine(ScreenAnimation(States.ResultPanel));
-                break;
-            default:
-                Debug.Log("Out of Range");
-                break;
-        }
-    }
-
-    //This is a private method to assign an integer to each state
-    private int StateToInt(States toScreen)
-    {
-        int aux = 0;
-        switch (toScreen)
-        {
-            case States.LoginPanel:
-                aux=0;
-                break;
-            case States.PlayPanel:
-                aux=1;
-                break;
-            case States.ResultPanel:
-                aux=2;
-                break;
-        }
-        return aux;
+        States aux = (States)toScreen;
+        ChangeScreen(aux);
     }
 
     //This is the corutine called by the ChangeScreen method to animate the transition between two screens
@@ -71,7 +40,7 @@ public class ScrollSnap : MonoBehaviour
     {
         if (newScreen != screenState)
         {
-            float Increment = (StateToInt(newScreen) - StateToInt(screenState)) / 40f;
+            float Increment = ((int)newScreen - (int)screenState) / 40f;
 
             for (int i = 0; i < 20; i++)
             {
