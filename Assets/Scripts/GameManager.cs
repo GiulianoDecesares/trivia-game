@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public int questionsAmmount = 5;
 
     [Header("Time given to answer each question, in seconds")]
-    public int timeToAnswer = 15;
+    public int timeToAnswer = 30;
     
     #region Singleton
 

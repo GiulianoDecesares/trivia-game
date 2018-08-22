@@ -27,7 +27,7 @@ public class QuestionCard : MonoBehaviour
     void Start()
     {
         anim = gameObject.GetComponent<Animator>();
-        timeSlider.normalizedValue = 0f;
+        timeSlider.normalizedValue = 100f;
         seconds = GameManager.instance.timeToAnswer;
         counterText.text = (GameManager.instance.answeredQuestions+1).ToString() + "/" + GameManager.instance.questionsAmmount.ToString();
         counterText.gameObject.SetActive(false);

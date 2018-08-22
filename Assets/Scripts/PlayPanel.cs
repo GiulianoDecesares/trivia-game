@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class PlayPanel : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class PlayPanel : MonoBehaviour
 
     public RectTransform optionContainer;
 
+    public static UnityAction OnAnimationEnded;
     
     // asociar timemanager
     #endregion
@@ -43,6 +45,7 @@ public class PlayPanel : MonoBehaviour
             for (int index = 0; index < this.optionButtonList.Count; index++)
             {
                 gameObjectButtonList[index].onButtonPressed -= AfterOptionIsPressed;
+                OnAnimationEnded -= gameObjectButtonList[index].InteractableAtEndofAnimation;
                 Destroy(this.optionButtonList[index].gameObject);
             }
 
@@ -124,6 +127,9 @@ public class PlayPanel : MonoBehaviour
             optionCard.GetComponent<Animator>().SetTrigger("Launch");
             yield return new WaitForSeconds(0.3f);
         }
+        yield return new WaitForSeconds(1.1f);
+        OnAnimationEnded?.Invoke();
+
     }
 
     private IEnumerator OnOptionButtonPressed(bool PressedButton)
@@ -132,13 +138,13 @@ public class PlayPanel : MonoBehaviour
         if (PressedButton)
         {
             targetQuestionCardScript.SetQuestionText("Respuesta correcta");    
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(3.5f);
             GameManager.instance.OnCorrectAnswer();
         }
         else
         { 
             targetQuestionCardScript.SetQuestionText("Respuesta incorrecta");    
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(3.5f);
             GameManager.instance.OnWrongAnswer();
         }
 

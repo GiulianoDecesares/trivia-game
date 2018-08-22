@@ -9,6 +9,7 @@ public class OptionCard : MonoBehaviour
     public bool isCorrect;
     public Text optionText;
     
+    public TimeManager TimeManager;
     public Button optionButton;
     public System.Action<bool> onButtonPressed;
     [SerializeField] private Animator showUpAnimator;
@@ -28,7 +29,7 @@ public class OptionCard : MonoBehaviour
     void Start ()
     {
         this.GetComponent<Button>().onClick.AddListener(CheckAnswer);
-        
+        PlayPanel.OnAnimationEnded += this.InteractableAtEndofAnimation;   
     }    
 
     void CheckAnswer ()
@@ -51,6 +52,9 @@ public class OptionCard : MonoBehaviour
         TimeManager.instance.StopCountdown();
     }
 
-
+    public void InteractableAtEndofAnimation()
+    {
+        this.optionButton.interactable=true;
+    }
 
 }
