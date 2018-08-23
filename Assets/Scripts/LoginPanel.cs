@@ -34,7 +34,10 @@ public class LoginPanel : MonoBehaviour
         this.mailInputField.GetComponentInChildren<Text>().text = "exampleemail@gmail.com";
         mailText.color = new Color(50f / 255f, 50f / 255f, 50f / 255f, 180f / 255f);
 
-        this.playButton.interactable = false;
+        // Force the activation of the play buton, to disable the check mail mechanism.
+
+        //this.playButton.interactable = false;
+        this.playButton.interactable = true;
     }
 
     public void OnEndEdit()
