@@ -47,35 +47,16 @@ public class ScrollSnap : MonoBehaviour
         }
     }
 
-    //This is a private method to assign an integer to each state
-    private int StateToInt(States toScreen)
-    {
-        int aux = 0;
-        switch (toScreen)
-        {
-            case States.LoginPanel:
-                aux=0;
-                break;
-            case States.PlayPanel:
-                aux=1;
-                break;
-            case States.ResultPanel:
-                aux=2;
-                break;
-        }
-        return aux;
-    }
-
     //This is the corutine called by the ChangeScreen method to animate the transition between two screens
-    IEnumerator ScreenAnimation(States newScreen)
+    private IEnumerator ScreenAnimation(States newScreen)
     {
         if (newScreen != screenState)
         {
-            float Increment = (StateToInt(newScreen) - StateToInt(screenState)) / 40f;
+            float increment = ((int)newScreen - (int)screenState) / 40f;
 
             for (int i = 0; i < 20; i++)
             {
-                screenScroll.horizontalNormalizedPosition += Increment;
+                screenScroll.horizontalNormalizedPosition += increment;
 
                 yield return new WaitForSeconds(animDelay / 20f);
             }
