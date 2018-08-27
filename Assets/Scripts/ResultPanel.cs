@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ResultPanel : MonoBehaviour {
+public class ResultPanel : Panel
+
+{
     public Text resultText;
     public Text correctText;
     public Text incorrectText;
@@ -24,8 +26,13 @@ public class ResultPanel : MonoBehaviour {
     public string Bad= "Sabés poco y nada. ; ¡Te invitamos a nuestro sitio web para aprender más!";
     public string Pathetic= "Necesitas saber más de nuestra ciudad ; ¡Te invitamos a nuestro sitio web para aprender más!";
 
+    private void Start()
+    {
+        this.panelType = PanelType.RESULT;
+    }
 
     #region Public Methods
+
     public void ResetResultPanel()
     {
         resultText.text = "";

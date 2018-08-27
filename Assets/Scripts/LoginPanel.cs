@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LoginPanel : MonoBehaviour 
+public class LoginPanel : Panel 
 {
 	[SerializeField] private InputField mailInputField;
     [SerializeField] private Text mailText;
@@ -15,7 +15,6 @@ public class LoginPanel : MonoBehaviour
 	private MailHelper mailHelper;
 
     private enum VisualIndications { MAIL_REJECTED, MAIL_ACCEPTED, MAIL_EMPTY };
-
 
     #region Public Methods
     //Resets the login panel to it's starting state
@@ -115,9 +114,11 @@ public class LoginPanel : MonoBehaviour
     #endregion
 
     #region Unity Methods
-    private void Awake()
+    private void Start()
     {
         ResetLoginPanel();
+
+        this.panelType = PanelType.LOGIN;
     }
     #endregion
 }

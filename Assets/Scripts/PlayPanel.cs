@@ -4,13 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-public class PlayPanel : MonoBehaviour
+public class PlayPanel : Panel
 {
     #region Private Accessors
 
     private List<RectTransform> optionButtonList = new List<RectTransform>();
     private List<OptionCard> gameObjectButtonList = new List<OptionCard>();
     QuestionCard targetQuestionCardScript;
+    
     #endregion
 
     #region Public Accessors
@@ -20,11 +21,15 @@ public class PlayPanel : MonoBehaviour
     public RectTransform optionContainer;
 
     public static UnityAction OnAnimationEnded;
-    
-    // asociar timemanager
+
     #endregion
 
     #region Public Methods
+
+    private void Start()
+    {
+        this.panelType = PanelType.PLAY;
+    }
 
     private void OnEnable()
     {
