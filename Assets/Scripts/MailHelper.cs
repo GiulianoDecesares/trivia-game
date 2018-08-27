@@ -30,7 +30,7 @@ public class MailHelper : MonoBehaviour
 	{
 		bool resultState = false;
 
-        if((thisMail.EndsWith(".com")|| thisMail.Contains(".com."))&& (thisMail.Contains("@"))&& !(thisMail.Contains("exampleemail@gmail.com"))&& (thisMail.Length>8)&& (!thisMail.Contains("@."))&& (!thisMail.StartsWith("@"))&& (!thisMail.StartsWith("."))&& (!thisMail.EndsWith("."))&& (!thisMail.EndsWith("@")))
+        if((thisMail.EndsWith(".com")|| thisMail.EndsWith(".org")|| thisMail.EndsWith(".com.ar") || thisMail.EndsWith(".net"))&& (thisMail.Contains("@"))&& !(thisMail.Contains("exampleemail@gmail.com"))&&  !(thisMail.Contains("("))&& !(thisMail.Contains(")"))&& !(thisMail.Contains(","))&& !(thisMail.Contains(":"))&& !(thisMail.Contains(";"))&& !(thisMail.Contains("<"))&& !(thisMail.Contains(">"))&& !(thisMail.Contains("["))&& !(thisMail.Contains("]"))&& !(thisMail.Contains("{"))&& !(thisMail.Contains("}"))&&!(thisMail.Contains(" ")) &&!(thisMail.StartsWith("@"))&& !(thisMail.Contains("..")) &&(thisMail.Length>8)&& (!thisMail.Contains("@."))&& (!thisMail.StartsWith("@"))&& (!thisMail.StartsWith("."))&& (!thisMail.EndsWith("."))&& (!thisMail.EndsWith("@")))
         {
 			resultState = true;
 		}
