@@ -128,7 +128,7 @@ public class Carousel : MonoBehaviour
         AudioManager.instance.PlayCarouselSound(false);
         targetCard.GetComponent<QuestionCard>()?.StartShowUpAnimation();
         this.onSwipeFinished?.Invoke();
-
+        AudioManager.instance.PlayCategoryMusic();
         yield return null;
     }
 

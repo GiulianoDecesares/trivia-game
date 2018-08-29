@@ -95,6 +95,7 @@ public class GameManager : MonoBehaviour
         answeredQuestions = 0;
         score = 0;
         ScrollControl.ChangeScreen(ScrollSnap.States.LoginPanel);
+        AudioManager.instance.PlayMainMenuTheme();
     }
 
     #endregion

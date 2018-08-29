@@ -11,11 +11,14 @@ public class AudioManager : MonoBehaviour {
     public AudioClip wrongAnswerClip;
     public AudioClip carouselSpinningClip;
     public AudioClip panelSwipeClip;
-
+    public AudioClip mainMenuTheme;
+    public AudioClip NewCategory;
+    public AudioClip NewCategory2;
     #region Singleton
-
+    
     public static AudioManager instance = null;
 
+    
     void Awake()
     {
         if (instance == null)
@@ -29,10 +32,39 @@ public class AudioManager : MonoBehaviour {
 
         DontDestroyOnLoad(gameObject);
     }
+
+    
     #endregion // Singleton
 
     #region Public Methods
     //Plays a swipe sound when moving between panels
+    public void PlayMainMenuTheme ()
+    {
+            audioSource.loop = true;
+            PlaySound(mainMenuTheme);
+        
+    }
+    
+    public void StopMainMenuTheme ()
+    {
+        audioSource.loop = false;
+        audioSource.Stop();
+        
+    }
+    public void PlayCategoryMusic ()
+    {
+        audioSource.loop = false;
+        int RandomCategoryChoice = Random.Range(0,5);
+        if (RandomCategoryChoice <= 2)
+        {
+            PlaySound(NewCategory);
+        }
+        else if (RandomCategoryChoice > 2)
+        {
+            PlaySound(NewCategory2);
+        }
+    }
+
     public void PlaySwipeSound()
     {
         audioSource.loop = false;
