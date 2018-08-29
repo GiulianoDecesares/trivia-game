@@ -6,21 +6,20 @@ using UnityEngine.UI;
 public class ScrollSnap : MonoBehaviour
 {
     [SerializeField] private ScrollRect mainScroll;
-    [SerializeField] private RectTransform center;
 
     [SerializeField] private List<Panel> allPanelsList;
 
+    [SerializeField] private AnimationCurve scrollAcceleration;
+
     public float scrollSpeed;
 
-    public Panel.PanelType currentPanel = Panel.PanelType.RESULT;
+    public Panel.PanelType currentPanel = Panel.PanelType.LOGIN;
 
     public System.Action onScrollEnd;
 
     private void Start()
     {
-        this.mainScroll.normalizedPosition = new Vector2(0.98f, 0f);
-
-        StartCoroutine(SwipeTo(Panel.PanelType.LOGIN));
+        this.mainScroll.normalizedPosition = new Vector2(0f, 0f);
     }
 
     private Panel SearchForPanel(Panel.PanelType thisPanel)
@@ -44,67 +43,92 @@ public class ScrollSnap : MonoBehaviour
         return result;
     }
 
-    private IEnumerator SwipeForoward(float normalizedScrollTo)
+    private IEnumerator SwipeForoward(float scrollToSwipe)
     {
-        while(this.mainScroll.normalizedPosition.x < normalizedScrollTo)
-        {
-            Debug.Log("Main scroll position " + this.mainScroll.normalizedPosition);
-            Debug.Log("Normalized scrool to " + normalizedScrollTo);
+        /*
+        normalizedScrollTo ----------------------------- 1
+        actual scroll ---------------------------------- x 
 
-            mainScroll.normalizedPosition += new Vector2(scrollSpeed, 0) * Time.deltaTime;
+        ergo -> (actual scroll * 1f) / normalized scroll to
+        */
+
+        while(this.mainScroll.normalizedPosition.x < scrollToSwipe)
+        {
+            mainScroll.normalizedPosition += new Vector2(0.0001f, 0);
+
+            float actualNormalizedScroll = this.mainScroll.normalizedPosition.x / scrollToSwipe;
+
+            Debug.Log(this.scrollAcceleration.Evaluate(actualNormalizedScroll / scrollToSwipe));
+
+            mainScroll.normalizedPosition += new Vector2(scrollSpeed, 0) 
+                * this.scrollAcceleration.Evaluate(actualNormalizedScroll / scrollToSwipe) 
+                * Time.deltaTime;
 
             yield return null;
         }
+
+        this.onScrollEnd?.Invoke();
     }
 
-    private IEnumerator SwipeBack(float scrolltoSwipe)
+    private IEnumerator SwipeBack(float scrollToSwipe)
     {
-        while(this.mainScroll.normalizedPosition.x >= (1 - scrolltoSwipe))
+        while(this.mainScroll.normalizedPosition.x > scrollToSwipe)
         {
-            Debug.Log("Main scroll position " + this.mainScroll.normalizedPosition);
-            Debug.Log("Normalized scrool to " + scrolltoSwipe);
+            mainScroll.normalizedPosition -= new Vector2(0.0001f, 0);
 
-            mainScroll.normalizedPosition -= new Vector2(scrollSpeed, 0) * Time.deltaTime;
+            float actualNormalizedScroll = this.mainScroll.normalizedPosition.x / scrollToSwipe;
+
+            Debug.Log(this.scrollAcceleration.Evaluate(actualNormalizedScroll / scrollToSwipe));
+
+            mainScroll.normalizedPosition -= new Vector2(scrollSpeed, 0)
+                * this.scrollAcceleration.Evaluate(actualNormalizedScroll / scrollToSwipe)
+                * Time.deltaTime;
 
             yield return null;
         }
+
+        this.onScrollEnd?.Invoke();
     }
 
     private IEnumerator SwipeTo(Panel.PanelType thisPanel)
     {
         Panel targetPanel = this.SearchForPanel(thisPanel);
-        Debug.Log("Target panel type is " + targetPanel.panelType);
 
         Panel currentPanel = this.SearchForPanel(this.currentPanel);
-        Debug.Log("Current panel type is " + currentPanel.panelType);
 
-        if(targetPanel)
+        if(targetPanel != null)
         {
             int sibilingIndex = targetPanel.GetSibilingIndex();
-            Debug.Log("Target panel sibiling index : " + sibilingIndex);
 
             int currentSibilingIndex = currentPanel.GetSibilingIndex();
-            Debug.Log("Current panel sibiling index : " + currentSibilingIndex);
 
-            float normalizedScrollTo = (1 / this.allPanelsList.Count) * sibilingIndex + 1;
-            Debug.Log("Normalized scroll to : " + normalizedScrollTo);
+            float normalizedScrollTo = 0f;
+
+            if(thisPanel == this.allPanelsList[this.allPanelsList.Count - 1].panelType)
+                normalizedScrollTo = ((1f / this.allPanelsList.Count) * (sibilingIndex + 1f));
+            else if(thisPanel == this.allPanelsList[0].panelType)
+                normalizedScrollTo = ((1f / this.allPanelsList.Count) * (sibilingIndex));
+            else
+                normalizedScrollTo = ((1f / this.allPanelsList.Count) * (sibilingIndex + 0.5f));
 
             if(sibilingIndex < currentSibilingIndex)
             {
-                Debug.Log("Must swipe back");
                 StartCoroutine(this.SwipeBack(normalizedScrollTo));
             }
             else
             {
-                Debug.Log("Must swipe foroward");
                 StartCoroutine(this.SwipeForoward(normalizedScrollTo));
             }
 
-
-            this.currentPanel = thisPanel;
+            if(normalizedScrollTo > 0)
+            {
+                this.currentPanel = thisPanel; 
+            }
         }
-
-        this.onScrollEnd?.Invoke();
+        else
+        {
+            Debug.LogError("No target panel");
+        }
 
         yield return null;
     }
