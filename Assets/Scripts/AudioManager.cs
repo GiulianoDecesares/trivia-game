@@ -9,15 +9,14 @@ public class AudioManager : MonoBehaviour {
     public AudioClip slowTimerClip;
     public AudioClip correctAnswerClip;
     public AudioClip wrongAnswerClip;
-    public AudioClip carouselSpinningClip;
     public AudioClip panelSwipeClip;
     public AudioClip mainMenuTheme;
     public AudioClip thinkMusic;
-
+    public AudioClip questionCardSwipe;
+    
     #region Singleton
     
     public static AudioManager instance = null;
-
     
     void Awake()
     {
@@ -33,23 +32,20 @@ public class AudioManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
-    
     #endregion // Singleton
 
     #region Public Methods
     //Plays a swipe sound when moving between panels
     public void PlayMainMenuTheme ()
     {
-            audioSource.loop = true;
-            PlaySound(mainMenuTheme);
-        
+        audioSource.loop = true;
+        PlaySound(mainMenuTheme);        
     }
     
     public void StopMainMenuTheme ()
     {
         audioSource.loop = false;
-        audioSource.Stop();
-        
+        audioSource.Stop();        
     }
     
     public void PlaySwipeSound()
@@ -73,21 +69,6 @@ public class AudioManager : MonoBehaviour {
         else
         {
             PlaySound(wrongAnswerClip);
-        }
-    }
-
-    //Plays the carousel sound when this method is called with a true bool and it starts looping until this method is called again with a false bool when it stops.
-    public void PlayCarouselSound(bool begining)
-    {
-        if (begining)
-        {
-            audioSource.loop = true;
-            PlaySound(carouselSpinningClip);
-        }
-        else
-        {
-            audioSource.loop = false;
-            audioSource.Stop();
         }
     }
 

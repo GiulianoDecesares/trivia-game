@@ -746,11 +746,10 @@ MonoBehaviour:
   slowTimerClip: {fileID: 8300000, guid: 5b3ede493edb2b34eb1dd4d225f6c55f, type: 3}
   correctAnswerClip: {fileID: 8300000, guid: 30bba9bf61a114d48ad27d3285cd8a7c, type: 3}
   wrongAnswerClip: {fileID: 8300000, guid: f0bcae80933372748adb3f01395cc55e, type: 3}
-  carouselSpinningClip: {fileID: 8300000, guid: c2325037935c92a4e8738fc8765a5b52,
-    type: 3}
   panelSwipeClip: {fileID: 8300000, guid: 842f6891be0da014f8f5cb8a17ecab5c, type: 3}
   mainMenuTheme: {fileID: 8300000, guid: 9ee5665ff341714418c372c40203a89a, type: 3}
   thinkMusic: {fileID: 8300000, guid: 039bfe04526cc444f8f8feb55c5f3ad0, type: 3}
+  questionCardSwipe: {fileID: 0}
 --- !u!114 &1429804252 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114724449205251340, guid: 271de5846783a404e91238a7cab69d11,
