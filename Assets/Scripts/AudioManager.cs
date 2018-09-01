@@ -12,8 +12,8 @@ public class AudioManager : MonoBehaviour {
     public AudioClip carouselSpinningClip;
     public AudioClip panelSwipeClip;
     public AudioClip mainMenuTheme;
-    public AudioClip NewCategory;
-    public AudioClip NewCategory2;
+    public AudioClip thinkMusic;
+
     #region Singleton
     
     public static AudioManager instance = null;
@@ -51,20 +51,7 @@ public class AudioManager : MonoBehaviour {
         audioSource.Stop();
         
     }
-    public void PlayCategoryMusic ()
-    {
-        audioSource.loop = false;
-        int RandomCategoryChoice = Random.Range(0,5);
-        if (RandomCategoryChoice <= 2)
-        {
-            PlaySound(NewCategory);
-        }
-        else if (RandomCategoryChoice > 2)
-        {
-            PlaySound(NewCategory2);
-        }
-    }
-
+    
     public void PlaySwipeSound()
     {
         audioSource.loop = false;
@@ -75,8 +62,10 @@ public class AudioManager : MonoBehaviour {
     public void PlayButtonSound(bool IsCorrect)
     {
         audioSource.loop = false;
+
         fastTimerAudioSource.volume = 0f;
         fastTimerAudioSource.Stop();
+
         if (IsCorrect)
         {
             PlaySound(correctAnswerClip);

@@ -749,6 +749,8 @@ MonoBehaviour:
   carouselSpinningClip: {fileID: 8300000, guid: c2325037935c92a4e8738fc8765a5b52,
     type: 3}
   panelSwipeClip: {fileID: 8300000, guid: 842f6891be0da014f8f5cb8a17ecab5c, type: 3}
+  mainMenuTheme: {fileID: 8300000, guid: 9ee5665ff341714418c372c40203a89a, type: 3}
+  thinkMusic: {fileID: 8300000, guid: 039bfe04526cc444f8f8feb55c5f3ad0, type: 3}
 --- !u!114 &1429804252 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114724449205251340, guid: 271de5846783a404e91238a7cab69d11,
