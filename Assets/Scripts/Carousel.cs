@@ -106,11 +106,15 @@ public class Carousel : MonoBehaviour
         Vector2 intercardSpacingVector = new Vector2(this.intercardSpacing, 0f);
         float initialDistanceOfTargetCard = Vector2.Distance(targetCardRect.anchoredPosition, this.centerPlaceholderRect.anchoredPosition);
 
+        this.carouselAudioSource.pitch = 0.0f;
+
         this.carouselAudioSource.Play();
 
         while (!this.CardIsInCenter(targetCardRect))
         {
             float actualDistanceOfTargetCard = Vector2.Distance(targetCardRect.anchoredPosition, this.centerPlaceholderRect.anchoredPosition);
+
+            this.carouselAudioSource.pitch = 0.6f + this.accelerationCurve.Evaluate(actualDistanceOfTargetCard / initialDistanceOfTargetCard);
 
             for (int index = 0; index < this.categoryCardsList.Count; index++)
             {
