@@ -320,16 +320,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 223510859070101594, guid: 271de5846783a404e91238a7cab69d11,
-        type: 2}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 898603416}
     - target: {fileID: 114169103208124328, guid: 271de5846783a404e91238a7cab69d11,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1954185412}
+    - target: {fileID: 223510859070101594, guid: 271de5846783a404e91238a7cab69d11,
+        type: 2}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 898603416}
     - target: {fileID: 224504317793698674, guid: 271de5846783a404e91238a7cab69d11,
         type: 2}
       propertyPath: m_AnchorMax.x
@@ -749,13 +749,6 @@ MonoBehaviour:
   panelSwipeClip: {fileID: 8300000, guid: 842f6891be0da014f8f5cb8a17ecab5c, type: 3}
   mainMenuTheme: {fileID: 8300000, guid: 9ee5665ff341714418c372c40203a89a, type: 3}
   thinkMusic: {fileID: 8300000, guid: 039bfe04526cc444f8f8feb55c5f3ad0, type: 3}
-  questionCardSwipe: {fileID: 0}
---- !u!114 &1429804252 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114724449205251340, guid: 271de5846783a404e91238a7cab69d11,
-    type: 2}
-  m_PrefabInternal: {fileID: 646351791}
-  m_Script: {fileID: 11500000, guid: 1b46a90cd844bd7449662a94e312330c, type: 3}
 --- !u!1 &1477337334
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,7 +933,7 @@ MonoBehaviour:
   resultPanelScript: {fileID: 986201588}
   playPanelScript: {fileID: 1119208012}
   logInPanelScript: {fileID: 719987736}
-  ScrollControl: {fileID: 1429804252}
+  scrollControl: {fileID: 0}
   answeredQuestions: 0
   score: 0
   questionsAmmount: 3
