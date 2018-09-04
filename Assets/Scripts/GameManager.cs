@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private ResultPanel resultPanelScript;
     [SerializeField] private PlayPanel playPanelScript;
     [SerializeField] private LoginPanel logInPanelScript;
-    [SerializeField] private ScrollSnap ScrollControl;
+    [SerializeField] private ScrollSnap scrollControl;
 
     [HideInInspector] public int answeredQuestions = 0;
 
@@ -40,24 +40,24 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
-        this.ScrollControl.onScrollEnd += this.OnScrollSnapEndScrolling;
+        this.scrollControl.onScrollEnd += this.OnScrollSnapEndScrolling;
     }
 
     private void OnDisable()
     {
-        this.ScrollControl.onScrollEnd -= this.OnScrollSnapEndScrolling;
+        this.scrollControl.onScrollEnd -= this.OnScrollSnapEndScrolling;
     }
 
     #endregion // Singleton
 
     private void OnScrollSnapEndScrolling()
     {
-        if (ScrollControl.screenState == ScrollSnap.States.PlayPanel)
+        if (scrollControl.screenState == ScrollSnap.States.PlayPanel)
         {
             this.playPanelScript.StartPlayFlow();
         }else
         {
-            if (ScrollControl.screenState == ScrollSnap.States.ResultPanel)
+            if (scrollControl.screenState == ScrollSnap.States.ResultPanel)
             {
                 resultPanelScript.ShowResults(score, answeredQuestions);
             }
@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
     // When Login Button is pressed it shows the Play panel
     public void OnLoginButtonPressed()
     {
-        ScrollControl.ChangeScreen(ScrollSnap.States.PlayPanel);
+        scrollControl.ChangeScreen(ScrollSnap.States.PlayPanel);
     }
 
     // Restarts the game
@@ -94,7 +94,8 @@ public class GameManager : MonoBehaviour
         logInPanelScript.ResetLoginPanel();
         answeredQuestions = 0;
         score = 0;
-        ScrollControl.ChangeScreen(ScrollSnap.States.LoginPanel);
+        scrollControl.ChangeScreen(ScrollSnap.States.LoginPanel);
+        AudioManager.instance.PlayMainMenuTheme();
     }
 
     #endregion
@@ -122,7 +123,7 @@ public class GameManager : MonoBehaviour
     // Shows the result panel and calls the result panel to show the results
     private void EndGame()
     {
-        ScrollControl.ChangeScreen(ScrollSnap.States.ResultPanel);
+        scrollControl.ChangeScreen(ScrollSnap.States.ResultPanel);
         playPanelScript.OnGameEnd();
         resultPanelScript.ResetResultPanel();
     }

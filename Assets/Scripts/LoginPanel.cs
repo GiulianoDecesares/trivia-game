@@ -19,6 +19,8 @@ public class LoginPanel : MonoBehaviour
 
     #region Public Methods
     //Resets the login panel to it's starting state
+
+    
     public void ResetLoginPanel()
     {
         this.checkSpriteGameObject.SetActive(false);
@@ -118,6 +120,14 @@ public class LoginPanel : MonoBehaviour
     private void Awake()
     {
         ResetLoginPanel();
+    }
+    private void Start()
+    {
+      AudioManager.instance.PlayMainMenuTheme();
+    }
+    private void OnDisable()
+    {
+        AudioManager.instance.StopMainMenuTheme();
     }
     #endregion
 }

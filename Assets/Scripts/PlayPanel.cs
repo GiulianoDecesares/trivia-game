@@ -134,21 +134,22 @@ public class PlayPanel : MonoBehaviour
 
     private IEnumerator OnOptionButtonPressed(bool PressedButton)
     {   
-
         if (PressedButton)
         {
-            targetQuestionCardScript.SetQuestionText("Respuesta correcta");    
+            targetQuestionCardScript.SetQuestionText("Respuesta correcta");
+            AudioManager.instance.PlayButtonSound(true);
             yield return new WaitForSeconds(3.5f);
             GameManager.instance.OnCorrectAnswer();
         }
         else
         { 
-            targetQuestionCardScript.SetQuestionText("Respuesta incorrecta");    
+            targetQuestionCardScript.SetQuestionText("Respuesta incorrecta");
+            AudioManager.instance.PlayButtonSound(false);
             yield return new WaitForSeconds(3.5f);
             GameManager.instance.OnWrongAnswer();
         }
-
     }
+
     private IEnumerator OnTimeOut()
     {
         for (int index = 0;index < this.gameObjectButtonList.Count;index++)

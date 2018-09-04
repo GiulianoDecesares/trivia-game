@@ -6,11 +6,13 @@ using UnityEngine.Events;
 public class TimeManager : MonoBehaviour {
 
     public static TimeManager instance = null;
-    public int seconds = 0;
+
     public static UnityAction OnTimeOut;
     public static UnityAction OnTick;
 
-    private GameManager gm;
+    public int seconds = 0;
+
+    private GameManager gameManager;
     
     #region Singleton
 
@@ -28,12 +30,12 @@ public class TimeManager : MonoBehaviour {
     // Starts the clock corutine. Works for more than 2 seconds.
     private void Start()
     {
-        gm = GameManager.instance;
+        gameManager = GameManager.instance;
     }
 
     public void StartCountdown ()
     {
-        seconds = gm.timeToAnswer;
+        seconds = gameManager.timeToAnswer;
         if (seconds > 1)
         {
             StartCoroutine(GameClock());
@@ -53,10 +55,10 @@ public class TimeManager : MonoBehaviour {
     //Clock corutine
     private IEnumerator GameClock()
     {
-        for (int i=0; i < seconds; i++)
+        for (int i=seconds; i >0; i--)
         {
             yield return new WaitForSeconds(1f);
-
+            AudioManager.instance.PlayTimerSound(i, seconds);
             OnTick?.Invoke();
         }
 

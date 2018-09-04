@@ -17,6 +17,8 @@ public class Carousel : MonoBehaviour
     [SerializeField] [Range(2, 4)] private int minRandomLapsValue;
     [SerializeField] [Range(4, 30)] private int maxRandomLapsValue;
 
+    [SerializeField] private AudioSource carouselAudioSource;
+
     private List<GameObject> categoryCardsList = new List<GameObject>();
     private List<RectTransform> categoryCardsRectList = new List<RectTransform>();
 
@@ -100,19 +102,21 @@ public class Carousel : MonoBehaviour
 
     private IEnumerator SwipeToCategory(GameObject targetCard, int lapsAmount)
     {
-        // Buscar distancia por frame de targetCard al objetivo
-
-        // (posicionActual.x + velocidad por frame * evaluacion de la curva
-
-        // xValue += speed*curva*time.deltatime        
-
         RectTransform targetCardRect = targetCard.GetComponent<RectTransform>();
 
+        Vector2 intercardSpacingVector = new Vector2(this.intercardSpacing, 0f);
+
         float initialDistanceOfTargetCard = Vector2.Distance(targetCardRect.anchoredPosition, this.centerPlaceholderRect.anchoredPosition);
+
+        this.carouselAudioSource.pitch = 0.0f;
+
+        this.carouselAudioSource.Play();
 
         while (!this.CardIsInCenter(targetCardRect))
         {
             float actualDistanceOfTargetCard = Vector2.Distance(targetCardRect.anchoredPosition, this.centerPlaceholderRect.anchoredPosition);
+
+            this.carouselAudioSource.pitch = 0.6f + this.accelerationCurve.Evaluate(actualDistanceOfTargetCard / initialDistanceOfTargetCard);
 
             for (int index = 0; index < this.categoryCardsList.Count; index++)
             {
@@ -125,9 +129,10 @@ public class Carousel : MonoBehaviour
             yield return null;
         }
 
+        this.carouselAudioSource.Stop();
+
         targetCard.GetComponent<QuestionCard>()?.StartShowUpAnimation();
         this.onSwipeFinished?.Invoke();
-
         yield return null;
     }
 
@@ -177,7 +182,7 @@ public class Carousel : MonoBehaviour
 
         if (result)
         {
-            StartCoroutine(this.SwipeToCategory(result, lapsAmount)); 
+            StartCoroutine(this.SwipeToCategory(result, lapsAmount));
         }
         else
         {
