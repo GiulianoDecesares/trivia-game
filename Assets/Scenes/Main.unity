@@ -443,6 +443,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 271de5846783a404e91238a7cab69d11, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &646351792 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114724449205251340, guid: 271de5846783a404e91238a7cab69d11,
+    type: 2}
+  m_PrefabInternal: {fileID: 646351791}
+  m_Script: {fileID: 11500000, guid: 1b46a90cd844bd7449662a94e312330c, type: 3}
 --- !u!114 &719987736 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114549303110661334, guid: 271de5846783a404e91238a7cab69d11,
@@ -933,7 +939,7 @@ MonoBehaviour:
   resultPanelScript: {fileID: 986201588}
   playPanelScript: {fileID: 1119208012}
   logInPanelScript: {fileID: 719987736}
-  scrollControl: {fileID: 0}
+  scrollControl: {fileID: 646351792}
   answeredQuestions: 0
   score: 0
   questionsAmmount: 3
@@ -1004,6 +1010,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 82fb839a3292091409054506110c89fe, type: 3}
   - {fileID: 21300000, guid: 3a26bfc74d1abe342869db264d0233ea, type: 3}
   - {fileID: 21300000, guid: d6dcede7a0eef4242bd58cabf516e3b2, type: 3}
+  - {fileID: 21300000, guid: 53c2eaa27c7adfd49837f2d0858af3d5, type: 3}
 --- !u!4 &2140531487
 Transform:
   m_ObjectHideFlags: 0
