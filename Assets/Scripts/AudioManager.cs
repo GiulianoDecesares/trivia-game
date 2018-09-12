@@ -6,6 +6,7 @@ using UnityEngine.Audio;
 public class AudioManager : MonoBehaviour {
     public AudioSource audioSource;
     public AudioSource fastTimerAudioSource;
+    public AudioSource buttonSource;
     public AudioClip slowTimerClip;
     public AudioClip correctAnswerClip;
     public AudioClip wrongAnswerClip;
@@ -41,7 +42,13 @@ public class AudioManager : MonoBehaviour {
         audioSource.loop = true;
         PlaySound(mainMenuTheme);        
     }
-    
+
+    public void PlayButtonAudio()
+    {
+        buttonSource.Stop();
+        buttonSource.Play();
+    }
+
     public void StopMainMenuTheme ()
     {
         audioSource.loop = false;
