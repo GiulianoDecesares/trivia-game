@@ -6,11 +6,17 @@ using UnityEngine.UI;
 public class LoginPanel : MonoBehaviour 
 {
 	[SerializeField] private InputField mailInputField;
+    [SerializeField] private GameObject fieldText;
+
     [SerializeField] private Text mailText;
     [SerializeField] private Button playButton;
     [SerializeField] private RectTransform checkSpritePlaceholder;
     [SerializeField] private GameObject checkSpriteGameObject;
     [SerializeField] private GameObject mailInputStroke;
+
+    [SerializeField] private GameObject welcomeText;
+
+    [SerializeField] private bool welcomeMode;
 
 	private MailHelper mailHelper;
 
@@ -36,10 +42,26 @@ public class LoginPanel : MonoBehaviour
         this.mailInputField.GetComponentInChildren<Text>().text = "exampleemail@gmail.com";
         mailText.color = new Color(50f / 255f, 50f / 255f, 50f / 255f, 180f / 255f);
 
-        // Force the activation of the play buton, to disable the check mail mechanism.
 
-        //this.playButton.interactable = false;
-        this.playButton.interactable = true;
+        if(this.welcomeMode)
+        {
+            this.playButton.interactable = true;
+
+            this.welcomeText.SetActive(true);
+
+            this.mailInputField.gameObject.SetActive(false);
+            this.fieldText.SetActive(false);
+        }
+        else
+        {
+            this.playButton.interactable = false;
+
+            this.welcomeText.SetActive(false);
+
+            this.mailInputField.gameObject.SetActive(true);
+            this.fieldText.SetActive(true);
+        }
+
     }
 
     public void OnEndEdit()

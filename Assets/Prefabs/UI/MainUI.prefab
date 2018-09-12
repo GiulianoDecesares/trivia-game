@@ -1966,11 +1966,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mailInputField: {fileID: 114169166006163478}
+  fieldText: {fileID: 1709478089119110}
   mailText: {fileID: 114220781929394228}
   playButton: {fileID: 114169103208124328}
   checkSpritePlaceholder: {fileID: 224268205335780022}
   checkSpriteGameObject: {fileID: 1025881200794242}
   mailInputStroke: {fileID: 1731370849489796}
+  welcomeText: {fileID: 1972819601003408}
+  welcomeMode: 1
 --- !u!114 &114596254486532378
 MonoBehaviour:
   m_ObjectHideFlags: 1
