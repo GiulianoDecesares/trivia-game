@@ -1,4 +1,7 @@
 Question,FirstAnswer,SecondAnswer,ThirdAnswer,CorrectAnswer
-¿Cuántos Museos de gestión pública hay en Mar del Plata?,6,9,13,10
-¿Cuántas bibliotecas públicas hay en Mar del Plata?,14,25,31,33
-¿Cuántas unidades educativas no universitarias hay en Mar del Plata?,543,598,657,739
+¿Cuántos Museos de gestión pública hay en la ciudad?,6,9,13,10
+¿Cuántas bibliotecas públicas hay en la ciudad?,14,25,31,33
+¿Cuántas unidades educativas no universitarias hay en la ciudad?,543,598,657,739
+¿Cuántos Espacios Feriales Municipales hay en la ciudad?,8,5,6,3
+¿Cuántas universidades hay en la ciudad?,2,3,7,5
+¿Qué porcentaje de la población de 12 a 15 años de edad asiste a la escuela en el PGP?,0.82,0.89,0.92,0.97
