@@ -92,9 +92,15 @@ public class GameManager : MonoBehaviour
     public void ResetGame()
     {
         logInPanelScript.ResetLoginPanel();
+
         answeredQuestions = 0;
         score = 0;
+
+        QuestionManager.instance.ResetCategoryRepeatedCount();
+        QuestionManager.instance.ResetQuestionsRepeatedCount();
+
         scrollControl.ChangeScreen(ScrollSnap.States.LoginPanel);
+
         AudioManager.instance.PlayMainMenuTheme();
     }
 
