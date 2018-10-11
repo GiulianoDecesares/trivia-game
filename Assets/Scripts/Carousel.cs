@@ -104,8 +104,6 @@ public class Carousel : MonoBehaviour
     {
         RectTransform targetCardRect = targetCard.GetComponent<RectTransform>();
 
-        Vector2 intercardSpacingVector = new Vector2(this.intercardSpacing, 0f);
-
         float initialDistanceOfTargetCard = Vector2.Distance(targetCardRect.anchoredPosition, this.centerPlaceholderRect.anchoredPosition);
 
         this.carouselAudioSource.pitch = 0.0f;
