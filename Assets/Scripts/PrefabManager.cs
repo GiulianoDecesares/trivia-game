@@ -50,9 +50,6 @@ public class PrefabManager : MonoBehaviour
             case QuestionManager.Categories.MOBILITY_AND_LOGISTICS:
                 SpriteManager.instance.GetSpriteByName(CategoryIconNames.MOBILITY_AND_LOGISTICS + "_banner");
                 break;
-            case QuestionManager.Categories.PUBLIC_MANAGEMENT:
-                result = SpriteManager.instance.GetSpriteByName(CategoryIconNames.PUBLIC_MANAGEMENT + "_banner");
-                break;
             case QuestionManager.Categories.PRODUCTION_EMPLOYMENT_AND_TOURISM:
                 result = SpriteManager.instance.GetSpriteByName(CategoryIconNames.PRODUCTION_EMPLOYMENT_AND_TOURISM + "_banner");
                 break;
@@ -90,9 +87,6 @@ public class PrefabManager : MonoBehaviour
                 break;
             case QuestionManager.Categories.MOBILITY_AND_LOGISTICS:
                 SpriteManager.instance.GetSpriteByName(CategoryIconNames.MOBILITY_AND_LOGISTICS);
-                break;
-            case QuestionManager.Categories.PUBLIC_MANAGEMENT:
-                result = SpriteManager.instance.GetSpriteByName(CategoryIconNames.PUBLIC_MANAGEMENT);
                 break;
             case QuestionManager.Categories.PRODUCTION_EMPLOYMENT_AND_TOURISM:
                 result = SpriteManager.instance.GetSpriteByName(CategoryIconNames.PRODUCTION_EMPLOYMENT_AND_TOURISM);
@@ -158,12 +152,6 @@ public class PrefabManager : MonoBehaviour
                     cardScript.category = QuestionManager.Categories.MOBILITY_AND_LOGISTICS;
                     cardScript.SetCategoryIcon(SpriteManager.instance.GetSpriteByName(CategoryIconNames.MOBILITY_AND_LOGISTICS));
                     cardScript.SetHeaderSprite(SpriteManager.instance.GetSpriteByName(CategoryIconNames.MOBILITY_AND_LOGISTICS + "_banner"));
-                    break;
-                case QuestionManager.Categories.PUBLIC_MANAGEMENT:
-                    cardScript.SetTitleText("Gestión pública");
-                    cardScript.category = QuestionManager.Categories.PUBLIC_MANAGEMENT;
-                    cardScript.SetCategoryIcon(SpriteManager.instance.GetSpriteByName(CategoryIconNames.PUBLIC_MANAGEMENT));
-                    cardScript.SetHeaderSprite(SpriteManager.instance.GetSpriteByName(CategoryIconNames.PUBLIC_MANAGEMENT + "_banner"));
                     break;
                 case QuestionManager.Categories.PRODUCTION_EMPLOYMENT_AND_TOURISM:
                     cardScript.SetTitleText("Producción, empleo y turismo");
