@@ -4,23 +4,30 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ResultPanel : MonoBehaviour {
+    [SerializeField] private Button shareButton;
+    [SerializeField] private Button playAgainButton;
+
     public Text resultText;
     public Text correctText;
     public Text incorrectText;
     public Text percentText;
+
     public Slider logoSlider;
-    private string shareMessage = "¡Mira cuanto sé sobre Mar del Plata!";
+
+    private string shareMessage = "¡Mirá cuanto sé sobre Mar del Plata!";
     private int percentage;
     private int answeredQuestions;
     private int correctAnswers;
+
     [Range(0.005f,0.02f)]
     public float animationDelay=0.05f;
+
     [Space]
     [Header("Dynamic text")]
 
-    public string veryGood= "Felicitaciones!!Sabés mucho de nuestra ciudad!";
+    public string veryGood= "Felicitaciones!! Sabés mucho de nuestra ciudad!";
     public string fair= "Bueno… podría ser peor… pero mejor también!!Seguí jugando para conocer más de nuestra ciudad!";
-    public string bad= "Estás al horno!!Es importante conocer cómo está nuestra ciudad. Seguí jugando";
+    public string bad= "Estás al horno!! Es importante conocer cómo está nuestra ciudad. Seguí jugando";
 
     #region Public Methods
     public void ResetResultPanel()
@@ -44,12 +51,14 @@ public class ResultPanel : MonoBehaviour {
     //Public method called by the Share button to share a screenshot
     public void OnShareButtonPressed()
     {
+        this.shareButton.interactable = false;
         StartCoroutine(takeScreenshotAndSave());
     }
 
     // Public method called by the play again button to restart the game
     public void OnPlayAgainPressed()
     {
+        this.playAgainButton.interactable = false;
         GameManager.instance.ResetGame();
     }
     #endregion
