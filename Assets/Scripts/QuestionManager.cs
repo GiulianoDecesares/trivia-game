@@ -286,12 +286,12 @@ public class QuestionManager : MonoBehaviour
     /// </summary>
     public void ResetCategoryRepeatedCount()
     {
-        this.remainingCategories.Clear();
-
         foreach (Categories thisCategory in this.categoriesAlreadySelected)
         {
             this.remainingCategories.Add(thisCategory);
         }
+
+        this.categoriesAlreadySelected.Clear();
     }
 
     /// <summary> 
