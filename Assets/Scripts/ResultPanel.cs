@@ -17,13 +17,10 @@ public class ResultPanel : MonoBehaviour {
     public float animationDelay=0.05f;
     [Space]
     [Header("Dynamic text")]
-    public string Excellent= "¡Felicitaciones! ¡Sabés muchísimo de nuestra ciudad!";
-    public string VeryGood= "¡Conocés mucho sobre Mar del Plata!";
-    public string Good= "Sabés bastante de nuestra ciudad ; ¡Podés aprender más todavía en nuestro sitio web!";
-    public string Fair= "Conocés poco nuestra ciudad ; ¡Te invitamos a nuestro sitio web para aprender más!";
-    public string Bad= "Sabés poco y nada. ; ¡Te invitamos a nuestro sitio web para aprender más!";
-    public string Pathetic= "Necesitas saber más de nuestra ciudad ; ¡Te invitamos a nuestro sitio web para aprender más!";
 
+    public string veryGood= "Felicitaciones!!Sabés mucho de nuestra ciudad!";
+    public string fair= "Bueno… podría ser peor… pero mejor también!!Seguí jugando para conocer más de nuestra ciudad!";
+    public string bad= "Estás al horno!!Es importante conocer cómo está nuestra ciudad. Seguí jugando";
 
     #region Public Methods
     public void ResetResultPanel()
@@ -109,42 +106,25 @@ public class ResultPanel : MonoBehaviour {
     {
         correctText.text = correctAnswers.ToString()+" CORRECTAS";
         incorrectText.text = (answeredQuestions - correctAnswers).ToString() + " INCORRECTAS";
-        if (percentage == 100)
-        {
-            resultText.text = TextBreak (Excellent);
-        }
-        else
-        {
-            if(percentage >= 80)
+            if(percentage >= 70)
             {
-                resultText.text = TextBreak (VeryGood);
+                resultText.text = TextBreak(veryGood);
             }
             else
             {
-                if (percentage >= 60)
+                if(percentage >= 40)
                 {
-                    resultText.text = TextBreak (Good);
+                    resultText.text = TextBreak(fair);
                 }
                 else
                 {
-                    if(percentage >= 40)
+                    if (percentage < 40)
                     {
-                        resultText.text = TextBreak(Fair);
-                    }
-                    else
-                    {
-                        if (percentage >= 20)
-                        {
-                            resultText.text = TextBreak(Bad);
-                        }
-                        else
-                        {
-                            resultText.text = TextBreak (Pathetic);
-                        }
+                        resultText.text = TextBreak(bad);
                     }
                 }
             }
-        }
+        
     }
 
     #endregion
