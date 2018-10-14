@@ -32,6 +32,7 @@ public class ResultPanel : MonoBehaviour {
     #region Public Methods
     public void ResetResultPanel()
     {
+        this.playAgainButton.interactable = true;
         resultText.text = "";
         correctText.text = "";
         incorrectText.text = "";
