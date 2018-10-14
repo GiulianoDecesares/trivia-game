@@ -26,7 +26,7 @@ public class ResultPanel : MonoBehaviour {
     [Header("Dynamic text")]
 
     public string veryGood= "Felicitaciones!! Sabés mucho de nuestra ciudad!";
-    public string fair= "Bueno… podría ser peor… pero mejor también!!Seguí jugando para conocer más de nuestra ciudad!";
+    public string fair= "Bueno… podría ser peor… pero mejor también!! Seguí jugando para conocer más de nuestra ciudad!";
     public string bad= "Estás al horno!! Es importante conocer cómo está nuestra ciudad. Seguí jugando";
 
     #region Public Methods
