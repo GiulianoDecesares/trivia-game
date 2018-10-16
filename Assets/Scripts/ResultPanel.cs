@@ -22,12 +22,9 @@ public class ResultPanel : MonoBehaviour {
     [Range(0.005f,0.02f)]
     public float animationDelay=0.05f;
 
-    [Space]
-    [Header("Dynamic text")]
-
-    public string veryGood= "Felicitaciones!! Sabés mucho de nuestra ciudad!";
-    public string fair= "Bueno… podría ser peor… pero mejor también!! Seguí jugando para conocer más de nuestra ciudad!";
-    public string bad= "Estás al horno!! Es importante conocer cómo está nuestra ciudad. Seguí jugando";
+    private string veryGood= "Felicitaciones!! Sabés mucho de nuestra ciudad!";
+    private string fair= "Bueno… podría ser peor… pero mejor también!! Seguí jugando para conocer más de nuestra ciudad!";
+    private string bad= "Estás al horno!! Es importante conocer cómo está nuestra ciudad. Seguí jugando";
 
     #region Public Methods
     public void ResetResultPanel()
