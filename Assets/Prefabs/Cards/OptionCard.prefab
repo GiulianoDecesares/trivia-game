@@ -111,6 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isCorrect: 0
   optionText: {fileID: 114040785149649456}
+  TimeManager: {fileID: 0}
   optionButton: {fileID: 114546586140613314}
   showUpAnimator: {fileID: 95125195835516220}
 --- !u!114 &114546586140613314
@@ -209,7 +210,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 12.5}
-  m_SizeDelta: {x: 650, y: -25}
+  m_SizeDelta: {x: 750, y: -25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224548303145836330
 RectTransform:
