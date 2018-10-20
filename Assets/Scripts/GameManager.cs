@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour
     // When Login Button is pressed it shows the Play panel
     public void OnLoginButtonPressed()
     {
+        this.logInPanelScript.playButton.interactable = false;
         scrollControl.ChangeScreen(ScrollSnap.States.PlayPanel);
     }
 
