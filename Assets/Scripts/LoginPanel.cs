@@ -9,7 +9,7 @@ public class LoginPanel : MonoBehaviour
     [SerializeField] private GameObject fieldText;
 
     [SerializeField] private Text mailText;
-    [SerializeField] private Button playButton;
+    [SerializeField] public Button playButton;
     [SerializeField] private RectTransform checkSpritePlaceholder;
     [SerializeField] private GameObject checkSpriteGameObject;
     [SerializeField] private GameObject mailInputStroke;
