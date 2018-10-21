@@ -24,7 +24,7 @@ public class ResultPanel : MonoBehaviour {
 
     private string veryGood= "Felicitaciones!! Sabés mucho de nuestra ciudad!";
     private string fair= "Bueno… podría ser peor… pero mejor también!! Seguí jugando para conocer más de nuestra ciudad!";
-    private string bad= "Estás al horno!! Es importante conocer cómo está nuestra ciudad. Seguí jugando";
+    private string bad= "Estás al horno!! Es importante conocer cómo está nuestra ciudad. Seguí jugando!";
 
     #region Public Methods
     public void ResetResultPanel()
