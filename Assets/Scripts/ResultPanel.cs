@@ -30,6 +30,7 @@ public class ResultPanel : MonoBehaviour {
     public void ResetResultPanel()
     {
         this.playAgainButton.interactable = true;
+		this.shareButton.interactable = true;
         resultText.text = "";
         correctText.text = "";
         incorrectText.text = "";
@@ -50,7 +51,15 @@ public class ResultPanel : MonoBehaviour {
     public void OnShareButtonPressed()
     {
         this.shareButton.interactable = false;
-        StartCoroutine(takeScreenshotAndSave());
+
+		// Just share if no unity environment... otherwise, you get a null ptr error!
+		#if UNITY_EDITOR
+			Debug.Log("Screenshoot and share!");
+		#else
+			StartCoroutine(takeScreenshotAndSave());
+		#endif
+
+		this.shareButton.interactable = true;
     }
 
     // Public method called by the play again button to restart the game
